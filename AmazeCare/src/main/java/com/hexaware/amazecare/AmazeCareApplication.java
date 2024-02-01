@@ -9,5 +9,4 @@ public class AmazeCareApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AmazeCareApplication.class, args);
 	}
-
 }

@@ -1,9 +1,12 @@
 package com.hexaware.amazecare.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +20,12 @@ public class Patient {
 	private LocalDate dateOfBirth;
 	private String contactNumber;
 	private String address;
+	
+	@OneToMany(mappedBy="patient", cascade=CascadeType.ALL)
+	private List<Appointment> appointments;
+	
+	@OneToMany(mappedBy="patient", cascade = CascadeType.ALL)
+	private List<MedicalRecord> medicalRecords;
 	
 	public Patient() {
 		

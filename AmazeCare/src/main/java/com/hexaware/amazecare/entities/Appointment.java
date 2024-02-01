@@ -5,6 +5,8 @@ import java.time.LocalTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,12 +15,18 @@ public class Appointment {
 
 	@Id
 	private int appointmentId;
-	private int patientId;
-	private int doctorId;
 	private LocalDate date;
 	private LocalTime time;
 	private String symptoms;
 	private String visitType;
+	
+	@ManyToOne
+	@JoinColumn(name="doctor_id")
+	private Doctor doctor;
+	
+	@ManyToOne
+	@JoinColumn(name = "patient_id")
+	private Patient patient;
 	
 	public Appointment() {
 		
@@ -28,8 +36,6 @@ public class Appointment {
 			String visitType) {
 		super();
 		this.appointmentId = appointmentId;
-		this.patientId = patientId;
-		this.doctorId = doctorId;
 		this.date = date;
 		this.time = time;
 		this.symptoms = symptoms;
@@ -40,18 +46,6 @@ public class Appointment {
 	}
 	public void setAppointmentId(int appointmentId) {
 		this.appointmentId = appointmentId;
-	}
-	public int getPatientId() {
-		return patientId;
-	}
-	public void setPatientId(int patientId) {
-		this.patientId = patientId;
-	}
-	public int getDoctorId() {
-		return doctorId;
-	}
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
 	}
 	public LocalDate getDate() {
 		return date;
@@ -80,7 +74,7 @@ public class Appointment {
 
 	@Override
 	public String toString() {
-		return "Appointment [appointmentId=" + appointmentId + ", patientId=" + patientId + ", doctorId=" + doctorId
-				+ ", date=" + date + ", time=" + time + ", symptoms=" + symptoms + ", visitType=" + visitType + "]";
+		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", time=" + time + ", symptoms="
+				+ symptoms + ", visitType=" + visitType + "]";
 	}
 }

@@ -2,6 +2,8 @@ package com.hexaware.amazecare.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,13 +12,19 @@ public class MedicalRecord {
 
 	@Id
 	private int recordId;
-	private int appointmentID;
-	private int patientId;
 	private String currentSymptoms;
 	private String physicalExamination;
 	private String treatmentPlan;
 	private String recomendedTests;
 	private String prescription;
+	
+	@ManyToOne
+	@JoinColumn(name="doctor_id")
+	private Doctor doctor;
+	
+	@ManyToOne
+	@JoinColumn(name = "patient_id")
+	private Patient patient;
 	
 	public MedicalRecord() {
 	}
@@ -25,8 +33,6 @@ public class MedicalRecord {
 			String physicalExamination, String treatmentPlan, String recomendedTests, String prescription) {
 		super();
 		this.recordId = recordId;
-		this.appointmentID = appointmentID;
-		this.patientId = patientId;
 		this.currentSymptoms = currentSymptoms;
 		this.physicalExamination = physicalExamination;
 		this.treatmentPlan = treatmentPlan;
@@ -40,22 +46,6 @@ public class MedicalRecord {
 
 	public void setRecordId(int recordId) {
 		this.recordId = recordId;
-	}
-
-	public int getAppointmentID() {
-		return appointmentID;
-	}
-
-	public void setAppointmentID(int appointmentID) {
-		this.appointmentID = appointmentID;
-	}
-
-	public int getPatientId() {
-		return patientId;
-	}
-
-	public void setPatientId(int patientId) {
-		this.patientId = patientId;
 	}
 
 	public String getCurrentSymptoms() {
@@ -100,9 +90,8 @@ public class MedicalRecord {
 
 	@Override
 	public String toString() {
-		return "MedicalRecord [recordId=" + recordId + ", appointmentID=" + appointmentID + ", patientId=" + patientId
-				+ ", currentSymptoms=" + currentSymptoms + ", physicalExamination=" + physicalExamination
-				+ ", treatmentPlan=" + treatmentPlan + ", recomendedTests=" + recomendedTests + ", prescription="
-				+ prescription + "]";
+		return "MedicalRecord [recordId=" + recordId + ", currentSymptoms=" + currentSymptoms + ", physicalExamination="
+				+ physicalExamination + ", treatmentPlan=" + treatmentPlan + ", recomendedTests=" + recomendedTests
+				+ ", prescription=" + prescription + "]";
 	}
 }
