@@ -4,20 +4,37 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="Doctor_info")
 public class Doctor {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int doctorId;
+	
+	@Pattern(regexp = "[A-Z][a-z]{3,15}")
+	@Size(max = 255)
 	private String doctorName;
+	
+	@Size(max = 255)
 	private String speciality;
+	
+	@Pattern(regexp = "^[0-9]*$")
 	private int experience;
+	
+	@Pattern(regexp = "^[a-zA-Z.()]*$")
+	@Size(max = 255)
 	private String qualification;
+	
+	@Size(max = 255)
 	private String designation;
 	
 	@OneToMany(mappedBy="doctor", cascade=CascadeType.ALL)

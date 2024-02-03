@@ -2,14 +2,23 @@ package com.hexaware.amazecare.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Admin {
 	
 	@Id
 	private long adminId;
+	
+	@Size(max = 255)
 	private String adminUserName;
+	
+	@Size(max = 255)
 	private String adminPassword;
+	
+	@Size(max = 255)
+	@Email
 	private String email;
 	
 	public Admin(long adminId, String adminUserName, String adminPassword, String email) {

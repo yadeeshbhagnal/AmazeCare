@@ -1,21 +1,35 @@
 package com.hexaware.amazecare.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="Medical_record")
 public class MedicalRecord {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int recordId;
+	
+	@Size(max = 255)
 	private String currentSymptoms;
+	
+	@Size(max = 255)
 	private String physicalExamination;
+	
+	@Size(max = 255)
 	private String treatmentPlan;
+	
+	@Size(max = 255)
 	private String recomendedTests;
+	
+	@Size(max = 255)
 	private String prescription;
 	
 	@ManyToOne
