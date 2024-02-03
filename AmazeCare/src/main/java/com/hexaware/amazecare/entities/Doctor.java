@@ -78,6 +78,22 @@ public class Doctor {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
+	
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public List<MedicalRecord> getMedicalRecords() {
+		return medicalRecords;
+	}
+
+	public void setMedicalRecords(List<MedicalRecord> medicalRecords) {
+		this.medicalRecords = medicalRecords;
+	}
 
 	@Override
 	public String toString() {

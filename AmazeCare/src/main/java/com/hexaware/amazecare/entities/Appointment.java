@@ -19,7 +19,7 @@ public class Appointment {
 	private LocalTime time;
 	private String symptoms;
 	private String visitType;
-	
+	private String status;
 	@ManyToOne
 	@JoinColumn(name="doctor_id")
 	private Doctor doctor;
@@ -70,6 +70,16 @@ public class Appointment {
 	}
 	public void setVisitType(String visitType) {
 		this.visitType = visitType;
+	}
+	
+	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
