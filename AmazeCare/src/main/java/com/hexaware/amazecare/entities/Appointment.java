@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,6 +16,7 @@ import jakarta.persistence.Table;
 public class Appointment {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int appointmentId;
 	private LocalDate date;
 	private LocalTime time;
@@ -21,11 +24,11 @@ public class Appointment {
 	private String visitType;
 	private String status;
 	@ManyToOne
-	@JoinColumn(name="doctor_id")
+	@JoinColumn(name="doctor_Id")
 	private Doctor doctor;
 	
 	@ManyToOne
-	@JoinColumn(name = "patient_id")
+	@JoinColumn(name = "patient_Id")
 	private Patient patient;
 	
 	public Appointment() {
@@ -40,6 +43,7 @@ public class Appointment {
 		this.time = time;
 		this.symptoms = symptoms;
 		this.visitType = visitType;
+	
 	}
 	public int getAppointmentId() {
 		return appointmentId;

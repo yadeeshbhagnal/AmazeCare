@@ -51,7 +51,7 @@ public class DoctorServiceImp implements IDoctorService {
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
 		existingAppointment.setDate(date);
 		appointmentRepository.save(existingAppointment);
-		return "Date changed";
+		return "Appointment Rescheduled";
 	}
 
 	@Override

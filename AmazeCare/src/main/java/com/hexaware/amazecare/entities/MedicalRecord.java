@@ -1,6 +1,8 @@
 package com.hexaware.amazecare.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -11,6 +13,7 @@ import jakarta.persistence.Table;
 public class MedicalRecord {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int recordId;
 	private String currentSymptoms;
 	private String physicalExamination;
@@ -19,11 +22,11 @@ public class MedicalRecord {
 	private String prescription;
 	
 	@ManyToOne
-	@JoinColumn(name="doctor_id")
+	@JoinColumn(name="doctor_Id")
 	private Doctor doctor;
 	
 	@ManyToOne
-	@JoinColumn(name = "patient_id")
+	@JoinColumn(name = "patient_Id")
 	private Patient patient;
 	
 	public MedicalRecord() {
