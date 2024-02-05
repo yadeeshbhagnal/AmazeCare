@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Patient_info")
@@ -18,10 +20,22 @@ public class Patient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int patientId;
+	
+	@Pattern(regexp = "[A-z][a-z]{3,10}")
+	@Size(max = 255)
 	private String patientName;
+	
+	@Pattern(regexp = "^[0-9]*$")
 	private int age;
+	
 	private LocalDate dateOfBirth;
+	
+	@Pattern(regexp = "^\\d{10}$")
+	@Size(max = 255)
 	private String contactNumber;
+	
+	@Pattern(regexp = "^[a-zA-Z0-9\s.,#-]*$")
+	@Size(max = 255)
 	private String address;
 	
 	@OneToMany(mappedBy="patient", cascade=CascadeType.ALL)
@@ -31,9 +45,7 @@ public class Patient {
 	private List<MedicalRecord> medicalRecords;
 	
 	public Patient() {
-		
 	}
-	
 	
 	public Patient(int patientId, String patientName, int age, LocalDate dateOfBirth, String contactNumber,
 			String address) {

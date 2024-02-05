@@ -1,9 +1,7 @@
 package com.hexaware.amazecare.service;
 
 import java.time.LocalDate;
-
 import java.util.List;
-
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.MedicalRecord;
 
