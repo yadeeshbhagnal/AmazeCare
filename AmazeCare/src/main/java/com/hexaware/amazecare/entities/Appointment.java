@@ -2,6 +2,8 @@ package com.hexaware.amazecare.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,20 +46,35 @@ public class Appointment {
 	@JoinColumn(name = "patient_Id")
 	private Patient patient;
 	
+	
+	
 	public Appointment() {
 		
 	}
 	
-	public Appointment(int appointmentId, int patientId, int doctorId, LocalDate date, LocalTime time, String symptoms,
-			String visitType) {
+
+	
+
+
+
+	public Appointment(int appointmentId, LocalDate date, LocalTime time, String symptoms, String visitType,
+			String status, Doctor doctor, Patient patient) {
 		super();
 		this.appointmentId = appointmentId;
 		this.date = date;
 		this.time = time;
 		this.symptoms = symptoms;
 		this.visitType = visitType;
-	
+		this.status = status;
+		this.doctor = doctor;
+		this.patient = patient;
 	}
+
+
+
+
+
+
 	public int getAppointmentId() {
 		return appointmentId;
 	}
@@ -88,8 +105,6 @@ public class Appointment {
 	public void setVisitType(String visitType) {
 		this.visitType = visitType;
 	}
-	
-	
 
 	public String getStatus() {
 		return status;
@@ -99,9 +114,52 @@ public class Appointment {
 		this.status = status;
 	}
 
+	
+	
+
+
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+
+
+
+
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+
+
+
+
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+
+
+
+
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", time=" + time + ", symptoms="
 				+ symptoms + ", visitType=" + visitType + "]";
 	}
+	
+	
 }
