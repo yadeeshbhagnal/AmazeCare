@@ -9,9 +9,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hexaware.amazecare.entities.Appointment;
 
+@SpringBootTest
 class PatientServiceImpTest {
 
 	@Autowired
@@ -32,7 +34,7 @@ class PatientServiceImpTest {
 		
 		Appointment appointment = new Appointment();
 		
-		appointment.setAppointmentId(21);
+		
 		appointment.setDate(LocalDate.of(2024,03,05));
 		appointment.setStatus("pending");
 		appointment.setTime(LocalTime.of(10, 0, 0));
@@ -40,7 +42,7 @@ class PatientServiceImpTest {
 		appointment.setVisitType("general checkup");
 		
 		Appointment appointment2 = service.scheduleAppointment(appointment);
-		assertEquals(21, appointment2.getAppointmentId());
+		assertEquals("nausea", appointment2.getSymptoms());
 		
 	}
 
