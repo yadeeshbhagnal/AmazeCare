@@ -10,10 +10,5 @@ import com.hexaware.amazecare.entities.Appointment;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer>{
-
 	
-	@Query("select a from Appointment a where a.date >= CURRENT_DATE ")
-	List<Appointment> getUpcomingAppointments();
-	
-
 }
