@@ -42,8 +42,8 @@ public class MedicalRecord {
 	
 	public MedicalRecord() {
 	}
-	
-	public MedicalRecord(int recordId, int appointmentID, int patientId, String currentSymptoms,
+
+	public MedicalRecord(int recordId, String currentSymptoms,
 			String physicalExamination, String treatmentPlan, String recomendedTests, String prescription) {
 		super();
 		this.recordId = recordId;
