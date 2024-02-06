@@ -46,17 +46,10 @@ public class Appointment {
 	@JoinColumn(name = "patient_Id")
 	private Patient patient;
 	
-	
-	
 	public Appointment() {
 		
 	}
 	
-
-	
-
-
-
 	public Appointment(int appointmentId, LocalDate date, LocalTime time, String symptoms, String visitType,
 			String status, Doctor doctor, Patient patient) {
 		super();
@@ -69,11 +62,6 @@ public class Appointment {
 		this.doctor = doctor;
 		this.patient = patient;
 	}
-
-
-
-
-
 
 	public int getAppointmentId() {
 		return appointmentId;
@@ -114,52 +102,25 @@ public class Appointment {
 		this.status = status;
 	}
 
-	
-	
-
-
-
 	public Doctor getDoctor() {
 		return doctor;
 	}
-
-
-
-
-
 
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
 
-
-
-
-
-
 	public Patient getPatient() {
 		return patient;
 	}
 
-
-
-
-
-
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-
-
-
-
-
 
 	@Override
 	public String toString() {
 		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", time=" + time + ", symptoms="
 				+ symptoms + ", visitType=" + visitType + "]";
 	}
-	
-	
 }
