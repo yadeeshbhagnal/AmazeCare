@@ -54,7 +54,7 @@ public class PatientServiceImp implements IPatientService {
 	@Override
 	public String cancelAppointment(int appointmentId) {
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		existingAppointment.setStatus("canceled");
+		existingAppointment.setStatus("cancelled");
 		appointmentRepository.save(existingAppointment);
 		return "Appointment with appointment id: "+appointmentId+"cancelled";
 	}
