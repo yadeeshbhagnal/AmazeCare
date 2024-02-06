@@ -22,7 +22,8 @@ public class DoctorServiceImp implements IDoctorService {
 
 	@Override
 	public List<Appointment> viewAppointments(int doctorId) {
-		return null;
+		return appointmentRepository.getUpcomingAppointments();
+
 	}
 
 	@Override

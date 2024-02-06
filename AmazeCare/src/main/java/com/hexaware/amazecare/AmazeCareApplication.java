@@ -11,3 +11,4 @@ public class AmazeCareApplication {
 		SpringApplication.run(AmazeCareApplication.class, args);
 	}
 }
+
