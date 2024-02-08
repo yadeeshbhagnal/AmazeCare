@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.MedicalRecord;
@@ -31,15 +33,44 @@ public class PatientServiceImp implements IPatientService {
 	DoctorRepository doctorRepository;
 	
 	@Override
-	public Patient updatePatientInfo(Patient patient) {
+	public boolean updatePatientInfo(PatientDto patientDto) {
 		
-		return patientRepository.save(patient);
+		Patient patient = new Patient();
+		boolean flag = false;
+		
+		patient.setAddress(patientDto.getAddress());
+		patient.setAge(patientDto.getAge());
+		patient.setContactNumber(patientDto.getContactNumber());
+		patient.setDateOfBirth(patientDto.getDateOfBirth());
+		patient.setPatientId(patientDto.getPatientId());
+		patient.setPatientName(patientDto.getPatientName());
+		
+		Patient patient2 = patientRepository.save(patient);
+		if(patient2!=null)
+		{
+			flag = true;
+		}
+		return flag;
 	}
 
 	@Override
-	public Appointment scheduleAppointment(Appointment appointment) {
+	public boolean scheduleAppointment(AppointmentDto appointmentDto) {
+		
+		Appointment appointment = new Appointment();
+		boolean flag = false;
+		
 		appointment.setStatus("pending");
-		return appointmentRepository.save(appointment);
+		
+		appointment.setAppointmentId(appointmentDto.getAppointmentId());
+		appointment.setDate(appointmentDto.getDate());
+		appointment.setSymptoms(appointmentDto.getSymptoms());
+		appointment.setVisitType(appointmentDto.getVisitType());
+		Appointment appointment2= appointmentRepository.save(appointment);
+		if(appointment2!=null)
+		{
+			flag = true;
+		}
+		return flag;
 	}
 
 	@Override
@@ -61,19 +92,13 @@ public class PatientServiceImp implements IPatientService {
 
 	@Override
 	public List<Appointment> viewAppointments(int patientId) {
-		
 		return appointmentRepository.findByPatientPatientId(patientId);
-	}
-
-	@Override
-	public List<MedicalRecord> viewMedicalRecord(int patientId) {
+	
 		
-		return medicalRecordRepository.findByPatientPatientId(patientId);
 	}
 
 	@Override
 	public List<Doctor> getDocBySpeciality(String speciality) {
-		
 		return doctorRepository.findBySpeciality(speciality);
 	}
 
