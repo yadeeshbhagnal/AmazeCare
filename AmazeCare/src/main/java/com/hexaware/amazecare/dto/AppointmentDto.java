@@ -7,7 +7,6 @@ public class AppointmentDto {
 
 	private int appointmentId;
 	private LocalDate date;
-	private LocalTime time;
 	private String symptoms;
 	private String visitType;
 	
@@ -19,7 +18,6 @@ public class AppointmentDto {
 		super();
 		this.appointmentId = appointmentId;
 		this.date = date;
-		this.time = time;
 		this.symptoms = symptoms;
 		this.visitType = visitType;
 	}
@@ -34,12 +32,6 @@ public class AppointmentDto {
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
-	}
-	public LocalTime getTime() {
-		return time;
-	}
-	public void setTime(LocalTime time) {
-		this.time = time;
 	}
 	public String getSymptoms() {
 		return symptoms;
@@ -56,7 +48,7 @@ public class AppointmentDto {
 
 	@Override
 	public String toString() {
-		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", time=" + time + ", symptoms="
+		return "Appointment [appointmentId=" + appointmentId + ", date=" + date + ", symptoms="
 				+ symptoms + ", visitType=" + visitType + "]";
 	}
 }

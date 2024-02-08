@@ -1,28 +1,27 @@
 package com.hexaware.amazecare.dto;
 
+import java.time.LocalDate;
 
 public class MedicalRecordDto {
-	
+
 	private int recordId;
 	private String currentSymptoms;
 	private String physicalExamination;
 	private String treatmentPlan;
-	private String recomendedTests;
-	private String prescription;
-	
-	
+	private LocalDate date;
+
 	public MedicalRecordDto() {
+		super();
 	}
-	
-	public MedicalRecordDto(int recordId, int appointmentID, int patientId, String currentSymptoms,
-			String physicalExamination, String treatmentPlan, String recomendedTests, String prescription) {
+
+	public MedicalRecordDto(int recordId, String currentSymptoms, String physicalExamination, String treatmentPlan,
+			LocalDate date) {
 		super();
 		this.recordId = recordId;
 		this.currentSymptoms = currentSymptoms;
 		this.physicalExamination = physicalExamination;
 		this.treatmentPlan = treatmentPlan;
-		this.recomendedTests = recomendedTests;
-		this.prescription = prescription;
+		this.date = date;
 	}
 
 	public int getRecordId() {
@@ -57,26 +56,11 @@ public class MedicalRecordDto {
 		this.treatmentPlan = treatmentPlan;
 	}
 
-	public String getRecomendedTests() {
-		return recomendedTests;
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public void setRecomendedTests(String recomendedTests) {
-		this.recomendedTests = recomendedTests;
-	}
-
-	public String getPrescription() {
-		return prescription;
-	}
-
-	public void setPrescription(String prescription) {
-		this.prescription = prescription;
-	}
-
-	@Override
-	public String toString() {
-		return "MedicalRecord [recordId=" + recordId + ", currentSymptoms=" + currentSymptoms + ", physicalExamination="
-				+ physicalExamination + ", treatmentPlan=" + treatmentPlan + ", recomendedTests=" + recomendedTests
-				+ ", prescription=" + prescription + "]";
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 }

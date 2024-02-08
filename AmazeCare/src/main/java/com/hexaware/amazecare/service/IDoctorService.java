@@ -2,25 +2,28 @@ package com.hexaware.amazecare.service;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.MedicalRecord;
+import com.hexaware.amazecare.entities.RecommendedMedicine;
+import com.hexaware.amazecare.entities.RecommendedTests;
 
 public interface IDoctorService {
 	
 	public List<Appointment> viewAppointments(int doctorId);
 	
-	public String acceptAppointment(int appointmentId);
+	public boolean acceptAppointment(int appointmentId);
 	
-	public String rejectAppointment(int appointmentId);
+	public boolean rejectAppointment(int appointmentId);
 	
-	public String rescheduleAppointment(int appointmentId, LocalDate date);
-		
-	public List<MedicalRecord> viewMedicalRecord(int patientId);
+	public boolean rescheduleAppointment(int appointmentId, LocalDate date);
+			
+	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto);
 	
-	public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord);
+	public boolean prescribeMedicine(RecommendedMedicine recommendedMedicines);
 	
-	public String updateRecomendedTest(int medicalRecordId, String recomendedTests);
+	public boolean prescribeTest(RecommendedTests recommendedTests);
 	
-	public String updateMedicalPrescription(int medicalRecordId, String prescription);
-
+	public boolean updateTestResult(int recommendedTestId, String result);
 }

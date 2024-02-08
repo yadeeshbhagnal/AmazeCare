@@ -93,6 +93,22 @@ public class Patient {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public List<MedicalRecord> getMedicalRecords() {
+		return medicalRecords;
+	}
+
+	public void setMedicalRecords(List<MedicalRecord> medicalRecords) {
+		this.medicalRecords = medicalRecords;
+	}
 
 	@Override
 	public String toString() {

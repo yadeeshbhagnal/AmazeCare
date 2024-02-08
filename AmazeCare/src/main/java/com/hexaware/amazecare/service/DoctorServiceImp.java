@@ -1,15 +1,22 @@
 package com.hexaware.amazecare.service;
 
 import java.time.LocalDate;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.entities.Appointment;
+import com.hexaware.amazecare.entities.AvailableMedicines;
 import com.hexaware.amazecare.entities.MedicalRecord;
+import com.hexaware.amazecare.entities.RecommendedMedicine;
+import com.hexaware.amazecare.entities.RecommendedTests;
 import com.hexaware.amazecare.repository.AppointmentRepository;
+import com.hexaware.amazecare.repository.AvailableMedicineRepository;
+import com.hexaware.amazecare.repository.AvailableTestsRepository;
 import com.hexaware.amazecare.repository.MedicalRecordRepository;
+import com.hexaware.amazecare.repository.RecommendedMedicineRepository;
+import com.hexaware.amazecare.repository.RecommendedTestsRepository;
 
 @Service
 public class DoctorServiceImp implements IDoctorService {
@@ -19,67 +26,99 @@ public class DoctorServiceImp implements IDoctorService {
 	
 	@Autowired 
 	AppointmentRepository appointmentRepository;
-
-	@Override
-	public List<Appointment> viewAppointments(int doctorId) {
-		return appointmentRepository.getUpcomingAppointments();
-
-	}
-
-	@Override
-	public String acceptAppointment(int appointmentId) {
-		
-		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		existingAppointment.setStatus("Accepted");
-		appointmentRepository.save(existingAppointment);
-		return "Appointment with appointment id: " + appointmentId + " accepted";
 	
+	@Autowired
+	RecommendedMedicineRepository recommendedMedicineRepository;
+	
+	@Autowired
+	RecommendedTestsRepository recommendedTestRepository;
+	
+	@Autowired
+	AvailableMedicineRepository availableMedicineRepository;
+	
+	@Autowired
+	AvailableTestsRepository availableTestsRepository;
+
+	@Override
+	public List<Appointment>viewAppointments(int doctorId) {
+		return appointmentRepository.getUpcomingAppointments();
 	}
 
 	@Override
-	public String rejectAppointment(int appointmentId) {
-		
+	public boolean acceptAppointment(int appointmentId) {
+		boolean flag = false;
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		existingAppointment.setStatus("rejected");
-		appointmentRepository.save(existingAppointment);
-		return "Appointment with appointment id: " + appointmentId + " rejected";
+		if(existingAppointment != null) {
+			flag = true;
+			existingAppointment.setStatus("Accepted");
+			appointmentRepository.save(existingAppointment);
+		}
+		return flag;
 	}
 
 	@Override
-	public String rescheduleAppointment(int appointmentId, LocalDate date) {
-		
+	public boolean rejectAppointment(int appointmentId) {
+		boolean flag = false;
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		existingAppointment.setDate(date);
-		appointmentRepository.save(existingAppointment);
-		return "Date changed";
+		if(existingAppointment != null) {
+			flag = true;
+			existingAppointment.setStatus("rejected");
+			appointmentRepository.save(existingAppointment);
+		}
+		return flag;
 	}
 
 	@Override
-	public List<MedicalRecord> viewMedicalRecord(int patientId) {
-		
-		return medicalRecordRepository.findByPatientPatientId(patientId);
+	public boolean rescheduleAppointment(int appointmentId, LocalDate date) {
+		boolean flag = false;
+		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+		if(existingAppointment != null) {
+			flag = true;
+			existingAppointment.setDate(date);
+			appointmentRepository.save(existingAppointment);
+		}
+		return flag;
 	}
 
 	@Override
-	public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord) {
-		return medicalRecordRepository.save(medicalRecord);
+	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto) {
+		MedicalRecord medicalRecord = new MedicalRecord();
+		boolean flag = true;
+		
+		medicalRecord.setCurrentSymptoms(medicalRecordDto.getCurrentSymptoms());
+		medicalRecord.setDate(medicalRecordDto.getDate());
+		medicalRecord.setPhysicalExamination(medicalRecordDto.getPhysicalExamination());
+		medicalRecord.setTreatmentPlan(medicalRecordDto.getTreatmentPlan());
+		medicalRecordRepository.save(medicalRecord);
+		
+		return flag;
 	}
 
 	@Override
-	public String updateRecomendedTest(int medicalRecordId, String recomendedTests) {
-		
-		MedicalRecord existingMedicalRecord = medicalRecordRepository.findById(medicalRecordId).orElse(null);
-		existingMedicalRecord.setRecomendedTests(recomendedTests);
-		medicalRecordRepository.save(existingMedicalRecord);
-		
-		return "Recomended test for medical record" + medicalRecordId + " updated";
+	public boolean prescribeMedicine(RecommendedMedicine recommendedMedicine) {
+		boolean flag = false;
+		String medicineName = recommendedMedicine.getMedicineName();
+		if(availableMedicineRepository.findByMedicineName(medicineName)!=null){
+			flag = true;
+			recommendedMedicineRepository.save(recommendedMedicine);
+		}
+		return flag;
 	}
 
 	@Override
-	public String updateMedicalPrescription(int medicalRecordId, String prescription) {
-		
-		MedicalRecord existingMedicalRecord = medicalRecordRepository.findById(medicalRecordId).orElse(null);
-		existingMedicalRecord.setPrescription(prescription);
-		return "Prescription for medical record" + medicalRecordId + " updated";
+	public boolean prescribeTest(RecommendedTests recommendedTests) {
+		boolean flag = false;
+		String testName = recommendedTests.getTestName();
+		if(availableTestsRepository.findByTestName(testName)!=null){
+			flag = true;
+			recommendedTestRepository.save(recommendedTests);
+		}
+		return flag;
+	}
+	
+	public boolean updateTestResult(int recommendedTestId, String result) {
+		RecommendedTests test = recommendedTestRepository.findById(recommendedTestId).orElse(null);
+		test.setTestResult(result);
+		return true;
 	}
 }
