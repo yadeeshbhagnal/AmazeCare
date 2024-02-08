@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.entities.Appointment;
-import com.hexaware.amazecare.entities.AvailableMedicines;
 import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.entities.RecommendedMedicine;
 import com.hexaware.amazecare.entities.RecommendedTests;
@@ -40,7 +41,7 @@ public class DoctorServiceImp implements IDoctorService {
 	AvailableTestsRepository availableTestsRepository;
 
 	@Override
-	public List<Appointment>viewAppointments(int doctorId) {
+	public List<AppointmentDto>viewAppointments(int doctorId) {
 		return appointmentRepository.getUpcomingAppointments(doctorId);
 	}
 

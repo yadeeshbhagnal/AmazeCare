@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.hexaware.amazecare.dto.DoctorDto;
@@ -18,8 +19,6 @@ import com.hexaware.amazecare.exception.AppointmentNotFoundException;
 import com.hexaware.amazecare.exception.DoctorNotFoundException;
 import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.service.IAdminService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/admin")
@@ -52,7 +51,7 @@ public class AdminRestController {
 		}
 	}
 	
-	@DeleteMapping("/deletepatiend/{patientId}")
+	@DeleteMapping("/deletepatient/{patientId}")
 	public String deletePatiend(@PathVariable int patientId) throws PatientNotFoundException{
 		if(adminService.deletePatient(patientId)) {
 			return "patient deleted successfully";

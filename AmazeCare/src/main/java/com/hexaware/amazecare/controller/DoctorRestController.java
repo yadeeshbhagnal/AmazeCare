@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
-import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.entities.RecommendedMedicine;
 import com.hexaware.amazecare.entities.RecommendedTests;
 import com.hexaware.amazecare.exception.AppointmentNotFoundException;
-import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
 import com.hexaware.amazecare.exception.TestNotFoundException;
 import com.hexaware.amazecare.service.IDoctorService;
@@ -34,7 +34,7 @@ public class DoctorRestController {
 	IMedicalRecordService medicalRecordService;
 	
 	@GetMapping("/upcoming-appointments")
-	public List<Appointment> viewUpcomingAppointments(int doctorId){
+	public List<AppointmentDto> viewUpcomingAppointments(int doctorId){
 		return doctorService.viewAppointments(doctorId);
 	}
 	

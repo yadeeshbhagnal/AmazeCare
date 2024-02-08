@@ -41,6 +41,7 @@ public class AdminServiceImp implements IAdminService {
 		doctor.setQualification(doctorDto.getQualification());
 		doctor.setSpeciality(doctorDto.getSpeciality());
 		doctor.setDesignation(doctorDto.getDesignation());
+		
 		doctorRepository.save(doctor);
 		
 		return true;

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.entities.Appointment;
 
 @Repository
@@ -12,8 +13,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 
 	List<Appointment> findByPatientPatientId(int patientId);
 	
-	@Query(value = "select * from Appointment_info where doctor_id = :doctorId", nativeQuery= true)
-	List<Appointment> getUpcomingAppointments(int doctorId);
+	@Query(value = "select appointment_id,date,symptoms,visit_type from Appointment_info where doctor_id = :doctorId", nativeQuery= true)
+	List<AppointmentDto> getUpcomingAppointments(int doctorId);
 	
 
 }

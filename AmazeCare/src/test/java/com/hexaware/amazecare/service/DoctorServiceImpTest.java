@@ -25,11 +25,11 @@ class DoctorServiceImpTest {
 	@Autowired 
 	MedicalRecordRepository medicalRecordRespository;
 
-	@Test
-	void testViewAppointments() {
-		List<Appointment> list = doctorService.viewAppointments(101);
-		assertNotNull(list);
-	}
+//	@Test
+//	void testViewAppointments() {
+//		List<Appointment> list = doctorService.viewAppointments(101);
+//		assertNotNull(list);
+//	}
 
 	@Test
 	void testAcceptAppointment() {

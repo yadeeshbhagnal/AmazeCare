@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -22,20 +23,20 @@ public class Doctor {
 	private int doctorId;
 	
 	@Pattern(regexp = "[A-Z][a-z]{3,15}")
-	@Size(max = 255)
 	private String doctorName;
 	
-	@Size(max = 255)
+	@NotBlank
+	@Size(max = 30)
 	private String speciality;
 	
-//	@Positive
+	@Positive
 	private int experience;
 	
-	@Pattern(regexp = "^[a-zA-Z.()]*$")
-	@Size(max = 255)
+	@Pattern(regexp = "^[a-zA-Z().\\s]*$", message = "Invalid Input")
+	@Size(max = 25)
 	private String qualification;
 	
-	@Size(max = 255)
+	@Size(max = 25)
 	private String designation;
 	
 	@OneToMany(mappedBy="doctor", cascade=CascadeType.ALL)
