@@ -3,6 +3,7 @@ package com.hexaware.amazecare.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.entities.MedicalRecord;
@@ -12,6 +13,7 @@ import com.hexaware.amazecare.repository.MedicalRecordRepository;
 import com.hexaware.amazecare.repository.RecommendedMedicineRepository;
 import com.hexaware.amazecare.repository.RecommendedTestsRepository;
 
+@Service
 public class MedicalRecordServiceImp implements IMedicalRecordService {
 
 	@Autowired

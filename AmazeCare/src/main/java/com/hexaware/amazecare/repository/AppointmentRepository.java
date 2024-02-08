@@ -12,8 +12,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 
 	List<Appointment> findByPatientPatientId(int patientId);
 	
-	@Query("select a from Appointment a where a.date >= CURRENT_DATE ")
-	List<Appointment> getUpcomingAppointments();
+	@Query(value = "select * from Appointment_info where doctor_id = :doctorId", nativeQuery= true)
+	List<Appointment> getUpcomingAppointments(int doctorId);
 	
 
 }

@@ -26,7 +26,6 @@ public class Appointment {
 	@NotNull
 	private LocalDate date;
 	
-	@NotNull
 	private LocalTime time;
 	
 	@Size(max = 255)

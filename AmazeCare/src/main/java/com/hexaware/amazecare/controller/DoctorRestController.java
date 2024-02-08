@@ -21,6 +21,7 @@ import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
 import com.hexaware.amazecare.exception.TestNotFoundException;
 import com.hexaware.amazecare.service.IDoctorService;
+import com.hexaware.amazecare.service.IMedicalRecordService;
 
 @RestController
 @RequestMapping("/doctor")
@@ -29,9 +30,11 @@ public class DoctorRestController {
 	@Autowired
 	IDoctorService doctorService;
 	
+	@Autowired
+	IMedicalRecordService medicalRecordService;
+	
 	@GetMapping("/upcoming-appointments")
 	public List<Appointment> viewUpcomingAppointments(int doctorId){
-		
 		return doctorService.viewAppointments(doctorId);
 	}
 	
@@ -70,7 +73,7 @@ public class DoctorRestController {
 	
 	@GetMapping("/viewmedicalrecord/{patientId}")
 	public List<MedicalRecord> viewPatientMedicalRecord(@PathVariable int patientId){
-		return doctorService.viewMedicalRecord(patientId);
+		return medicalRecordService.viewMedicalRecord(patientId);
 	}
 	
 	@PostMapping("/prescribemedicine")

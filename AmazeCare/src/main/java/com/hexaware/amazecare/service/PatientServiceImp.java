@@ -61,7 +61,7 @@ public class PatientServiceImp implements IPatientService {
 		
 		appointment.setStatus("pending");
 		
-		appointment.setAppointmentId(appointmentDto.getAppointmentId());
+//		appointment.setAppointmentId(appointmentDto.getAppointmentId());
 		appointment.setDate(appointmentDto.getDate());
 		appointment.setSymptoms(appointmentDto.getSymptoms());
 		appointment.setVisitType(appointmentDto.getVisitType());

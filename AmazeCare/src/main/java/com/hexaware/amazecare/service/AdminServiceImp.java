@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.Appointment;
@@ -14,6 +15,9 @@ import com.hexaware.amazecare.repository.AppointmentRepository;
 import com.hexaware.amazecare.repository.DoctorRepository;
 import com.hexaware.amazecare.repository.PatientRepository;
 
+import io.swagger.v3.oas.annotations.servers.Server;
+
+@Service
 public class AdminServiceImp implements IAdminService {
 	
 	@Autowired
@@ -51,6 +55,7 @@ public class AdminServiceImp implements IAdminService {
 			if (doctorDto.getDoctorName() != null) {
 	            doctor.setDoctorName(doctorDto.getDoctorName());
 	        }
+			
 			Integer experience = doctorDto.getExperience();
 	        if (experience != null) {
 	            doctor.setExperience(doctorDto.getExperience());

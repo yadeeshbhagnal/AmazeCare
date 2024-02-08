@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -25,7 +26,7 @@ public class Patient {
 	@Size(max = 255)
 	private String patientName;
 	
-	@Pattern(regexp = "^[0-9]*$")
+	@Min(value = 1)
 	private int age;
 	
 	private LocalDate dateOfBirth;

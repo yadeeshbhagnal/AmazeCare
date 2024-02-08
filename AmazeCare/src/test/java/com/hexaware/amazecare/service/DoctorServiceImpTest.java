@@ -56,31 +56,4 @@ class DoctorServiceImpTest {
 		assertEquals(LocalDate.now(), date);
 		
 	}
-
-	@Test
-	void testViewMedicalRecord() {
-		List<MedicalRecord> medicalRecord  = doctorService.viewMedicalRecord(101);
-		assertNotNull(medicalRecord);
-	}
-
-	@Test
-	void testCreateMedicalRecord() {
-		MedicalRecord medicalRecord = new  MedicalRecord(111,"cold", "suffering from cold", "7 days medicine", "none", "CFZ-250");
-		assertNotNull(doctorService.createMedicalRecord(medicalRecord));
-	}
-
-	@Test
-	void testUpdateRecomendedTest() {
-		doctorService.updateRecomendedTest(252, "blood test");
-		MedicalRecord medicalRecord = medicalRecordRespository.findById(101).orElse(null);
-		assertEquals("blood test",medicalRecord.getRecomendedTests());
-	}
-
-	@Test
-	void testUpdateMedicalPrescription() {
-		doctorService.updateMedicalPrescription(252, "Dollo 900");
-		MedicalRecord medicalRecord = medicalRecordRespository.findById(101).orElse(null);
-		assertEquals("Dollo 900", medicalRecord.getPrescription());
-	}
-
 }

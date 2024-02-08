@@ -1,7 +1,12 @@
 package com.hexaware.amazecare.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class AvailableTests {
 	
+	@Id
 	private int testId;
 	private String testName;
 	private double testPrice;

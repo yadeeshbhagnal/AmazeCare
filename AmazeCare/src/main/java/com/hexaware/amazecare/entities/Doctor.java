@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -27,7 +28,7 @@ public class Doctor {
 	@Size(max = 255)
 	private String speciality;
 	
-	@Pattern(regexp = "^[0-9]*$")
+//	@Positive
 	private int experience;
 	
 	@Pattern(regexp = "^[a-zA-Z.()]*$")
