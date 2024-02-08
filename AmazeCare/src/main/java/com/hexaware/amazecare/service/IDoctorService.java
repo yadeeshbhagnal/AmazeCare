@@ -14,9 +14,7 @@ public interface IDoctorService {
 	public String rejectAppointment(int appointmentId);
 	
 	public String rescheduleAppointment(int appointmentId, LocalDate date);
-		
-	public List<MedicalRecord> viewMedicalRecord(int patientId);
-	
+			
 	public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord);
 	
 	public String updateRecomendedTest(int medicalRecordId, String recomendedTests);

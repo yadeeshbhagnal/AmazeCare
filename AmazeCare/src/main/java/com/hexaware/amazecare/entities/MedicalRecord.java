@@ -1,11 +1,16 @@
 package com.hexaware.amazecare.entities;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
@@ -26,11 +31,13 @@ public class MedicalRecord {
 	@Size(max = 255)
 	private String treatmentPlan;
 	
-	@Size(max = 255)
-	private String recomendedTests;
+	private LocalDate date;
 	
-	@Size(max = 255)
-	private String prescription;
+	@OneToMany(mappedBy = "medicalRecord",cascade = CascadeType.ALL)
+	private List<RecommendedTests> recommendedTests;
+	
+	@OneToMany(mappedBy = "medicalRecord",cascade = CascadeType.ALL)
+	private List<RecommendedMedicine> recommendedMedicine;
 	
 	@ManyToOne
 	@JoinColumn(name="doctor_Id")
@@ -39,19 +46,25 @@ public class MedicalRecord {
 	@ManyToOne
 	@JoinColumn(name = "patient_Id")
 	private Patient patient;
-	
+
 	public MedicalRecord() {
+		super();
 	}
 
-	public MedicalRecord(int recordId, String currentSymptoms,
-			String physicalExamination, String treatmentPlan, String recomendedTests, String prescription) {
+	public MedicalRecord(int recordId, @Size(max = 255) String currentSymptoms,
+			@Size(max = 255) String physicalExamination, @Size(max = 255) String treatmentPlan, LocalDate date,
+			List<RecommendedTests> recommendedTests, List<RecommendedMedicine> recommendedMedicine, Doctor doctor,
+			Patient patient) {
 		super();
 		this.recordId = recordId;
 		this.currentSymptoms = currentSymptoms;
 		this.physicalExamination = physicalExamination;
 		this.treatmentPlan = treatmentPlan;
-		this.recomendedTests = recomendedTests;
-		this.prescription = prescription;
+		this.date = date;
+		this.recommendedTests = recommendedTests;
+		this.recommendedMedicine = recommendedMedicine;
+		this.doctor = doctor;
+		this.patient = patient;
 	}
 
 	public int getRecordId() {
@@ -86,26 +99,51 @@ public class MedicalRecord {
 		this.treatmentPlan = treatmentPlan;
 	}
 
-	public String getRecomendedTests() {
-		return recomendedTests;
+	public LocalDate getDate() {
+		return date;
 	}
 
-	public void setRecomendedTests(String recomendedTests) {
-		this.recomendedTests = recomendedTests;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
-	public String getPrescription() {
-		return prescription;
+	public List<RecommendedTests> getRecommendedTests() {
+		return recommendedTests;
 	}
 
-	public void setPrescription(String prescription) {
-		this.prescription = prescription;
+	public void setRecommendedTests(List<RecommendedTests> recommendedTests) {
+		this.recommendedTests = recommendedTests;
+	}
+
+	public List<RecommendedMedicine> getRecommendedMedicine() {
+		return recommendedMedicine;
+	}
+
+	public void setRecommendedMedicine(List<RecommendedMedicine> recommendedMedicine) {
+		this.recommendedMedicine = recommendedMedicine;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 	@Override
 	public String toString() {
 		return "MedicalRecord [recordId=" + recordId + ", currentSymptoms=" + currentSymptoms + ", physicalExamination="
-				+ physicalExamination + ", treatmentPlan=" + treatmentPlan + ", recomendedTests=" + recomendedTests
-				+ ", prescription=" + prescription + "]";
+				+ physicalExamination + ", treatmentPlan=" + treatmentPlan + ", date=" + date + ", recommendedTests="
+				+ recommendedTests + ", recommendedMedicine=" + recommendedMedicine + ", doctor=" + doctor
+				+ ", patient=" + patient + "]";
 	}
 }

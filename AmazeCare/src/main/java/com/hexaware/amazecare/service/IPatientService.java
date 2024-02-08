@@ -19,9 +19,7 @@ public interface IPatientService {
 	public String cancelAppointment(int appointmentId);
 	
 	public List<Appointment> viewAppointments(int patientId);
-	
-	public List<MedicalRecord> viewMedicalRecord(int patientId);
-	
+		
 	public List<Doctor> getDocBySpeciality(String speciality);
 	
 }

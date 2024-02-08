@@ -55,31 +55,7 @@ public class DoctorServiceImp implements IDoctorService {
 	}
 
 	@Override
-	public List<MedicalRecord> viewMedicalRecord(int patientId) {
-		
-		return medicalRecordRepository.findByPatientPatientId(patientId);
-	}
-
-	@Override
 	public MedicalRecord createMedicalRecord(MedicalRecord medicalRecord) {
 		return medicalRecordRepository.save(medicalRecord);
-	}
-
-	@Override
-	public String updateRecomendedTest(int medicalRecordId, String recomendedTests) {
-		
-		MedicalRecord existingMedicalRecord = medicalRecordRepository.findById(medicalRecordId).orElse(null);
-		existingMedicalRecord.setRecomendedTests(recomendedTests);
-		medicalRecordRepository.save(existingMedicalRecord);
-		
-		return "Recomended test for medical record" + medicalRecordId + " updated";
-	}
-
-	@Override
-	public String updateMedicalPrescription(int medicalRecordId, String prescription) {
-		
-		MedicalRecord existingMedicalRecord = medicalRecordRepository.findById(medicalRecordId).orElse(null);
-		existingMedicalRecord.setPrescription(prescription);
-		return "Prescription for medical record" + medicalRecordId + " updated";
 	}
 }

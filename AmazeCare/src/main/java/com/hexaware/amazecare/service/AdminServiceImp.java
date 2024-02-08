@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hexaware.amazecare.entities.Admin;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
+import com.hexaware.amazecare.repository.AdminRepository;
 import com.hexaware.amazecare.repository.AppointmentRepository;
 import com.hexaware.amazecare.repository.DoctorRepository;
 import com.hexaware.amazecare.repository.PatientRepository;
@@ -21,6 +23,20 @@ public class AdminServiceImp implements IAdminService {
 		
 	@Autowired
 	DoctorRepository doctorRepository;
+	
+	@Autowired
+	AdminRepository adminRespository;
+	
+	@Override
+	public Admin addAdmin(Admin admin) {
+		return adminRespository.save(admin);
+	}
+	
+	@Override
+	public String delteAdmin(long adminId) {
+		adminRespository.deleteById(adminId);
+		return "admin deleted";
+	}
 
 	@Override
 	public Doctor addDoctor(Doctor doctor) {
@@ -60,5 +76,7 @@ public class AdminServiceImp implements IAdminService {
 	public List<Appointment> viewAllAppointments() {
 		return null;
 	}
+
+	
 
 }
