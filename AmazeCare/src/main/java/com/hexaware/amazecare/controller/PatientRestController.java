@@ -12,10 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.MedicalRecordDto;
+import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.entities.Patient;
+import com.hexaware.amazecare.entities.RecommendedMedicine;
+import com.hexaware.amazecare.entities.RecommendedTests;
+import com.hexaware.amazecare.service.IMedicalRecordService;
 import com.hexaware.amazecare.service.IPatientService;
 
 @RestController
@@ -25,16 +31,19 @@ public class PatientRestController {
 	@Autowired
 	IPatientService service;
 	
+	@Autowired
+	IMedicalRecordService medicalService;
+	
 	@PutMapping("/update")
-	public Patient updatePatientInfo(@RequestBody Patient patient)
+	public boolean updatePatientInfo(@RequestBody PatientDto patientDto)
 	{
-		return service.updatePatientInfo(patient);
+		return service.updatePatientInfo(patientDto);
 	}
 	
 	@PostMapping("/schedule")
-	public Appointment scheduleAppointment(@RequestBody Appointment appointment)
+	public boolean scheduleAppointment(@RequestBody AppointmentDto appointmentDto)
 	{
-		return service.scheduleAppointment(appointment);
+		return service.scheduleAppointment(appointmentDto);
 	}
 	
 	@PutMapping("/reschedule/{appointmentId}/{date}")
@@ -49,21 +58,33 @@ public class PatientRestController {
 		return service.cancelAppointment(appointmentId);
 	}
 	
-	@GetMapping("/viewAppointment/{patientId}")
+	@GetMapping("/viewappointment/{patientId}")
 	public List<Appointment> viewAppointments(@PathVariable int patientId)
 	{
 		return service.viewAppointments(patientId);
 	}
 	
-	@GetMapping("/viewMedicalRecord/{patientId}")
+	@GetMapping("/viewmedicalrecord/{patientId}")
 	public List<MedicalRecord> viewMedicalRecord(@PathVariable int patientId)
 	{
-		return service.viewMedicalRecord(patientId);
+		return medicalService.viewMedicalRecord(patientId);
 	}
 	
-	@GetMapping("/viewDocBySpeciality/{speciality}")
+	@GetMapping("/viewdocbyspeciality/{speciality}")
 	public List<Doctor> getDocBySpeciality(@PathVariable String speciality)
 	{
 		return service.getDocBySpeciality(speciality);
+	}
+	
+	@GetMapping("/getrecommendedtests/{recordId}")
+	public List<RecommendedTests> viewRecommendedTests(int recordId)
+	{
+		return medicalService.viewRecommendedTests(recordId);
+	}
+	
+	@GetMapping("/getrecommendedmedicine/{recordId}")
+	public List<RecommendedMedicine> viewRecommendedMedicine(int recordId)
+	{
+		return medicalService.viewRecommendedMedicine(recordId);
 	}
 }
