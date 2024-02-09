@@ -45,7 +45,7 @@ public class PatientRestController {
 		{
 			return "Patient details updated";
 		}else {
-			throw new PatientNotFoundException("Patient not found");
+			throw new PatientNotFoundException("Patient with Id "+patientDto.getPatientId()+" not found");
 		}
 		
 	}
@@ -101,25 +101,5 @@ public class PatientRestController {
 			throw new DoctorNotFoundException("No doctors found with speciality: " + speciality);
 		}
 		return doctors;
-	}
-	
-	@GetMapping("/getrecommendedtests/{recordId}")
-	public List<RecommendedTests> viewRecommendedTests(@PathVariable int recordId) throws MedicalRecordNotFoundException
-	{
-		List<RecommendedTests> recommendedTests = medicalService.viewRecommendedTests(recordId);
-        if (recommendedTests == null || recommendedTests.isEmpty()) {
-            throw new MedicalRecordNotFoundException("Record with ID " + recordId + " not found.");
-        }
-        return recommendedTests;
-	}
-	
-	@GetMapping("/getrecommendedmedicine/{recordId}")
-	public List<RecommendedMedicine> viewRecommendedMedicine(@PathVariable int recordId) throws MedicalRecordNotFoundException
-	{
-		List<RecommendedMedicine> recommendedMedicine = medicalService.viewRecommendedMedicine(recordId);
-		if (recommendedMedicine == null || recommendedMedicine.isEmpty()) {
-            throw new MedicalRecordNotFoundException("Record with ID " + recordId + " not found.");
-        }
-        return recommendedMedicine;
 	}
 }

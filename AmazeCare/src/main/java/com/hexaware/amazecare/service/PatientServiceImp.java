@@ -10,7 +10,6 @@ import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
-import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.repository.AppointmentRepository;
 import com.hexaware.amazecare.repository.DoctorRepository;
@@ -73,14 +72,20 @@ public class PatientServiceImp implements IPatientService {
 		
 		Appointment appointment = new Appointment();
 		
+		Doctor doctor = doctorRepository.findById(appointmentDto.getDoctorId()).orElse(null);
+		Patient patient = patientRepository.findById(appointmentDto.getPatientId()).orElse(null);
+		
+		boolean flag = true;
+		
 		appointment.setStatus("pending");
-//		appointment.setAppointmentId(appointmentDto.getAppointmentId());
 		appointment.setDate(appointmentDto.getDate());
 		appointment.setSymptoms(appointmentDto.getSymptoms());
 		appointment.setVisitType(appointmentDto.getVisitType());
+		appointment.setPatient(patient);
+		appointment.setDoctor(doctor);
 		
 		appointmentRepository.save(appointment);
-		return true;
+		return flag;
 	}
 
 	@Override

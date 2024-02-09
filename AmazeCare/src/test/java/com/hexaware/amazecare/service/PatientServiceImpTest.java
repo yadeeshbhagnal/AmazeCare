@@ -12,7 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.entities.Appointment;
+import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.repository.AppointmentRepository;
 
@@ -30,69 +33,55 @@ class PatientServiceImpTest {
 	static void setUpBeforeClass() throws Exception {
 	}
 
-//	@Test
-//	void testUpdatePatientInfo() {
-//		
-//		Patient patient = new Patient(38,"Adam",40,LocalDate.of(2001,04, 28),"6355324456","Mumbai");
-//		Patient patient2 = service.updatePatientInfo(patient);
-//		String name = patient2.getPatientName();
-//		assertEquals("Adam", name);
-//		
-//		
-//		
-//	}
-
-//	@Test
-//	@Disabled
-//	void testScheduleAppointment() {
-//		
-//		Appointment appointment = new Appointment();
-//		
-//		
-//		appointment.setDate(LocalDate.of(2024,03,05));
-//		appointment.setStatus("pending");
-//		appointment.setTime(LocalTime.of(10, 0, 0));
-//		appointment.setSymptoms("nausea");
-//		appointment.setVisitType("general checkup");
-//		
-//		Appointment appointment2 = service.scheduleAppointment(appointment);
-//		assertEquals("nausea", appointment2.getSymptoms());
-//		
-//	}
+	@Test
+	void testUpdatePatientInfo() {
+		
+		PatientDto patientDto = new PatientDto(51,"Ford",16,LocalDate.of(2001,04, 28),"8345634456","USA");
+		boolean result = service.updatePatientInfo(patientDto);
+		assertFalse(result);	
+	}
 
 	@Test
-
-	void testRescheduleAppointment() {
-		service.rescheduleAppointment(5, LocalDate.now());
-		Appointment appointment = appointmentRepo.findById(5).orElse(null);
-		assertEquals(LocalDate.now(),appointment.getDate());
+	void testScheduleAppointment() {
 		
+		AppointmentDto appointmentDto = new AppointmentDto();
+	
+		appointmentDto.setDate(LocalDate.of(2024,03,05));
+		appointmentDto.setSymptoms("nausea");
+		appointmentDto.setVisitType("general checkup");
+		appointmentDto.setDoctorId(203);
+		appointmentDto.setPatientId(101);
+		
+		
+		boolean result = service.scheduleAppointment(appointmentDto);
+		assertTrue(result);
 		
 	}
 
 	@Test
-	
+	void testRescheduleAppointment() {
+		boolean result = service.rescheduleAppointment(10, LocalDate.now());
+		assertFalse(result);
+	}
+
+	@Test
 	void testCancelAppointment() {
-		service.cancelAppointment(5);
-		Appointment appointment = appointmentRepo.findById(5).orElse(null);
+		service.cancelAppointment(352);
+		Appointment appointment = appointmentRepo.findById(352).orElse(null);
 		assertEquals("cancelled", appointment.getStatus());
 	}
 
 	@Test
-	
 	void testViewAppointments() {
-		List list = service.viewAppointments(101);
-		assertNotNull(list);
-		
+		List<Appointment>list = service.viewAppointments(101);
+		assertNotNull(list);	
 	}
-
 	
-	
+	@Test
 	void testGetDocBySpeciality() {
 		
-		List list = service.getDocBySpeciality("Ortho");
-		assertNotNull(list);
-		
+		List<Doctor>list = service.getDocBySpeciality("Ortho");
+		assertFalse(list.isEmpty());	
 	}
 
 }
