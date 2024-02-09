@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.hexaware.amazecare.dto.DoctorDto;
+import com.hexaware.amazecare.entities.AvailableMedicines;
+import com.hexaware.amazecare.entities.AvailableTests;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.exception.AppointmentNotFoundException;
@@ -38,7 +40,7 @@ public class AdminRestController {
 		if(adminService.updateDoctor(doctorDto)) {
 			return "Doctor details updated";
 		}else {
-			throw new DoctorNotFoundException("Docto not found");
+			throw new DoctorNotFoundException("Doctor not found");
 		}
 	}
 	
@@ -77,5 +79,18 @@ public class AdminRestController {
 		}else {
 			throw new AppointmentNotFoundException("appointment not found");
 		}
+	}
+	@PostMapping("/addtests")
+	public String addTests(@RequestBody AvailableTests availableTests)
+	{
+		adminService.addTests(availableTests);
+		return "Test added";
+	}
+	
+	@PostMapping("/addmedicine")
+	public String addMedicines(@RequestBody AvailableMedicines availableMedicines)
+	{
+		adminService.addMedicines(availableMedicines);
+		return "Medicine added";
 	}
 }

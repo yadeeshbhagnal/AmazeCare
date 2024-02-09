@@ -35,19 +35,34 @@ public class PatientServiceImp implements IPatientService {
 	@Override
 	public boolean updatePatientInfo(PatientDto patientDto) {
 		
-		Patient patient = new Patient();
+		Patient patient = patientRepository.findById(patientDto.getPatientId()).orElse(null);
 		boolean flag = false;
 		
-		patient.setAddress(patientDto.getAddress());
-		patient.setAge(patientDto.getAge());
-		patient.setContactNumber(patientDto.getContactNumber());
-		patient.setDateOfBirth(patientDto.getDateOfBirth());
-		patient.setPatientId(patientDto.getPatientId());
-		patient.setPatientName(patientDto.getPatientName());
-		
-		Patient patient2 = patientRepository.save(patient);
-		if(patient2!=null)
+		if(patient!=null)
 		{
+			if(patientDto.getAddress()!=null)
+			{
+				patient.setAddress(patientDto.getAddress());
+			}
+			
+			Integer age = patientDto.getAge();
+			if(age!=null)
+			{
+				patient.setAge(patientDto.getAge());
+			}
+			if(patientDto.getContactNumber()!=null)
+			{
+				patient.setContactNumber(patientDto.getContactNumber());
+			}
+			if(patientDto.getDateOfBirth()!=null)
+			{
+				patient.setDateOfBirth(patientDto.getDateOfBirth());
+			}
+			if(patientDto.getPatientName()!=null)
+			{
+				patient.setPatientName(patientDto.getPatientName());
+			}
+			patientRepository.save(patient);
 			flag = true;
 		}
 		return flag;
@@ -57,37 +72,44 @@ public class PatientServiceImp implements IPatientService {
 	public boolean scheduleAppointment(AppointmentDto appointmentDto) {
 		
 		Appointment appointment = new Appointment();
-		boolean flag = false;
 		
 		appointment.setStatus("pending");
-		
 //		appointment.setAppointmentId(appointmentDto.getAppointmentId());
 		appointment.setDate(appointmentDto.getDate());
 		appointment.setSymptoms(appointmentDto.getSymptoms());
 		appointment.setVisitType(appointmentDto.getVisitType());
-		Appointment appointment2= appointmentRepository.save(appointment);
-		if(appointment2!=null)
+		
+		appointmentRepository.save(appointment);
+		return true;
+	}
+
+	@Override
+	public boolean rescheduleAppointment(int appointmentId, LocalDate date) {
+		
+		boolean flag = false;
+		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+		if(existingAppointment!=null)
 		{
 			flag = true;
+			existingAppointment.setStatus("pending");
+			existingAppointment.setDate(date);
+			appointmentRepository.save(existingAppointment);
+		}
+		return flag ;
+	}
+
+	@Override
+	public boolean cancelAppointment(int appointmentId) {
+		
+		boolean flag = false;
+		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+		if(existingAppointment!=null)
+		{
+			flag = true;
+			existingAppointment.setStatus("cancelled");
+			appointmentRepository.save(existingAppointment);
 		}
 		return flag;
-	}
-
-	@Override
-	public String rescheduleAppointment(int appointmentId, LocalDate date) {
-		
-		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		existingAppointment.setDate(date);
-		appointmentRepository.save(existingAppointment);
-		return "Appointment Rescheduled to "+date ;
-	}
-
-	@Override
-	public String cancelAppointment(int appointmentId) {
-		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		existingAppointment.setStatus("cancelled");
-		appointmentRepository.save(existingAppointment);
-		return "Appointment with appointment id: "+appointmentId+"cancelled";
 	}
 
 	@Override

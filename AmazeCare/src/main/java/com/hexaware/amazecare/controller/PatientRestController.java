@@ -21,6 +21,10 @@ import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.entities.RecommendedMedicine;
 import com.hexaware.amazecare.entities.RecommendedTests;
+import com.hexaware.amazecare.exception.AppointmentNotFoundException;
+import com.hexaware.amazecare.exception.DoctorNotFoundException;
+import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
+import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.service.IMedicalRecordService;
 import com.hexaware.amazecare.service.IPatientService;
 
@@ -35,27 +39,45 @@ public class PatientRestController {
 	IMedicalRecordService medicalService;
 	
 	@PutMapping("/update")
-	public boolean updatePatientInfo(@RequestBody PatientDto patientDto)
+	public String updatePatientInfo(@RequestBody PatientDto patientDto) throws PatientNotFoundException
 	{
-		return service.updatePatientInfo(patientDto);
+		if(service.updatePatientInfo(patientDto))
+		{
+			return "Patient details updated";
+		}else {
+			throw new PatientNotFoundException("Patient not found");
+		}
+		
 	}
 	
 	@PostMapping("/schedule")
-	public boolean scheduleAppointment(@RequestBody AppointmentDto appointmentDto)
+	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto)
 	{
-		return service.scheduleAppointment(appointmentDto);
+		 service.scheduleAppointment(appointmentDto);
+		 return "Appointment scheduled successfully";
 	}
 	
 	@PutMapping("/reschedule/{appointmentId}/{date}")
-	public String rescheduleAppointment(@PathVariable int appointmentId,@PathVariable LocalDate date)
+	public String rescheduleAppointment(@PathVariable int appointmentId,@PathVariable LocalDate date) throws AppointmentNotFoundException
 	{
-		return service.rescheduleAppointment(appointmentId, date);
+		if(service.rescheduleAppointment(appointmentId, date))
+		{
+			return "Appointment rescheduled successfully to " + date;
+		}else {
+			throw new AppointmentNotFoundException("Invalid appointment ID");
+		}
+		
 	}
 	
 	@PutMapping("cancel/{appointmentId}")
-	public String cancelAppointment(@PathVariable int appointmentId)
+	public String cancelAppointment(@PathVariable int appointmentId) throws AppointmentNotFoundException
 	{
-		return service.cancelAppointment(appointmentId);
+		if(service.cancelAppointment(appointmentId))
+		{
+			return "Appointment with ID "+appointmentId+" cancelled successfully";
+		}else {
+			throw new AppointmentNotFoundException("Invalid appointment ID");
+		}
 	}
 	
 	@GetMapping("/viewappointment/{patientId}")
@@ -71,20 +93,33 @@ public class PatientRestController {
 	}
 	
 	@GetMapping("/viewdocbyspeciality/{speciality}")
-	public List<Doctor> getDocBySpeciality(@PathVariable String speciality)
+	public List<Doctor> getDocBySpeciality(@PathVariable String speciality) throws DoctorNotFoundException
 	{
-		return service.getDocBySpeciality(speciality);
+		List<Doctor> doctors = service.getDocBySpeciality(speciality);
+		if(doctors == null || doctors.isEmpty())
+		{
+			throw new DoctorNotFoundException("No doctors found with speciality: " + speciality);
+		}
+		return doctors;
 	}
 	
 	@GetMapping("/getrecommendedtests/{recordId}")
-	public List<RecommendedTests> viewRecommendedTests(int recordId)
+	public List<RecommendedTests> viewRecommendedTests(@PathVariable int recordId) throws MedicalRecordNotFoundException
 	{
-		return medicalService.viewRecommendedTests(recordId);
+		List<RecommendedTests> recommendedTests = medicalService.viewRecommendedTests(recordId);
+        if (recommendedTests == null || recommendedTests.isEmpty()) {
+            throw new MedicalRecordNotFoundException("Record with ID " + recordId + " not found.");
+        }
+        return recommendedTests;
 	}
 	
 	@GetMapping("/getrecommendedmedicine/{recordId}")
-	public List<RecommendedMedicine> viewRecommendedMedicine(int recordId)
+	public List<RecommendedMedicine> viewRecommendedMedicine(@PathVariable int recordId) throws MedicalRecordNotFoundException
 	{
-		return medicalService.viewRecommendedMedicine(recordId);
+		List<RecommendedMedicine> recommendedMedicine = medicalService.viewRecommendedMedicine(recordId);
+		if (recommendedMedicine == null || recommendedMedicine.isEmpty()) {
+            throw new MedicalRecordNotFoundException("Record with ID " + recordId + " not found.");
+        }
+        return recommendedMedicine;
 	}
 }

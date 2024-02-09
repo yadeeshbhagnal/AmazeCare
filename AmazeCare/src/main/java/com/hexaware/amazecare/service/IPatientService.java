@@ -16,9 +16,9 @@ public interface IPatientService {
 	
 	public boolean scheduleAppointment(AppointmentDto appointmentDto);
 	
-	public String rescheduleAppointment(int appointmentId, LocalDate date);
+	public boolean rescheduleAppointment(int appointmentId, LocalDate date);
 	
-	public String cancelAppointment(int appointmentId);
+	public boolean cancelAppointment(int appointmentId);
 	
 	public List<Appointment> viewAppointments(int patientId);
 		

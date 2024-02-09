@@ -6,6 +6,8 @@ import java.util.List;
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.Admin;
 import com.hexaware.amazecare.entities.Appointment;
+import com.hexaware.amazecare.entities.AvailableMedicines;
+import com.hexaware.amazecare.entities.AvailableTests;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
 
@@ -26,5 +28,11 @@ public interface IAdminService {
 	public List<Appointment> viewAllAppointments();
 	
 	public boolean assignAppointmentToDoctor(int appointmentId, LocalTime time);
+	
+	public Doctor getByName(String doctorName);
+	
+	public boolean addTests(AvailableTests availableTests);
+	
+	public boolean addMedicines(AvailableMedicines availableMedicines);
 
 }

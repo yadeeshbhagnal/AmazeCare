@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.Appointment;
+import com.hexaware.amazecare.entities.AvailableMedicines;
+import com.hexaware.amazecare.entities.AvailableTests;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.repository.AdminRepository;
 import com.hexaware.amazecare.repository.AppointmentRepository;
+import com.hexaware.amazecare.repository.AvailableMedicineRepository;
+import com.hexaware.amazecare.repository.AvailableTestsRepository;
 import com.hexaware.amazecare.repository.DoctorRepository;
 import com.hexaware.amazecare.repository.PatientRepository;
 
@@ -31,6 +35,12 @@ public class AdminServiceImp implements IAdminService {
 	
 	@Autowired
 	AdminRepository adminRespository;
+	
+	@Autowired
+	AvailableTestsRepository testRepository;
+	
+	@Autowired
+	AvailableMedicineRepository medicineRepository;
 	
 	@Override
 	public boolean addDoctor(DoctorDto doctorDto) {
@@ -124,5 +134,24 @@ public class AdminServiceImp implements IAdminService {
 			flag = true;
 		}
 		return flag;
+	}
+
+	@Override
+	public Doctor getByName(String doctorName) {
+		
+		return doctorRepository.findByDoctorName(doctorName);
+		
+	}
+
+	@Override
+	public boolean addTests(AvailableTests availableTests) {
+		testRepository.save(availableTests);
+		return true;
+	}
+
+	@Override
+	public boolean addMedicines(AvailableMedicines availableMedicines) {
+		medicineRepository.save(availableMedicines);
+		return true;
 	}
 }
