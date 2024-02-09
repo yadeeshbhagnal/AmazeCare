@@ -115,8 +115,6 @@ public class PatientServiceImp implements IPatientService {
 	@Override
 	public List<Appointment> viewAppointments(int patientId) {
 		return appointmentRepository.findByPatientPatientId(patientId);
-	
-		
 	}
 
 	@Override

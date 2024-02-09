@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
+import com.hexaware.amazecare.dto.RecommendedMedicineDto;
+import com.hexaware.amazecare.dto.RecommendedTestsDto;
 import com.hexaware.amazecare.entities.MedicalRecord;
-import com.hexaware.amazecare.entities.RecommendedMedicine;
-import com.hexaware.amazecare.entities.RecommendedTests;
 import com.hexaware.amazecare.exception.AppointmentNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
 import com.hexaware.amazecare.exception.TestNotFoundException;
@@ -65,20 +65,20 @@ public class DoctorRestController {
 		}
 	}
 	
-	@PostMapping("/createmedicalrecord")
-	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto) {
-		doctorService.createMedicalRecord(medicalRecordDto);
-			return "Medical record created";
-	}
-	
 	@GetMapping("/viewmedicalrecord/{patientId}")
 	public List<MedicalRecord> viewPatientMedicalRecord(@PathVariable int patientId){
 		return medicalRecordService.viewMedicalRecord(patientId);
 	}
 	
+	@PostMapping("/createmedicalrecord")
+	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto) {
+		doctorService.createMedicalRecord(medicalRecordDto);
+		return "Medical record created";
+	}
+	
 	@PostMapping("/prescribemedicine")
-	public String prescribeMedicine(@RequestBody RecommendedMedicine recomenMedicine) throws MedicineNotFoundException{
-		if(doctorService.prescribeMedicine(recomenMedicine)) {
+	public String prescribeMedicine(@RequestBody RecommendedMedicineDto recomenMedicineDto) throws MedicineNotFoundException{
+		if(doctorService.prescribeMedicine(recomenMedicineDto)) {
 			return "Medicine added to the prescription";
 		}else {
 			throw new MedicineNotFoundException("Medicine not available");
@@ -86,8 +86,8 @@ public class DoctorRestController {
 	}
 	
 	@PostMapping("/prescribetest")
-	public String prescribeTest(@RequestBody RecommendedTests recommendedTest) throws TestNotFoundException{
-		if(doctorService.prescribeTest(recommendedTest)) {
+	public String prescribeTest(@RequestBody RecommendedTestsDto recommendedTestDto) throws TestNotFoundException{
+		if(doctorService.prescribeTest(recommendedTestDto)) {
 			return "Medicine added to the prescription";
 		}else {
 			throw new TestNotFoundException("Medicine not available");

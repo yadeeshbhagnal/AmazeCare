@@ -45,7 +45,6 @@ public class AdminServiceImp implements IAdminService {
 	@Override
 	public boolean addDoctor(DoctorDto doctorDto) {
 		Doctor doctor = new Doctor();
-		
 		doctor.setDoctorName(doctorDto.getDoctorName());
 		doctor.setExperience(doctorDto.getExperience());
 		doctor.setQualification(doctorDto.getQualification());
@@ -137,10 +136,8 @@ public class AdminServiceImp implements IAdminService {
 	}
 
 	@Override
-	public Doctor getByName(String doctorName) {
-		
+	public List<Doctor> getByName(String doctorName) {
 		return doctorRepository.findByDoctorName(doctorName);
-		
 	}
 
 	@Override

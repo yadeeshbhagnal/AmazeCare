@@ -93,4 +93,14 @@ public class AdminRestController {
 		adminService.addMedicines(availableMedicines);
 		return "Medicine added";
 	}
+	
+	@GetMapping("/getdoctorbyname/{doctorName}")
+	public List<Doctor> getDoctorByName(@PathVariable String doctorName)throws DoctorNotFoundException{
+		List<Doctor> doctorList = adminService.getByName(doctorName);
+		if(!doctorList.isEmpty()) {
+			return doctorList;
+		}else {
+			throw new DoctorNotFoundException("No doctor found with name" + doctorName);
+		}
+	}
 }

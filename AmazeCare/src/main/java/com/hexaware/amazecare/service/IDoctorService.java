@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
-import com.hexaware.amazecare.entities.RecommendedMedicine;
-import com.hexaware.amazecare.entities.RecommendedTests;
+import com.hexaware.amazecare.dto.RecommendedMedicineDto;
+import com.hexaware.amazecare.dto.RecommendedTestsDto;
 
 public interface IDoctorService {
 	
@@ -20,9 +20,9 @@ public interface IDoctorService {
 			
 	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto);
 	
-	public boolean prescribeMedicine(RecommendedMedicine recommendedMedicines);
+	public boolean prescribeMedicine(RecommendedMedicineDto recommendedMedicinesDto);
 	
-	public boolean prescribeTest(RecommendedTests recommendedTests);
+	public boolean prescribeTest(RecommendedTestsDto recommendedTestsDto);
 	
 	public boolean updateTestResult(int recommendedTestId, String result);
 }

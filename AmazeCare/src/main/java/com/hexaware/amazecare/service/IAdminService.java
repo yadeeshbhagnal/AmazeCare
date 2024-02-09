@@ -29,7 +29,7 @@ public interface IAdminService {
 	
 	public boolean assignAppointmentToDoctor(int appointmentId, LocalTime time);
 	
-	public Doctor getByName(String doctorName);
+	public List<Doctor> getByName(String doctorName);
 	
 	public boolean addTests(AvailableTests availableTests);
 	

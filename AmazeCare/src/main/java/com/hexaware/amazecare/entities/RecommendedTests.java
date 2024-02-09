@@ -1,6 +1,8 @@
 package com.hexaware.amazecare.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -8,7 +10,9 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class RecommendedTests {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int recommendedTestId;
+	
 	private String testName;
 	private String testResult;
 	

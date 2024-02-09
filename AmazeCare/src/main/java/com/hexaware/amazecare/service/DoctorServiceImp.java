@@ -8,14 +8,20 @@ import org.springframework.stereotype.Service;
 
 import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
+import com.hexaware.amazecare.dto.RecommendedMedicineDto;
+import com.hexaware.amazecare.dto.RecommendedTestsDto;
 import com.hexaware.amazecare.entities.Appointment;
+import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.MedicalRecord;
+import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.entities.RecommendedMedicine;
 import com.hexaware.amazecare.entities.RecommendedTests;
 import com.hexaware.amazecare.repository.AppointmentRepository;
 import com.hexaware.amazecare.repository.AvailableMedicineRepository;
 import com.hexaware.amazecare.repository.AvailableTestsRepository;
+import com.hexaware.amazecare.repository.DoctorRepository;
 import com.hexaware.amazecare.repository.MedicalRecordRepository;
+import com.hexaware.amazecare.repository.PatientRepository;
 import com.hexaware.amazecare.repository.RecommendedMedicineRepository;
 import com.hexaware.amazecare.repository.RecommendedTestsRepository;
 
@@ -39,6 +45,13 @@ public class DoctorServiceImp implements IDoctorService {
 	
 	@Autowired
 	AvailableTestsRepository availableTestsRepository;
+	
+	@Autowired
+	DoctorRepository doctorRepository;
+	
+	@Autowired
+	PatientRepository patientRepository;
+
 
 	@Override
 	public List<AppointmentDto>viewAppointments(int doctorId) {
@@ -83,6 +96,9 @@ public class DoctorServiceImp implements IDoctorService {
 
 	@Override
 	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto) {
+		Doctor doctor = doctorRepository.findById(medicalRecordDto.getDoctorId()).orElse(null);
+		Patient patient = patientRepository.findById(medicalRecordDto.getPatientId()).orElse(null);
+
 		MedicalRecord medicalRecord = new MedicalRecord();
 		boolean flag = true;
 		
@@ -90,15 +106,27 @@ public class DoctorServiceImp implements IDoctorService {
 		medicalRecord.setDate(medicalRecordDto.getDate());
 		medicalRecord.setPhysicalExamination(medicalRecordDto.getPhysicalExamination());
 		medicalRecord.setTreatmentPlan(medicalRecordDto.getTreatmentPlan());
+		medicalRecord.setDoctor(doctor);
+		medicalRecord.setPatient(patient);
 		medicalRecordRepository.save(medicalRecord);
 		
 		return flag;
 	}
 
 	@Override
-	public boolean prescribeMedicine(RecommendedMedicine recommendedMedicine) {
+	public boolean prescribeMedicine(RecommendedMedicineDto recommendedMedicineDto) {
+		MedicalRecord medicalRecord = medicalRecordRepository.findById(recommendedMedicineDto.getRecordId())
+									  .orElse(null);
+		
+		RecommendedMedicine recommendedMedicine = new RecommendedMedicine();
+		recommendedMedicine.setMedicineName(recommendedMedicineDto.getMedicineName());
+		recommendedMedicine.setDosage(recommendedMedicineDto.getDosage());
+		recommendedMedicine.setQuantity(recommendedMedicineDto.getQuantity());
+		recommendedMedicine.setMedicalRecord(medicalRecord);
+		
 		boolean flag = false;
 		String medicineName = recommendedMedicine.getMedicineName();
+		
 		if(availableMedicineRepository.findByMedicineName(medicineName)!=null){
 			flag = true;
 			recommendedMedicineRepository.save(recommendedMedicine);
@@ -107,7 +135,15 @@ public class DoctorServiceImp implements IDoctorService {
 	}
 
 	@Override
-	public boolean prescribeTest(RecommendedTests recommendedTests) {
+	public boolean prescribeTest(RecommendedTestsDto recommendedTestsDto) {
+		MedicalRecord medicalRecord = medicalRecordRepository.findById(recommendedTestsDto.getRecordId())
+				.orElse(null);
+		
+		RecommendedTests recommendedTests = new RecommendedTests();
+		recommendedTests.setMedicalRecord(medicalRecord);
+		recommendedTests.setTestName(recommendedTestsDto.getTestName());
+		recommendedTests.setTestResult(recommendedTestsDto.getTestResult());
+		
 		boolean flag = false;
 		String testName = recommendedTests.getTestName();
 		if(availableTestsRepository.findByTestName(testName)!=null){
@@ -117,9 +153,11 @@ public class DoctorServiceImp implements IDoctorService {
 		return flag;
 	}
 	
+	@Override
 	public boolean updateTestResult(int recommendedTestId, String result) {
 		RecommendedTests test = recommendedTestRepository.findById(recommendedTestId).orElse(null);
 		test.setTestResult(result);
+		recommendedTestRepository.save(test);
 		return true;
 	}
 }

@@ -33,7 +33,6 @@ public class MedicalRecordServiceImp implements IMedicalRecordService {
 
 	@Override
 	public List<RecommendedTests> viewRecommendedTests(int recordId) {
-	
 		return recommendedTestsRepository.findByMedicalRecordRecordId(recordId);
 	}
 
