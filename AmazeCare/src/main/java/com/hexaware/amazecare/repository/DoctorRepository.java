@@ -8,7 +8,7 @@ import com.hexaware.amazecare.entities.Doctor;
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Integer>{
 
-	List<Doctor> findBySpeciality(String speciality);
+	public List<Doctor> findBySpeciality(String speciality);
 	
 	public List<Doctor> findByDoctorName(String doctorName);
 

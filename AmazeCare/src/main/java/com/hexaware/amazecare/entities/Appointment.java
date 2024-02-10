@@ -5,6 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,10 +41,12 @@ public class Appointment {
 	
 	@ManyToOne
 	@JoinColumn(name="doctor_Id")
+	@JsonBackReference
 	private Doctor doctor;
 	
 	@ManyToOne
 	@JoinColumn(name = "patient_Id")
+	@JsonBackReference
 	private Patient patient;
 	
 	public Appointment() {

@@ -45,7 +45,7 @@ public class PatientServiceImp implements IPatientService {
 			}
 			
 			Integer age = patientDto.getAge();
-			if(age!=null)
+			if(age!=0)
 			{
 				patient.setAge(patientDto.getAge());
 			}

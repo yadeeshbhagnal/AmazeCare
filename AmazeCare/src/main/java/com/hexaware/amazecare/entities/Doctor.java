@@ -2,6 +2,9 @@ package com.hexaware.amazecare.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
@@ -29,7 +33,7 @@ public class Doctor {
 	@Size(max = 30)
 	private String speciality;
 	
-	@Positive
+	@Min(0)
 	private int experience;
 	
 	@Pattern(regexp = "^[a-zA-Z().\\s]*$", message = "Invalid Input")
@@ -40,9 +44,11 @@ public class Doctor {
 	private String designation;
 	
 	@OneToMany(mappedBy="doctor", cascade=CascadeType.ALL)
+	@JsonBackReference
 	private List<Appointment> appointments;
 	
 	@OneToMany(mappedBy="doctor", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<MedicalRecord> medicalRecords;
 	
 	
