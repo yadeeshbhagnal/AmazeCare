@@ -27,7 +27,7 @@ public class MedicalRecordRestController {
 	{
 		List<MedicalRecord> medicalRecord = medicalService.viewMedicalRecord(patientId);
         if (medicalRecord == null || medicalRecord.isEmpty()) {
-            throw new MedicalRecordNotFoundException("Record with ID " + patientId + " not found.");
+            throw new MedicalRecordNotFoundException("No record found for patient with id: " +patientId);
         }
         return medicalRecord;
 	}

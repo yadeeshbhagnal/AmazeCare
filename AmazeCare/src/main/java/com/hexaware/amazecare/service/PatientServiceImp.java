@@ -77,7 +77,7 @@ public class PatientServiceImp implements IPatientService {
 		
 		boolean flag = true;
 		
-		appointment.setStatus("pending");
+		appointment.setStatus("Pending");
 		appointment.setDate(appointmentDto.getDate());
 		appointment.setSymptoms(appointmentDto.getSymptoms());
 		appointment.setVisitType(appointmentDto.getVisitType());
@@ -96,7 +96,7 @@ public class PatientServiceImp implements IPatientService {
 		if(existingAppointment!=null)
 		{
 			flag = true;
-			existingAppointment.setStatus("pending");
+			existingAppointment.setStatus("Pending");
 			existingAppointment.setDate(date);
 			appointmentRepository.save(existingAppointment);
 		}
@@ -111,7 +111,7 @@ public class PatientServiceImp implements IPatientService {
 		if(existingAppointment!=null)
 		{
 			flag = true;
-			existingAppointment.setStatus("cancelled");
+			existingAppointment.setStatus("Cancelled");
 			appointmentRepository.save(existingAppointment);
 		}
 		return flag;

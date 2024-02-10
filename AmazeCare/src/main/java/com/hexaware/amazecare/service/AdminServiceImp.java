@@ -130,6 +130,7 @@ public class AdminServiceImp implements IAdminService {
 		Appointment appointment = appointmentRepository.findById(appointmentId).orElse(null);
 		if(appointment!=null) {
 			appointment.setTime(time);
+			appointment.setStatus("Assigned");
 			flag = true;
 		}
 		return flag;

@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.dto.RecommendedMedicineDto;
 import com.hexaware.amazecare.dto.RecommendedTestsDto;
+import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.exception.AppointmentNotFoundException;
+import com.hexaware.amazecare.exception.DoctorNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
 import com.hexaware.amazecare.exception.TestNotFoundException;
 import com.hexaware.amazecare.service.IDoctorService;
@@ -34,8 +36,12 @@ public class DoctorRestController {
 	IMedicalRecordService medicalRecordService;
 	
 	@GetMapping("/upcoming-appointments")
-	public List<AppointmentDto> viewUpcomingAppointments(int doctorId){
-		return doctorService.viewAppointments(doctorId);
+	public List<AppointmentDetailsDto> viewUpcomingAppointments(int doctorId) throws AppointmentNotFoundException{
+		List<AppointmentDetailsDto> upcomingAppointments = doctorService.viewAppointments(doctorId);
+		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
+			throw new AppointmentNotFoundException("No appointment found for doctor with id: " + doctorId);
+		}
+		return upcomingAppointments;
 	}
 	
 	@PutMapping("/accept-appointment/{appointmentId}")

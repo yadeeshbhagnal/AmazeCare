@@ -3,14 +3,14 @@ package com.hexaware.amazecare.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.dto.RecommendedMedicineDto;
 import com.hexaware.amazecare.dto.RecommendedTestsDto;
 
 public interface IDoctorService {
 	
-	public List<AppointmentDto> viewAppointments(int doctorId);
+	public List<AppointmentDetailsDto> viewAppointments(int doctorId);
 	
 	public boolean acceptAppointment(int appointmentId);
 	

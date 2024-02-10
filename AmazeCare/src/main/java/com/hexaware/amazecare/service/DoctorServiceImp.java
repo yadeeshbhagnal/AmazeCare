@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.dto.RecommendedMedicineDto;
 import com.hexaware.amazecare.dto.RecommendedTestsDto;
@@ -54,7 +54,7 @@ public class DoctorServiceImp implements IDoctorService {
 
 
 	@Override
-	public List<AppointmentDto>viewAppointments(int doctorId) {
+	public List<AppointmentDetailsDto>viewAppointments(int doctorId) {
 		return appointmentRepository.getUpcomingAppointments(doctorId);
 	}
 
@@ -76,7 +76,7 @@ public class DoctorServiceImp implements IDoctorService {
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
 		if(existingAppointment != null) {
 			flag = true;
-			existingAppointment.setStatus("rejected");
+			existingAppointment.setStatus("Rejected");
 			appointmentRepository.save(existingAppointment);
 		}
 		return flag;
@@ -89,6 +89,7 @@ public class DoctorServiceImp implements IDoctorService {
 		if(existingAppointment != null) {
 			flag = true;
 			existingAppointment.setDate(date);
+			existingAppointment.setStatus("Rescheduled");
 			appointmentRepository.save(existingAppointment);
 		}
 		return flag;
