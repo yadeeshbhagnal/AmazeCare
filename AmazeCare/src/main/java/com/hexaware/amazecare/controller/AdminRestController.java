@@ -3,6 +3,8 @@ package com.hexaware.amazecare.controller;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hexaware.amazecare.dto.AdminViewDto;
-import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.AvailableMedicines;
 import com.hexaware.amazecare.entities.AvailableTests;
@@ -32,6 +33,8 @@ public class AdminRestController {
 	@Autowired
 	IAdminService adminService;
 	
+	Logger logger = LoggerFactory.getLogger(DoctorRestController.class);
+	
 	@PostMapping("/adddoctor")
 	public String addDoctor(@RequestBody DoctorDto doctorDto) {
 		adminService.addDoctor(doctorDto);
@@ -43,6 +46,7 @@ public class AdminRestController {
 		if(adminService.updateDoctor(doctorDto)) {
 			return "Doctor details updated";
 		}else {
+			logger.info("Exception occured while updating doctor details, exception name: DoctorNotFoundException");
 			throw new DoctorNotFoundException("Doctor not found");
 		}
 	}
@@ -52,6 +56,7 @@ public class AdminRestController {
 		if(adminService.deleteDoctor(doctorId)) {
 			return "Doctor deleted successfully";
 		}else {
+			logger.info("Exception occured while deleting doctor, exception name: DoctorNotFoundException");
 			throw new DoctorNotFoundException("Doctor not found");
 		}
 	}
@@ -61,6 +66,7 @@ public class AdminRestController {
 		if(adminService.deletePatient(patientId)) {
 			return "patient deleted successfully";
 		}else {
+			logger.info("Exception occured while deleting patient, exception name: PatientNotFoundException");
 			throw new PatientNotFoundException("patient not found");
 		}
 	}
@@ -80,6 +86,7 @@ public class AdminRestController {
 		if(adminService.assignAppointmentToDoctor(appointmentId, time)) {
 			return "appointment successfully assigned";
 		}else {
+			logger.info("Exception occured while assigning assigning appointment to doctor, exception name: AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("appointment not found");
 		}
 	}
@@ -103,6 +110,7 @@ public class AdminRestController {
 		if(!doctorList.isEmpty()) {
 			return doctorList;
 		}else {
+			logger.info("Exception occured while fetching doctor by name, exception name: DoctorNotFoundException");
 			throw new DoctorNotFoundException("No doctor found with name" + doctorName);
 		}
 	}

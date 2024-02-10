@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.hexaware.amazecare.dto.AdminViewDto;
 import com.hexaware.amazecare.dto.DoctorDto;
-import com.hexaware.amazecare.dto.PatientViewDto;
-import com.hexaware.amazecare.entities.Admin;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.AvailableMedicines;
 import com.hexaware.amazecare.entities.AvailableTests;
@@ -38,5 +36,4 @@ public interface IAdminService {
 	public boolean addMedicines(AvailableMedicines availableMedicines);
 	
 	public List<AdminViewDto> viewUpcomingAppointments();
-
 }

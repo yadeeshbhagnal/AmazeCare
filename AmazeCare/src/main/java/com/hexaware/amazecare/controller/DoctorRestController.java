@@ -3,6 +3,8 @@ package com.hexaware.amazecare.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,9 @@ import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.exception.AppointmentNotFoundException;
 import com.hexaware.amazecare.exception.DoctorNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
+import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.exception.TestNotFoundException;
+import com.hexaware.amazecare.service.DoctorServiceImp;
 import com.hexaware.amazecare.service.IDoctorService;
 import com.hexaware.amazecare.service.IMedicalRecordService;
 
@@ -35,10 +39,13 @@ public class DoctorRestController {
 	@Autowired
 	IMedicalRecordService medicalRecordService;
 	
+	Logger logger = LoggerFactory.getLogger(DoctorRestController.class);
+	
 	@GetMapping("/upcoming-appointments")
 	public List<AppointmentDetailsDto> viewUpcomingAppointments(int doctorId) throws AppointmentNotFoundException{
 		List<AppointmentDetailsDto> upcomingAppointments = doctorService.viewAppointments(doctorId);
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
+			logger.info("Exception occured while fetching appointments");
 			throw new AppointmentNotFoundException("No appointment found for doctor with id: " + doctorId);
 		}
 		return upcomingAppointments;
@@ -49,6 +56,7 @@ public class DoctorRestController {
 		if(doctorService.acceptAppointment(appointmentId)) {
 			return "Appointment accepted";
 		}else {
+			logger.info("Exception occured while fetching appointment");
 			throw new AppointmentNotFoundException("Appointment not found");
 		}
 	}
@@ -58,6 +66,7 @@ public class DoctorRestController {
 		if(doctorService.rejectAppointment(appointmentId)) {
 			return "Appointment rejected";
 		}else {
+			logger.info("Exception occured while fetching appointments");
 			throw new AppointmentNotFoundException("Appointment not found");
 		}
 	}
@@ -67,18 +76,19 @@ public class DoctorRestController {
 		if(doctorService.rescheduleAppointment(appointmentId, date)) {
 		return "Appointment Reschedules to date: + " + date; 
 		}else {
+			logger.info("Exception occured while fetching appointments");
 			throw new AppointmentNotFoundException("Appointment not found");
 		}
 	}
 	
-	@GetMapping("/viewmedicalrecord/{patientId}")
-	public List<MedicalRecord> viewPatientMedicalRecord(@PathVariable int patientId){
-		return medicalRecordService.viewMedicalRecord(patientId);
-	}
-	
 	@PostMapping("/createmedicalrecord")
 	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto) {
-		doctorService.createMedicalRecord(medicalRecordDto);
+		try {
+			doctorService.createMedicalRecord(medicalRecordDto);
+		} catch (DoctorNotFoundException | PatientNotFoundException e) {
+			logger.info("Exception occured while creating medical record");
+			e.toString();
+		}
 		return "Medical record created";
 	}
 	
@@ -87,6 +97,7 @@ public class DoctorRestController {
 		if(doctorService.prescribeMedicine(recomenMedicineDto)) {
 			return "Medicine added to the prescription";
 		}else {
+			logger.info("Exception occured while prescribing medicine");
 			throw new MedicineNotFoundException("Medicine not available");
 		}
 	}
@@ -96,6 +107,7 @@ public class DoctorRestController {
 		if(doctorService.prescribeTest(recommendedTestDto)) {
 			return "Medicine added to the prescription";
 		}else {
+			logger.info("Exception occured while prescribing tests");
 			throw new TestNotFoundException("Medicine not available");
 		}
 	}

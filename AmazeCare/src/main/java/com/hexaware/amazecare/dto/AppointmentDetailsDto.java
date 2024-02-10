@@ -51,9 +51,5 @@ public class AppointmentDetailsDto {
 
 	public void setTime(LocalTime time) {
 		this.time = time;
-	}
-	
-	
-	
-	
+	}	
 }
