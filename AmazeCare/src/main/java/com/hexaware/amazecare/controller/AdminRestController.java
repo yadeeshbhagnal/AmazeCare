@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.hexaware.amazecare.dto.AdminViewDto;
+import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.AvailableMedicines;
 import com.hexaware.amazecare.entities.AvailableTests;
@@ -102,5 +105,15 @@ public class AdminRestController {
 		}else {
 			throw new DoctorNotFoundException("No doctor found with name" + doctorName);
 		}
+	}
+	
+	@GetMapping("/view-upcomingappointment")
+	public List<AdminViewDto> viewUpcomingAppointments() throws AppointmentNotFoundException
+	{
+		List<AdminViewDto> upcomingAppointments = adminService.viewUpcomingAppointments();
+		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
+			throw new AppointmentNotFoundException("No appointment found");
+		}
+		return upcomingAppointments;
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.PatientDto;
+import com.hexaware.amazecare.dto.PatientViewDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
@@ -125,6 +126,11 @@ public class PatientServiceImp implements IPatientService {
 	@Override
 	public List<Doctor> getDocBySpeciality(String speciality) {
 		return doctorRepository.findBySpeciality(speciality);
+	}
+
+	@Override
+	public List<PatientViewDto> viewUpcomingAppointments(int patientId) {
+		return appointmentRepository.getUpcomingPatientAppointments(patientId);
 	}
 
 }

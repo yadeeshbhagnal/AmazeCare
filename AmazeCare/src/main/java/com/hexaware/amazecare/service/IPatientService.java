@@ -6,6 +6,7 @@ import java.util.List;
 import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.dto.PatientDto;
+import com.hexaware.amazecare.dto.PatientViewDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
@@ -23,5 +24,7 @@ public interface IPatientService {
 	public List<Appointment> viewAppointments(int patientId);
 		
 	public List<Doctor> getDocBySpeciality(String speciality);
+	
+	public List<PatientViewDto> viewUpcomingAppointments(int patientId);
 	
 }

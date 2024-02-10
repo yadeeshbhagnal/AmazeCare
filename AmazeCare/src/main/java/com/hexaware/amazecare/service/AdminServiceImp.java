@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hexaware.amazecare.dto.AdminViewDto;
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.AvailableMedicines;
@@ -151,5 +152,11 @@ public class AdminServiceImp implements IAdminService {
 	public boolean addMedicines(AvailableMedicines availableMedicines) {
 		medicineRepository.save(availableMedicines);
 		return true;
+	}
+
+	@Override
+	public List<AdminViewDto> viewUpcomingAppointments() {
+		
+		return appointmentRepository.getAdminAppointments();
 	}
 }

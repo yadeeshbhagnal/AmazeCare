@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.dto.PatientDto;
+import com.hexaware.amazecare.dto.PatientViewDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.MedicalRecord;
@@ -84,13 +86,7 @@ public class PatientRestController {
 	public List<Appointment> viewAppointments(@PathVariable int patientId)
 	{
 		return service.viewAppointments(patientId);
-	}
-	
-	@GetMapping("/viewmedicalrecord/{patientId}")
-	public List<MedicalRecord> viewMedicalRecord(@PathVariable int patientId)
-	{
-		return medicalService.viewMedicalRecord(patientId);
-	}
+	}	
 	
 	@GetMapping("/viewdocbyspeciality/{speciality}")
 	public List<Doctor> getDocBySpeciality(@PathVariable String speciality) throws DoctorNotFoundException
@@ -101,5 +97,15 @@ public class PatientRestController {
 			throw new DoctorNotFoundException("No doctors found with speciality: " + speciality);
 		}
 		return doctors;
+	}
+	
+	@GetMapping("/upcoming-appointments/{patientId}")
+	public List<PatientViewDto> viewUpcomingAppointments(@PathVariable int patientId) throws AppointmentNotFoundException
+	{
+		List<PatientViewDto> upcomingAppointments = service.viewUpcomingAppointments(patientId);
+		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
+			throw new AppointmentNotFoundException("No appointment found for patient with id: " + patientId);
+		}
+		return upcomingAppointments;
 	}
 }
