@@ -14,9 +14,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hexaware.amazecare.dto.AppointmentDto;
 import com.hexaware.amazecare.dto.PatientDto;
+import com.hexaware.amazecare.dto.PatientViewDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
 import com.hexaware.amazecare.entities.Patient;
+import com.hexaware.amazecare.exception.DoctorNotFoundException;
+import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.repository.AppointmentRepository;
 
 @SpringBootTest
@@ -42,7 +45,7 @@ class PatientServiceImpTest {
 	}
 
 	@Test
-	void testScheduleAppointment() {
+	void testScheduleAppointment() throws DoctorNotFoundException, PatientNotFoundException {
 		
 		AppointmentDto appointmentDto = new AppointmentDto();
 	
@@ -82,6 +85,13 @@ class PatientServiceImpTest {
 		
 		List<Doctor>list = service.getDocBySpeciality("Ortho");
 		assertFalse(list.isEmpty());	
+	}
+	
+	@Test
+	void testViewUpcomingAppointments() {
+		List<PatientViewDto> list = service.viewUpcomingAppointments(101);
+		assertNotNull(list);
+		
 	}
 
 }

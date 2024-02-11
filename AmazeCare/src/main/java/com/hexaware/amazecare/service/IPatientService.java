@@ -8,12 +8,14 @@ import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.dto.PatientViewDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.Doctor;
+import com.hexaware.amazecare.exception.DoctorNotFoundException;
+import com.hexaware.amazecare.exception.PatientNotFoundException;
 
 public interface IPatientService {
 	
 	public boolean updatePatientInfo(PatientDto patientDto);
 	
-	public boolean scheduleAppointment(AppointmentDto appointmentDto);
+	public boolean scheduleAppointment(AppointmentDto appointmentDto) throws DoctorNotFoundException, PatientNotFoundException;
 	
 	public boolean rescheduleAppointment(int appointmentId, LocalDate date);
 	

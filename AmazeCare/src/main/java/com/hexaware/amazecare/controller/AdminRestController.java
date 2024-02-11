@@ -120,6 +120,7 @@ public class AdminRestController {
 	{
 		List<AdminViewDto> upcomingAppointments = adminService.viewUpcomingAppointments();
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
+			logger.info("Exception occured while fetching appointment, exception name: AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("No appointment found");
 		}
 		return upcomingAppointments;

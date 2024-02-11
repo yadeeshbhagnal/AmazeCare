@@ -3,6 +3,8 @@ package com.hexaware.amazecare.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +42,8 @@ public class PatientRestController {
 	@Autowired
 	IMedicalRecordService medicalService;
 	
+	Logger logger = LoggerFactory.getLogger(PatientRestController.class);
+	
 	@PutMapping("/update")
 	public String updatePatientInfo(@RequestBody PatientDto patientDto) throws PatientNotFoundException
 	{
@@ -47,6 +51,7 @@ public class PatientRestController {
 		{
 			return "Patient details updated";
 		}else {
+			logger.info("Exception occured while updating appointment details, Exception name: PatientNotFoundException");
 			throw new PatientNotFoundException("Patient with Id "+patientDto.getPatientId()+" not found");
 		}
 		
@@ -55,7 +60,12 @@ public class PatientRestController {
 	@PostMapping("/schedule")
 	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto)
 	{
-		 service.scheduleAppointment(appointmentDto);
+		try {
+			service.scheduleAppointment(appointmentDto);
+		} catch (DoctorNotFoundException | PatientNotFoundException e) {
+			logger.info("Exception occured while scheduling appointment "+e);
+			e.toString();
+		}
 		 return "Appointment scheduled successfully";
 	}
 	
@@ -66,6 +76,7 @@ public class PatientRestController {
 		{
 			return "Appointment rescheduled successfully to " + date;
 		}else {
+			logger.info("Exception occured while rescheduling appointment, Exception name: AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("Invalid appointment ID");
 		}
 		
@@ -78,14 +89,20 @@ public class PatientRestController {
 		{
 			return "Appointment with ID "+appointmentId+" cancelled successfully";
 		}else {
+			logger.info("Exception occured while cancelling appointment ,Exception name: AppointmentNotFoundException ");
 			throw new AppointmentNotFoundException("Invalid appointment ID");
 		}
 	}
 	
 	@GetMapping("/viewappointment/{patientId}")
-	public List<Appointment> viewAppointments(@PathVariable int patientId)
+	public List<Appointment> viewAppointments(@PathVariable int patientId) throws PatientNotFoundException
 	{
-		return service.viewAppointments(patientId);
+		List<Appointment> list = service.viewAppointments(patientId);
+		if(list ==null || list.isEmpty()) {
+			logger.info("Exception occured while fetching appointment details ,Exception name: PatientNotFoundException");
+			throw new PatientNotFoundException("Patient with Id "+patientId+" not found");
+		}
+		return list;
 	}	
 	
 	@GetMapping("/viewdocbyspeciality/{speciality}")
@@ -94,6 +111,7 @@ public class PatientRestController {
 		List<Doctor> doctors = service.getDocBySpeciality(speciality);
 		if(doctors == null || doctors.isEmpty())
 		{
+			logger.info("Exception occured while fetching doctor details ,Exception name: DoctorNotFoundException ");
 			throw new DoctorNotFoundException("No doctors found with speciality: " + speciality);
 		}
 		return doctors;
@@ -104,6 +122,7 @@ public class PatientRestController {
 	{
 		List<PatientViewDto> upcomingAppointments = service.viewUpcomingAppointments(patientId);
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
+			logger.info("Exception occured while fetching appointments , Exception name: AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("No appointment found for patient with id: " + patientId);
 		}
 		return upcomingAppointments;

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.hexaware.amazecare.dto.AdminViewDto;
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.AvailableMedicines;
@@ -96,6 +97,13 @@ class AdminServiceImpTest {
 		boolean result = adminService.addMedicines(availableMedicines);
 		assertTrue(result);
 		
+	}
+	
+	@Test
+	void viewUpcomingAppointments()
+	{
+		List<AdminViewDto> list = adminService.viewUpcomingAppointments();
+		assertNotNull(list);
 	}
 
 }

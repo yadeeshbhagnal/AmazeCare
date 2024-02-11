@@ -45,7 +45,7 @@ public class DoctorRestController {
 	public List<AppointmentDetailsDto> viewUpcomingAppointments(int doctorId) throws AppointmentNotFoundException{
 		List<AppointmentDetailsDto> upcomingAppointments = doctorService.viewAppointments(doctorId);
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
-			logger.info("Exception occured while fetching appointments");
+			logger.info("Exception occured while fetching appointments ,Exception name : AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("No appointment found for doctor with id: " + doctorId);
 		}
 		return upcomingAppointments;
@@ -56,7 +56,7 @@ public class DoctorRestController {
 		if(doctorService.acceptAppointment(appointmentId)) {
 			return "Appointment accepted";
 		}else {
-			logger.info("Exception occured while fetching appointment");
+			logger.info("Exception occured while fetching appointment ,Exception name : AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("Appointment not found");
 		}
 	}
@@ -66,7 +66,7 @@ public class DoctorRestController {
 		if(doctorService.rejectAppointment(appointmentId)) {
 			return "Appointment rejected";
 		}else {
-			logger.info("Exception occured while fetching appointments");
+			logger.info("Exception occured while fetching appointments ,Exception name : AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("Appointment not found");
 		}
 	}
@@ -76,7 +76,7 @@ public class DoctorRestController {
 		if(doctorService.rescheduleAppointment(appointmentId, date)) {
 		return "Appointment Reschedules to date: + " + date; 
 		}else {
-			logger.info("Exception occured while fetching appointments");
+			logger.info("Exception occured while fetching appointments ,Exception name : AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("Appointment not found");
 		}
 	}
@@ -86,7 +86,7 @@ public class DoctorRestController {
 		try {
 			doctorService.createMedicalRecord(medicalRecordDto);
 		} catch (DoctorNotFoundException | PatientNotFoundException e) {
-			logger.info("Exception occured while creating medical record");
+			logger.info("Exception occured while creating medical record "+e);
 			e.toString();
 		}
 		return "Medical record created";
@@ -97,7 +97,7 @@ public class DoctorRestController {
 		if(doctorService.prescribeMedicine(recomenMedicineDto)) {
 			return "Medicine added to the prescription";
 		}else {
-			logger.info("Exception occured while prescribing medicine");
+			logger.info("Exception occured while prescribing medicine ,Exception name : MedicineNotFoundException");
 			throw new MedicineNotFoundException("Medicine not available");
 		}
 	}
@@ -107,7 +107,7 @@ public class DoctorRestController {
 		if(doctorService.prescribeTest(recommendedTestDto)) {
 			return "Medicine added to the prescription";
 		}else {
-			logger.info("Exception occured while prescribing tests");
+			logger.info("Exception occured while prescribing tests ,Exception name : TestNotFoundException");
 			throw new TestNotFoundException("Medicine not available");
 		}
 	}
