@@ -7,12 +7,16 @@ public class DoctorDto {
 	private int experience;
 	private String qualification;
 	private String designation;
+	private String userName;
+	private String password;
+	private String role;
 	
 	public DoctorDto() {
 		
 	}
+	
 	public DoctorDto(int doctorId, String doctorName, String speciality, int experience, String qualification,
-			String designation) {
+			String designation, String userName, String password, String role) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;
@@ -20,8 +24,11 @@ public class DoctorDto {
 		this.experience = experience;
 		this.qualification = qualification;
 		this.designation = designation;
+		this.userName = userName;
+		this.password = password;
+		this.role = role;
 	}
-	
+
 	public int getDoctorId() {
 		return doctorId;
 	}
@@ -57,6 +64,31 @@ public class DoctorDto {
 	}
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override

@@ -44,6 +44,16 @@ public class PatientRestController {
 	
 	Logger logger = LoggerFactory.getLogger(PatientRestController.class);
 	
+	@PostMapping("/register")
+	public String registerPatient() {
+		return null;
+	}
+	
+	@PostMapping("/login")
+	public String authenticate() {
+		return null;
+	}
+	
 	@PutMapping("/update")
 	public String updatePatientInfo(@RequestBody PatientDto patientDto) throws PatientNotFoundException
 	{
@@ -54,7 +64,6 @@ public class PatientRestController {
 			logger.info("Exception occured while updating appointment details, Exception name: PatientNotFoundException");
 			throw new PatientNotFoundException("Patient with Id "+patientDto.getPatientId()+" not found");
 		}
-		
 	}
 	
 	@PostMapping("/schedule")

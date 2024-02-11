@@ -30,7 +30,7 @@ import com.hexaware.amazecare.service.IDoctorService;
 import com.hexaware.amazecare.service.IMedicalRecordService;
 
 @RestController
-@RequestMapping("/doctor")
+@RequestMapping("/api/doctor")
 public class DoctorRestController {
 	
 	@Autowired
@@ -40,6 +40,11 @@ public class DoctorRestController {
 	IMedicalRecordService medicalRecordService;
 	
 	Logger logger = LoggerFactory.getLogger(DoctorRestController.class);
+	
+	@PostMapping("/login")
+	public String authenticate() {
+		return null;
+	}
 	
 	@GetMapping("/upcoming-appointments")
 	public List<AppointmentDetailsDto> viewUpcomingAppointments(int doctorId) throws AppointmentNotFoundException{

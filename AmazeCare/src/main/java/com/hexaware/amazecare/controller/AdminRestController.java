@@ -27,7 +27,7 @@ import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.service.IAdminService;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AdminRestController {
 	
 	@Autowired
@@ -35,7 +35,17 @@ public class AdminRestController {
 	
 	Logger logger = LoggerFactory.getLogger(DoctorRestController.class);
 	
-	@PostMapping("/adddoctor")
+	@PostMapping("/registeradmin")
+	public String registerAdmin() {
+		return null;
+	}
+	
+	@PostMapping("/login")
+	public String authenticate() {
+		return null;
+	}
+	
+	@PostMapping("/registerdoctor")
 	public String addDoctor(@RequestBody DoctorDto doctorDto) {
 		adminService.addDoctor(doctorDto);
 		return "Doctor successfully added";

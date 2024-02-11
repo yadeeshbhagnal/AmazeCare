@@ -10,12 +10,16 @@ public class PatientDto {
 	private LocalDate dateOfBirth;
 	private String contactNumber;
 	private String address;
+	private String userName;
+	private String password;
+	private String role;
 	
 	public PatientDto() {
 		
 	}
+	
 	public PatientDto(int patientId, String patientName, int age, LocalDate dateOfBirth, String contactNumber,
-			String address) {
+			String address, String userName, String password, String role) {
 		super();
 		this.patientId = patientId;
 		this.patientName = patientName;
@@ -23,6 +27,9 @@ public class PatientDto {
 		this.dateOfBirth = dateOfBirth;
 		this.contactNumber = contactNumber;
 		this.address = address;
+		this.userName = userName;
+		this.password = password;
+		this.role = role;
 	}
 	public int getPatientId() {
 		return patientId;
@@ -59,6 +66,32 @@ public class PatientDto {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override

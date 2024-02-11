@@ -43,6 +43,10 @@ public class Doctor {
 	@Size(max = 25)
 	private String designation;
 	
+	private String userName;
+	private String password;
+	private String role;
+	
 	@OneToMany(mappedBy="doctor", cascade=CascadeType.ALL)
 	@JsonBackReference
 	private List<Appointment> appointments;
@@ -56,8 +60,11 @@ public class Doctor {
 		
 	}
 	
-	public Doctor(int doctorId, String doctorName, String speciality, int experience, String qualification,
-			String designation) {
+	public Doctor(int doctorId, @Pattern(regexp = "[A-Z][a-z]{3,15}") String doctorName,
+			@NotBlank @Size(max = 30) String speciality, @Min(0) int experience,
+			@Pattern(regexp = "^[a-zA-Z().\\s]*$", message = "Invalid Input") @Size(max = 25) String qualification,
+			@Size(max = 25) String designation, String userName, String password, String role,
+			List<Appointment> appointments, List<MedicalRecord> medicalRecords) {
 		super();
 		this.doctorId = doctorId;
 		this.doctorName = doctorName;
@@ -65,8 +72,13 @@ public class Doctor {
 		this.experience = experience;
 		this.qualification = qualification;
 		this.designation = designation;
+		this.userName = userName;
+		this.password = password;
+		this.role = role;
+		this.appointments = appointments;
+		this.medicalRecords = medicalRecords;
 	}
-	
+
 	public int getDoctorId() {
 		return doctorId;
 	}
@@ -118,6 +130,30 @@ public class Doctor {
 
 	public void setMedicalRecords(List<MedicalRecord> medicalRecords) {
 		this.medicalRecords = medicalRecords;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override

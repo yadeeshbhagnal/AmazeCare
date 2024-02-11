@@ -11,22 +11,29 @@ public class Admin {
 	@Id
 	private long adminId;
 	
-	@Size(max = 255)
-	private String adminUserName;
+	private String adminName;
 	
 	@Size(max = 255)
-	private String adminPassword;
+	private String userName;
+	
+	@Size(max = 255)
+	private String password;
 	
 	@Size(max = 255)
 	@Email
 	private String email;
 	
-	public Admin(long adminId, String adminUserName, String adminPassword, String email) {
+	private String role;
+	
+	public Admin(long adminId, String adminName, @Size(max = 255) String adminUserName,
+			@Size(max = 255) String adminPassword, @Size(max = 255) @Email String email, String role) {
 		super();
 		this.adminId = adminId;
-		this.adminUserName = adminUserName;
-		this.adminPassword = adminPassword;
+		this.adminName = adminName;
+		this.userName = adminUserName;
+		this.password = adminPassword;
 		this.email = email;
+		this.role = role;
 	}
 
 	public long getAdminId() {
@@ -37,20 +44,22 @@ public class Admin {
 		this.adminId = adminId;
 	}
 
-	public String getAdminUserName() {
-		return adminUserName;
+	
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setAdminUserName(String adminUserName) {
-		this.adminUserName = adminUserName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getAdminPassword() {
-		return adminPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setAdminPassword(String adminPassword) {
-		this.adminPassword = adminPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -60,10 +69,30 @@ public class Admin {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getAdminName() {
+		return adminName;
+	}
+
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
-		return "Admin [adminId=" + adminId + ", adminUserName=" + adminUserName + ", adminPassword=" + adminPassword
-				+ ", email=" + email + "]";
+		return "Admin [adminId=" + adminId + ", adminName=" + adminName + ", userName=" + userName + ", password="
+				+ password + ", email=" + email + ", role=" + role + "]";
 	}
+	
+
+	
+	
 }
