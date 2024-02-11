@@ -1,6 +1,8 @@
 package com.hexaware.amazecare.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -9,6 +11,7 @@ import jakarta.validation.constraints.Size;
 public class Admin {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long adminId;
 	
 	private String adminName;
@@ -25,6 +28,12 @@ public class Admin {
 	
 	private String role;
 	
+	
+	
+	public Admin() {
+		super();
+	}
+
 	public Admin(long adminId, String adminName, @Size(max = 255) String adminUserName,
 			@Size(max = 255) String adminPassword, @Size(max = 255) @Email String email, String role) {
 		super();

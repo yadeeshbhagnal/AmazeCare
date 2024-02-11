@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.AuthRequest;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.dto.PatientViewDto;
@@ -45,13 +46,15 @@ public class PatientRestController {
 	Logger logger = LoggerFactory.getLogger(PatientRestController.class);
 	
 	@PostMapping("/register")
-	public String registerPatient() {
-		return null;
+	public String registerPatient(@RequestBody PatientDto patientDto) {
+		service.registerPatient(patientDto);
+		return "Patient registered successfully";
 	}
 	
 	@PostMapping("/login")
-	public String authenticate() {
-		return null;
+	public String authenticate(@RequestBody AuthRequest authRequest) {
+		return service.loginPatient(authRequest);
+		
 	}
 	
 	@PutMapping("/update")

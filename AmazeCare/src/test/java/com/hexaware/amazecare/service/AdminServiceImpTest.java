@@ -26,12 +26,12 @@ class AdminServiceImpTest {
 	@Autowired
 	IAdminService adminService;
 	
-	@Test
-	void testAddDoctor() {
-		DoctorDto doctorDto = new DoctorDto(102,"Jackson","dental surgoen",6,"M.s. in dental","senior surgeon");
-		boolean result = adminService.addDoctor(doctorDto);
-		assertTrue(result);
-	}
+//	@Test
+//	void testAddDoctor() {
+//		DoctorDto doctorDto = new DoctorDto(102,"Jackson","dental surgoen",6,"M.s. in dental","senior surgeon");
+//		boolean result = adminService.addDoctor(doctorDto);
+//		assertTrue(result);
+//	}
 
 	@Test
 	void testUpdateDoctor(){

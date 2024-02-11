@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.AuthRequest;
 import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.dto.PatientViewDto;
 import com.hexaware.amazecare.entities.Appointment;
@@ -12,6 +13,10 @@ import com.hexaware.amazecare.exception.DoctorNotFoundException;
 import com.hexaware.amazecare.exception.PatientNotFoundException;
 
 public interface IPatientService {
+	
+	public boolean registerPatient(PatientDto patientDto);
+	
+	public String loginPatient(AuthRequest authRequest);
 	
 	public boolean updatePatientInfo(PatientDto patientDto);
 	

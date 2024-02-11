@@ -6,10 +6,17 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.hexaware.amazecare.dto.AdminDto;
 import com.hexaware.amazecare.dto.AdminViewDto;
+import com.hexaware.amazecare.dto.AuthRequest;
 import com.hexaware.amazecare.dto.DoctorDto;
+import com.hexaware.amazecare.entities.Admin;
 import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.AvailableMedicines;
 import com.hexaware.amazecare.entities.AvailableTests;
@@ -43,18 +50,28 @@ public class AdminServiceImp implements IAdminService {
 	@Autowired
 	AvailableMedicineRepository medicineRepository;
 	
+	@Autowired
+	JwtService jwtService;
+	
+	@Autowired
+	AuthenticationManager authenticationManager;
+	
 	Logger logger = LoggerFactory.getLogger(AdminServiceImp.class);
 
 	
 	@Override
-	public boolean addDoctor(DoctorDto doctorDto) {
-		logger.info("Request initated to add new doctor");
+	public boolean registerDoctor(DoctorDto doctorDto) {
+		logger.info("Request initated to register new doctor");
 		Doctor doctor = new Doctor();
 		doctor.setDoctorName(doctorDto.getDoctorName());
 		doctor.setExperience(doctorDto.getExperience());
 		doctor.setQualification(doctorDto.getQualification());
 		doctor.setSpeciality(doctorDto.getSpeciality());
 		doctor.setDesignation(doctorDto.getDesignation());
+		doctor.setUserName(doctorDto.getUserName());
+		doctor.setPassword(doctorDto.getPassword());
+		doctor.setRole("Doctor");
+		
 		doctorRepository.save(doctor);
 		
 		return true;
@@ -172,5 +189,38 @@ public class AdminServiceImp implements IAdminService {
 	@Override
 	public List<AdminViewDto> viewUpcomingAppointments() {
 		return appointmentRepository.getAdminAppointments();
+	}
+
+	@Override
+	public boolean registerAdmin(AdminDto adminDto) {
+		
+		logger.info("Request initated to register new admin");
+		Admin admin = new Admin();
+		admin.setUserName(adminDto.getUserName());
+		admin.setPassword(adminDto.getPassword());
+		admin.setRole("Admin");
+		admin.setAdminName(adminDto.getAdminName());
+		admin.setEmail(adminDto.getEmail());
+		
+		adminRespository.save(admin);
+		return true;
+	}
+
+	@Override
+	public String loginAdmin(AuthRequest authRequest) {
+
+String token = null;
+		
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+		
+		if(authentication.isAuthenticated())
+		{
+			token = jwtService.generateToken(authRequest.getUsername());
+			
+		}
+		else {
+			throw new UsernameNotFoundException("Username or password is invlaid");
+		}
+		return token;
 	}
 }

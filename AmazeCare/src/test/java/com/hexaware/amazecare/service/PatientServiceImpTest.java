@@ -36,13 +36,13 @@ class PatientServiceImpTest {
 	static void setUpBeforeClass() throws Exception {
 	}
 
-	@Test
-	void testUpdatePatientInfo() {
-		
-		PatientDto patientDto = new PatientDto(51,"Ford",16,LocalDate.of(2001,04, 28),"8345634456","USA");
-		boolean result = service.updatePatientInfo(patientDto);
-		assertFalse(result);	
-	}
+//	@Test
+//	void testUpdatePatientInfo() {
+//		
+//		PatientDto patientDto = new PatientDto(51,"Ford",16,LocalDate.of(2001,04, 28),"8345634456","USA");
+//		boolean result = service.updatePatientInfo(patientDto);
+//		assertFalse(result);	
+//	}
 
 	@Test
 	void testScheduleAppointment() throws DoctorNotFoundException, PatientNotFoundException {

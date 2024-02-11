@@ -9,6 +9,10 @@ public class AdminDto {
 		private String email;		
 		private String role;
 		
+		public AdminDto() {
+			super();
+		}
+
 		public AdminDto(long adminId, String adminName, String adminUserName, String adminPassword, String email,
 				String role) {
 			super();

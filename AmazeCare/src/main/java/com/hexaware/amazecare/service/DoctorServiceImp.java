@@ -6,8 +6,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.hexaware.amazecare.dto.AppointmentDetailsDto;
+import com.hexaware.amazecare.dto.AuthRequest;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.dto.RecommendedMedicineDto;
 import com.hexaware.amazecare.dto.RecommendedTestsDto;
@@ -54,6 +59,12 @@ public class DoctorServiceImp implements IDoctorService {
 	
 	@Autowired
 	PatientRepository patientRepository;
+	
+	@Autowired
+	JwtService jwtService;
+	
+	@Autowired
+	AuthenticationManager authenticationManager;
 
 	Logger logger = LoggerFactory.getLogger(DoctorServiceImp.class);
 	
@@ -186,5 +197,23 @@ public class DoctorServiceImp implements IDoctorService {
 		test.setTestResult(result);
 		recommendedTestRepository.save(test);
 		return true;
+	}
+
+	@Override
+	public String loginDoctor(AuthRequest authRequest) {
+		
+		String token = null;
+		
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+		
+		if(authentication.isAuthenticated())
+		{
+			token = jwtService.generateToken(authRequest.getUsername());
+			
+		}
+		else {
+			throw new UsernameNotFoundException("Username or password is invlaid");
+		}
+		return token;
 	}
 }

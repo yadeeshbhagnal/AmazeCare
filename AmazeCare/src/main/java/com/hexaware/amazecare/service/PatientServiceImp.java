@@ -6,9 +6,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.hexaware.amazecare.dto.AppointmentDto;
+import com.hexaware.amazecare.dto.AuthRequest;
 import com.hexaware.amazecare.dto.PatientDto;
 import com.hexaware.amazecare.dto.PatientViewDto;
 import com.hexaware.amazecare.entities.Appointment;
@@ -35,6 +40,12 @@ public class PatientServiceImp implements IPatientService {
 	
 	@Autowired
 	DoctorRepository doctorRepository;
+	
+	@Autowired
+	JwtService jwtService;
+	
+	@Autowired
+	AuthenticationManager authenticationManager;
 	
 	Logger logger = LoggerFactory.getLogger(PatientServiceImp.class);
 	
@@ -153,4 +164,41 @@ public class PatientServiceImp implements IPatientService {
 		return appointmentRepository.getUpcomingPatientAppointments(patientId);
 	}
 
+	@Override
+	public boolean registerPatient(PatientDto patientDto) {
+		
+		logger.info("Request initated to register patient");
+		Patient patient = new Patient();
+		
+		patient.setPatientName(patientDto.getPatientName());
+		patient.setAge(patientDto.getAge());
+		patient.setDateOfBirth(patientDto.getDateOfBirth());
+		patient.setContactNumber(patientDto.getContactNumber());
+		patient.setAddress(patientDto.getAddress());
+		patient.setUserName(patientDto.getUserName());
+		patient.setPassword(patientDto.getPassword());
+		patient.setRole("Patient");
+		
+		patientRepository.save(patient);
+		
+		return true;
+	}
+
+	@Override
+	public String loginPatient(AuthRequest authRequest) {
+		
+		String token = null;
+		
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+		
+		if(authentication.isAuthenticated())
+		{
+			token = jwtService.generateToken(authRequest.getUsername());
+			
+		}
+		else {
+			throw new UsernameNotFoundException("Username or password is invlaid");
+		}
+		return token;
+	}
 }

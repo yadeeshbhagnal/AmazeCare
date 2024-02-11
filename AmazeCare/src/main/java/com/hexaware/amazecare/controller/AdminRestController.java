@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexaware.amazecare.dto.AdminDto;
 import com.hexaware.amazecare.dto.AdminViewDto;
+import com.hexaware.amazecare.dto.AuthRequest;
 import com.hexaware.amazecare.dto.DoctorDto;
 import com.hexaware.amazecare.entities.AvailableMedicines;
 import com.hexaware.amazecare.entities.AvailableTests;
@@ -36,20 +38,22 @@ public class AdminRestController {
 	Logger logger = LoggerFactory.getLogger(DoctorRestController.class);
 	
 	@PostMapping("/registeradmin")
-	public String registerAdmin() {
-		return null;
+	public String registerAdmin(@RequestBody AdminDto adminDto) {
+		adminService.registerAdmin(adminDto);
+		return "Admin registered successfully";
 	}
 	
 	@PostMapping("/login")
-	public String authenticate() {
-		return null;
+	public String authenticate(@RequestBody AuthRequest authRequest) {
+		return adminService.loginAdmin(authRequest);
 	}
 	
 	@PostMapping("/registerdoctor")
-	public String addDoctor(@RequestBody DoctorDto doctorDto) {
-		adminService.addDoctor(doctorDto);
+	public String registerDoctor(@RequestBody DoctorDto doctorDto) {
+		adminService.registerDoctor(doctorDto);
 		return "Doctor successfully added";
 	}
+
 	
 	@PutMapping("/updatedoctordetails")
 	public String updateDoctor(@RequestBody DoctorDto doctorDto) throws DoctorNotFoundException{
