@@ -24,6 +24,7 @@ import com.hexaware.amazecare.entities.Appointment;
 import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.exception.AppointmentNotFoundException;
 import com.hexaware.amazecare.exception.DoctorNotFoundException;
+import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
 import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.exception.TestNotFoundException;
@@ -48,13 +49,15 @@ public class DoctorRestController {
 		return doctorService.loginDoctor(authRequest);
 	}
 	
-	@GetMapping("/upcoming-appointments/{doctorId}")
+	@GetMapping("/upcoming-appointments/")
     @PreAuthorize("hasAuthority('Doctor')")
-	public List<AppointmentDetailsDto> viewUpcomingAppointments(@PathVariable int doctorId) throws AppointmentNotFoundException{
-		List<AppointmentDetailsDto> upcomingAppointments = doctorService.viewAppointments(doctorId);
+	public List<AppointmentDetailsDto> viewUpcomingAppointments() throws AppointmentNotFoundException{
+		
+		List<AppointmentDetailsDto> upcomingAppointments = doctorService.viewAppointments();
+		
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
 			logger.info("Exception occured while fetching appointments ,Exception name : AppointmentNotFoundException");
-			throw new AppointmentNotFoundException("No appointment found for doctor with id: " + doctorId);
+			throw new AppointmentNotFoundException("No appointment found for the doctor");
 		}
 		return upcomingAppointments;
 	}
@@ -92,38 +95,42 @@ public class DoctorRestController {
 		}
 	}
 	
-	@PostMapping("/createmedicalrecord")
+	@PostMapping("/createmedicalrecord/{patientId}")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto) {
-		try {
-			doctorService.createMedicalRecord(medicalRecordDto);
-		} catch (DoctorNotFoundException | PatientNotFoundException e) {
-			logger.info("Exception occured while creating medical record "+e);
-			e.toString();
-		}
-		return "Medical record created";
+	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto, @PathVariable int patientId) throws PatientNotFoundException{
+		if(doctorService.createMedicalRecord(medicalRecordDto,patientId)) {
+			return "Medical record created";
+		}else{
+			throw new PatientNotFoundException("Patient for id: " + patientId + " Not found");
+		}	
 	}
 	
-	@PostMapping("/prescribemedicine")
+	@PostMapping("/prescribemedicine/{recordId}")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String prescribeMedicine(@RequestBody RecommendedMedicineDto recomenMedicineDto) throws MedicineNotFoundException{
-		if(doctorService.prescribeMedicine(recomenMedicineDto)) {
-			return "Medicine added to the prescription";
-		}else {
-			logger.info("Exception occured while prescribing medicine ,Exception name : MedicineNotFoundException");
-			throw new MedicineNotFoundException("Medicine not available");
+	public String prescribeMedicine(@RequestBody RecommendedMedicineDto recomenMedicineDto, @PathVariable int recordId){
+		String result = null;
+		try {
+			if(doctorService.prescribeMedicine(recomenMedicineDto, recordId)) {
+				result = "Medicine prescribed";
+			}
+		} catch (MedicalRecordNotFoundException | MedicineNotFoundException e) {
+			result = "Error occured while prescribing medicing: " + e.getMessage();
 		}
+		return result;
 	}
 	
 	@PostMapping("/prescribetest")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String prescribeTest(@RequestBody RecommendedTestsDto recommendedTestDto) throws TestNotFoundException{
-		if(doctorService.prescribeTest(recommendedTestDto)) {
-			return "Medicine added to the prescription";
-		}else {
-			logger.info("Exception occured while prescribing tests ,Exception name : TestNotFoundException");
-			throw new TestNotFoundException("Medicine not available");
+	public String prescribeTest(@RequestBody RecommendedTestsDto recommendedTestDto, @PathVariable int recordId){
+		String result = null;
+		try {
+			if(doctorService.prescribeTest(recommendedTestDto, recordId)) {
+				result = "Test added to the prescription";
+			}
+		} catch (MedicalRecordNotFoundException | TestNotFoundException e) {
+			result = "Error occured while prescribing medicine: " + e.getMessage();
 		}
+		return result;
 	}
 	
 	@PutMapping("/updatetestresult/{recommendedTestId}/{result}")

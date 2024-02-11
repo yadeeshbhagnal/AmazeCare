@@ -1,8 +1,6 @@
 package com.hexaware.amazecare.dto;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-
 public class AppointmentDto {
 
 	private int appointmentId;

@@ -9,23 +9,20 @@ public class MedicalRecordDto {
 	private String physicalExamination;
 	private String treatmentPlan;
 	private LocalDate date;
-	private int patientId;
-	private int doctorId;
+
 
 	public MedicalRecordDto() {
 		super();
 	}
 	
 	public MedicalRecordDto(int recordId, String currentSymptoms, String physicalExamination, String treatmentPlan,
-			LocalDate date, int patientId, int doctorId) {
+			LocalDate date) {
 		super();
 		this.recordId = recordId;
 		this.currentSymptoms = currentSymptoms;
 		this.physicalExamination = physicalExamination;
 		this.treatmentPlan = treatmentPlan;
 		this.date = date;
-		this.patientId = patientId;
-		this.doctorId = doctorId;
 	}
 	
 	public int getRecordId() {
@@ -67,22 +64,4 @@ public class MedicalRecordDto {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-
-	public int getPatientId() {
-		return patientId;
-	}
-
-	public void setPatientId(int patientId) {
-		this.patientId = patientId;
-	}
-
-	public int getDoctorId() {
-		return doctorId;
-	}
-
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
-	}
-	
-	
 }

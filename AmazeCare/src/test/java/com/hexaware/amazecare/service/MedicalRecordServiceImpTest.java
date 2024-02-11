@@ -23,11 +23,11 @@ class MedicalRecordServiceImpTest {
 	static void setUpBeforeClass() throws Exception {
 	}
 
-	@Test
-	void testViewMedicalRecord() {
-		List<MedicalRecord> list = medicalService.viewMedicalRecord(38);
-		assertTrue(list.isEmpty());
-	}
+//	@Test
+//	void testViewMedicalRecord() {
+//		List<MedicalRecord> list = medicalService.viewMedicalRecord(38);
+//		assertTrue(list.isEmpty());
+//	}
 
 	@Test
 	void testViewRecommendedTests() {

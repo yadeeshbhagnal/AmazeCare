@@ -26,7 +26,10 @@ import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.entities.RecommendedMedicine;
 import com.hexaware.amazecare.entities.RecommendedTests;
 import com.hexaware.amazecare.exception.DoctorNotFoundException;
+import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
+import com.hexaware.amazecare.exception.MedicineNotFoundException;
 import com.hexaware.amazecare.exception.PatientNotFoundException;
+import com.hexaware.amazecare.exception.TestNotFoundException;
 import com.hexaware.amazecare.repository.AppointmentRepository;
 import com.hexaware.amazecare.repository.AvailableMedicineRepository;
 import com.hexaware.amazecare.repository.AvailableTestsRepository;
@@ -76,18 +79,20 @@ public class DoctorServiceImp implements IDoctorService {
 	Logger logger = LoggerFactory.getLogger(DoctorServiceImp.class);
 	
 	@Override
-	public List<AppointmentDetailsDto>viewAppointments(int doctorId) {
-		logger.info("Fetching all doctor appointments for id: " + doctorId);
-		return appointmentRepository.getUpcomingAppointments(doctorId);
-		
+	public List<AppointmentDetailsDto>viewAppointments() {
+		Doctor doctor = getCurrentDoctor().get();
+		logger.info("Fetching all doctor appointments for id: " + doctor.getDoctorId());
+		return appointmentRepository.getUpcomingAppointments(doctor.getDoctorId());
 	}
 
 	@Override
 	public boolean acceptAppointment(int appointmentId) {
 		logger.info("Request initiated to accept appointment for id: " + appointmentId);
 		boolean flag = false;
+		Doctor doctor = getCurrentDoctor().get();
+		
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment != null) {
+		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId()) {
 			flag = true;
 			existingAppointment.setStatus("Accepted");
 			appointmentRepository.save(existingAppointment);
@@ -100,8 +105,10 @@ public class DoctorServiceImp implements IDoctorService {
 	public boolean rejectAppointment(int appointmentId) {
 		logger.info("Request initiated to reject appointment for id: " + appointmentId);
 		boolean flag = false;
+		Doctor doctor = getCurrentDoctor().get();
+
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment != null) {
+		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId()) {
 			flag = true;
 			existingAppointment.setStatus("Rejected");
 			appointmentRepository.save(existingAppointment);
@@ -114,8 +121,10 @@ public class DoctorServiceImp implements IDoctorService {
 	public boolean rescheduleAppointment(int appointmentId, LocalDate date) {
 		logger.info("Request initiated to rescheduled appointment for id: " + appointmentId);
 		boolean flag = false;
+		Doctor doctor = getCurrentDoctor().get();
+
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment != null) {
+		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId()) {
 			flag = true;
 			existingAppointment.setDate(date);
 			existingAppointment.setStatus("Rescheduled");
@@ -126,80 +135,80 @@ public class DoctorServiceImp implements IDoctorService {
 	}
 
 	@Override
-	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto) throws DoctorNotFoundException,PatientNotFoundException{
-		logger.info("Request initiated to create medical record for patient id: " + medicalRecordDto.getPatientId());
-		boolean flag = true;
-		
-		Doctor doctor = doctorRepository.findById(medicalRecordDto.getDoctorId()).orElse(null);
-		if(doctor == null) {
-			throw new DoctorNotFoundException("Doctor with id: " + medicalRecordDto.getDoctorId() + " not found");
+	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto, int patientId){
+		logger.info("Request initiated to create medical record for patient id: " + patientId);
+		boolean flag = false;
+		Doctor doctor = getCurrentDoctor().get();
+
+		Patient patient = patientRepository.findById(patientId).orElse(null);
+		if(patient != null) {
+			flag =true;
+			MedicalRecord medicalRecord = new MedicalRecord();
+			medicalRecord.setCurrentSymptoms(medicalRecordDto.getCurrentSymptoms());
+			medicalRecord.setDate(medicalRecordDto.getDate());
+			medicalRecord.setPhysicalExamination(medicalRecordDto.getPhysicalExamination());
+			medicalRecord.setTreatmentPlan(medicalRecordDto.getTreatmentPlan());
+			medicalRecord.setDoctor(doctor);
+			medicalRecord.setPatient(patient);
+			medicalRecordRepository.save(medicalRecord);
 		}
-		Patient patient = patientRepository.findById(medicalRecordDto.getPatientId()).orElse(null);
-		if(patient == null) {
-			throw new PatientNotFoundException("Patient with id: " + medicalRecordDto.getPatientId() + " not found");
-		}
-		
-		MedicalRecord medicalRecord = new MedicalRecord();
-		medicalRecord.setCurrentSymptoms(medicalRecordDto.getCurrentSymptoms());
-		medicalRecord.setDate(medicalRecordDto.getDate());
-		medicalRecord.setPhysicalExamination(medicalRecordDto.getPhysicalExamination());
-		medicalRecord.setTreatmentPlan(medicalRecordDto.getTreatmentPlan());
-		medicalRecord.setDoctor(doctor);
-		medicalRecord.setPatient(patient);
-		medicalRecordRepository.save(medicalRecord);
-		
 		return flag;
 	}
 
 	@Override
-	public boolean prescribeMedicine(RecommendedMedicineDto recommendedMedicineDto) {
+	public boolean prescribeMedicine(RecommendedMedicineDto recommendedMedicineDto, int recordId) throws MedicalRecordNotFoundException, MedicineNotFoundException{
 		logger.info("Request initiated to prescribe medicine for medical Record: " + recommendedMedicineDto.getRecordId());
-		MedicalRecord medicalRecord = medicalRecordRepository.findById(recommendedMedicineDto.getRecordId())
-									  .orElse(null);
+		
+		MedicalRecord medicalRecord = medicalRecordRepository.findById(recordId).orElse(null);
+		
+		if(medicalRecord == null) {
+			throw new MedicalRecordNotFoundException("Medical record for id " +  recordId +  " not found");
+		}
+		String medicineName = recommendedMedicineDto.getMedicineName();
+		if(availableMedicineRepository.findByMedicineName(medicineName) == null){
+			throw new MedicineNotFoundException("Medicine with name: " + medicineName + " not available");
+		}
 		
 		RecommendedMedicine recommendedMedicine = new RecommendedMedicine();
+		
 		recommendedMedicine.setMedicineName(recommendedMedicineDto.getMedicineName());
 		recommendedMedicine.setDosage(recommendedMedicineDto.getDosage());
 		recommendedMedicine.setQuantity(recommendedMedicineDto.getQuantity());
 		recommendedMedicine.setMedicalRecord(medicalRecord);
 		
-		boolean flag = false;
-		String medicineName = recommendedMedicine.getMedicineName();
+		recommendedMedicineRepository.save(recommendedMedicine);
 		
-		if(availableMedicineRepository.findByMedicineName(medicineName)!=null){
-			flag = true;
-			recommendedMedicineRepository.save(recommendedMedicine);
-			logger.info("Successfully prescribed medicine for record: " + recommendedMedicineDto.getRecordId());
-		}
-		return flag;
+		return true;
 	}
 
 	@Override
-	public boolean prescribeTest(RecommendedTestsDto recommendedTestsDto) {
-		logger.info("Request initiated to prescribe test for medical Record: " + recommendedTestsDto.getRecordId());
-		MedicalRecord medicalRecord = medicalRecordRepository.findById(recommendedTestsDto.getRecordId())
-				.orElse(null);
+	public boolean prescribeTest(RecommendedTestsDto recommendedTestsDto, int recordId) throws MedicalRecordNotFoundException, TestNotFoundException{
+		logger.info("Request initiated to prescribe test for medical Record: " + recordId);
+		
+		MedicalRecord medicalRecord = medicalRecordRepository.findById(recordId).orElse(null);
+		if(medicalRecord == null) {
+			throw new MedicalRecordNotFoundException("Medical record for id " +  recordId +  " not found");
+		}
+		String testName = recommendedTestsDto.getTestName();
+		if(availableTestsRepository.findByTestName(testName) == null) {
+			throw new TestNotFoundException("Test with name " + testName + " not found");
+		}
 		
 		RecommendedTests recommendedTests = new RecommendedTests();
 		recommendedTests.setMedicalRecord(medicalRecord);
 		recommendedTests.setTestName(recommendedTestsDto.getTestName());
 		recommendedTests.setTestResult(recommendedTestsDto.getTestResult());
 		
-		boolean flag = false;
-		String testName = recommendedTests.getTestName();
-		if(availableTestsRepository.findByTestName(testName)!=null){
-			flag = true;
-			recommendedTestRepository.save(recommendedTests);
-			logger.info("Successfully prescribed test for record: " + recommendedTestsDto.getRecordId());
-
-		}
-		return flag;
+		recommendedTestRepository.save(recommendedTests);
+		logger.info("Successfully prescribed test for record: " + recommendedTestsDto.getRecordId());
+		
+		return true;
 	}
 	
 	@Override
 	public boolean updateTestResult(int recommendedTestId, String result) {
-		logger.info("updating test result for test id: " + recommendedTestId + "to " + 
-				result);
+		logger.info("updating test result for test id: " + recommendedTestId + "to " + result);
+		
 		RecommendedTests test = recommendedTestRepository.findById(recommendedTestId).orElse(null);
 		test.setTestResult(result);
 		recommendedTestRepository.save(test);
@@ -210,9 +219,7 @@ public class DoctorServiceImp implements IDoctorService {
 	public String loginDoctor(AuthRequest authRequest) {
 		
 		String token = null;
-		
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-		
 		if(authentication.isAuthenticated())
 		{
 			token = jwtService.generateToken(authRequest.getUsername());

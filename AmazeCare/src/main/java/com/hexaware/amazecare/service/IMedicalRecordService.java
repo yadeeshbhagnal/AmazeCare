@@ -9,10 +9,12 @@ import com.hexaware.amazecare.entities.RecommendedTests;
 
 public interface IMedicalRecordService {
 
-	public List<MedicalRecord> viewMedicalRecord(int patientId);
+	public List<MedicalRecord> viewMedicalRecordDoc(int patientId);
 	
 	public List<RecommendedTests> viewRecommendedTests(int recordId);
 	
 	public List<RecommendedMedicine> viewRecommendedMedicine(int recordId);
+
+	public List<MedicalRecord> viewMedicalRecordPatient();
 	
 }
