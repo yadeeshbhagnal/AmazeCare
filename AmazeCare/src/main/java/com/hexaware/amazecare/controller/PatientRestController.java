@@ -1,11 +1,13 @@
 package com.hexaware.amazecare.controller;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +60,7 @@ public class PatientRestController {
 	}
 	
 	@PutMapping("/update")
+    @PreAuthorize("hasAuthority('Patient')")
 	public String updatePatientInfo(@RequestBody PatientDto patientDto) throws PatientNotFoundException
 	{
 		if(service.updatePatientInfo(patientDto))
@@ -70,6 +73,7 @@ public class PatientRestController {
 	}
 	
 	@PostMapping("/schedule")
+	@PreAuthorize("hasAuthority('Patient')")
 	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto)
 	{
 		try {
@@ -82,6 +86,7 @@ public class PatientRestController {
 	}
 	
 	@PutMapping("/reschedule/{appointmentId}/{date}")
+	@PreAuthorize("hasAuthority('Patient')")
 	public String rescheduleAppointment(@PathVariable int appointmentId,@PathVariable LocalDate date) throws AppointmentNotFoundException
 	{
 		if(service.rescheduleAppointment(appointmentId, date))
@@ -95,6 +100,7 @@ public class PatientRestController {
 	}
 	
 	@PutMapping("cancel/{appointmentId}")
+	@PreAuthorize("hasAuthority('Patient')")
 	public String cancelAppointment(@PathVariable int appointmentId) throws AppointmentNotFoundException
 	{
 		if(service.cancelAppointment(appointmentId))
@@ -106,18 +112,20 @@ public class PatientRestController {
 		}
 	}
 	
-	@GetMapping("/viewappointment/{patientId}")
-	public List<Appointment> viewAppointments(@PathVariable int patientId) throws PatientNotFoundException
+	@GetMapping("/viewappointment")
+	@PreAuthorize("hasAuthority('Patient')")
+	public List<Appointment> viewAppointments() throws PatientNotFoundException
 	{
-		List<Appointment> list = service.viewAppointments(patientId);
+		List<Appointment> list = service.viewAppointments();
 		if(list ==null || list.isEmpty()) {
 			logger.info("Exception occured while fetching appointment details ,Exception name: PatientNotFoundException");
-			throw new PatientNotFoundException("Patient with Id "+patientId+" not found");
+			throw new PatientNotFoundException("Patient with Id not found");
 		}
 		return list;
 	}	
 	
 	@GetMapping("/viewdocbyspeciality/{speciality}")
+	@PreAuthorize("hasAuthority('Patient')")
 	public List<Doctor> getDocBySpeciality(@PathVariable String speciality) throws DoctorNotFoundException
 	{
 		List<Doctor> doctors = service.getDocBySpeciality(speciality);
@@ -130,6 +138,7 @@ public class PatientRestController {
 	}
 	
 	@GetMapping("/upcoming-appointments/{patientId}")
+	@PreAuthorize("hasAuthority('Patient')")
 	public List<PatientViewDto> viewUpcomingAppointments(@PathVariable int patientId) throws AppointmentNotFoundException
 	{
 		List<PatientViewDto> upcomingAppointments = service.viewUpcomingAppointments(patientId);

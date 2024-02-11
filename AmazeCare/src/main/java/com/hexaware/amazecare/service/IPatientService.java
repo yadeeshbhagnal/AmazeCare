@@ -26,7 +26,7 @@ public interface IPatientService {
 	
 	public boolean cancelAppointment(int appointmentId);
 	
-	public List<Appointment> viewAppointments(int patientId);
+	public List<Appointment> viewAppointments();
 		
 	public List<Doctor> getDocBySpeciality(String speciality);
 	

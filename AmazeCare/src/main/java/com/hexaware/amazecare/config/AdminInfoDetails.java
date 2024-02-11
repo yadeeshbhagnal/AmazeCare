@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.hexaware.amazecare.entities.Admin;
 
+
 public class AdminInfoDetails  implements UserDetails{
 
 	private String userName;

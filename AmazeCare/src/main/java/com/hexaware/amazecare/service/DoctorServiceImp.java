@@ -2,6 +2,7 @@ package com.hexaware.amazecare.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.hexaware.amazecare.dto.AppointmentDetailsDto;
 import com.hexaware.amazecare.dto.AuthRequest;
@@ -65,6 +68,10 @@ public class DoctorServiceImp implements IDoctorService {
 	
 	@Autowired
 	AuthenticationManager authenticationManager;
+
+	@Autowired
+    PasswordEncoder passwordEncoder;
+
 
 	Logger logger = LoggerFactory.getLogger(DoctorServiceImp.class);
 	
@@ -209,11 +216,16 @@ public class DoctorServiceImp implements IDoctorService {
 		if(authentication.isAuthenticated())
 		{
 			token = jwtService.generateToken(authRequest.getUsername());
-			
 		}
 		else {
 			throw new UsernameNotFoundException("Username or password is invlaid");
 		}
 		return token;
+	}
+	
+	private Optional<Doctor> getCurrentDoctor(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		return doctorRepository.findByUserName(username);
 	}
 }

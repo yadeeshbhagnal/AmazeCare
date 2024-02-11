@@ -13,13 +13,12 @@ public class AdminDto {
 			super();
 		}
 
-		public AdminDto(long adminId, String adminName, String adminUserName, String adminPassword, String email,
-				String role) {
+		public AdminDto(long adminId, String adminName, String userName, String password, String email, String role) {
 			super();
 			this.adminId = adminId;
 			this.adminName = adminName;
-			this.userName = adminUserName;
-			this.password = adminPassword;
+			this.userName = userName;
+			this.password = password;
 			this.email = email;
 			this.role = role;
 		}
@@ -27,12 +26,18 @@ public class AdminDto {
 		public long getAdminId() {
 			return adminId;
 		}
-		
+
 		public void setAdminId(long adminId) {
 			this.adminId = adminId;
 		}
 
-		
+		public String getAdminName() {
+			return adminName;
+		}
+
+		public void setAdminName(String adminName) {
+			this.adminName = adminName;
+		}
 
 		public String getUserName() {
 			return userName;
@@ -57,16 +62,6 @@ public class AdminDto {
 		public void setEmail(String email) {
 			this.email = email;
 		}
-		
-		
-
-		public String getAdminName() {
-			return adminName;
-		}
-
-		public void setAdminName(String adminName) {
-			this.adminName = adminName;
-		}
 
 		public String getRole() {
 			return role;
@@ -82,5 +77,6 @@ public class AdminDto {
 					+ ", password=" + password + ", email=" + email + ", role=" + role + "]";
 		}
 
+		
 		
 	}

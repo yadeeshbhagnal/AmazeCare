@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,8 +48,9 @@ public class DoctorRestController {
 		return doctorService.loginDoctor(authRequest);
 	}
 	
-	@GetMapping("/upcoming-appointments")
-	public List<AppointmentDetailsDto> viewUpcomingAppointments(int doctorId) throws AppointmentNotFoundException{
+	@GetMapping("/upcoming-appointments/{doctorId}")
+    @PreAuthorize("hasAuthority('Doctor')")
+	public List<AppointmentDetailsDto> viewUpcomingAppointments(@PathVariable int doctorId) throws AppointmentNotFoundException{
 		List<AppointmentDetailsDto> upcomingAppointments = doctorService.viewAppointments(doctorId);
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
 			logger.info("Exception occured while fetching appointments ,Exception name : AppointmentNotFoundException");
@@ -58,6 +60,7 @@ public class DoctorRestController {
 	}
 	
 	@PutMapping("/accept-appointment/{appointmentId}")
+    @PreAuthorize("hasAuthority('Doctor')")
 	public String acceptAppointment(@PathVariable  int appointmentId) throws AppointmentNotFoundException{
 		if(doctorService.acceptAppointment(appointmentId)) {
 			return "Appointment accepted";
@@ -68,6 +71,7 @@ public class DoctorRestController {
 	}
 	
 	@PutMapping("/reject-appointment/{appointmentId}") 
+    @PreAuthorize("hasAuthority('Doctor')")
 	public String rejectAppointment(@PathVariable  int appointmentId) throws AppointmentNotFoundException {
 		if(doctorService.rejectAppointment(appointmentId)) {
 			return "Appointment rejected";
@@ -78,6 +82,7 @@ public class DoctorRestController {
 	}
 	
 	@PutMapping("/reschedule-appointment/{appointmentId}/{date}")
+    @PreAuthorize("hasAuthority('Doctor')")
 	public String rescheduleAppointment(@PathVariable  int appointmentId,@PathVariable LocalDate date) throws AppointmentNotFoundException {
 		if(doctorService.rescheduleAppointment(appointmentId, date)) {
 		return "Appointment Reschedules to date: + " + date; 
@@ -88,6 +93,7 @@ public class DoctorRestController {
 	}
 	
 	@PostMapping("/createmedicalrecord")
+    @PreAuthorize("hasAuthority('Doctor')")
 	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto) {
 		try {
 			doctorService.createMedicalRecord(medicalRecordDto);
@@ -99,6 +105,7 @@ public class DoctorRestController {
 	}
 	
 	@PostMapping("/prescribemedicine")
+    @PreAuthorize("hasAuthority('Doctor')")
 	public String prescribeMedicine(@RequestBody RecommendedMedicineDto recomenMedicineDto) throws MedicineNotFoundException{
 		if(doctorService.prescribeMedicine(recomenMedicineDto)) {
 			return "Medicine added to the prescription";
@@ -109,6 +116,7 @@ public class DoctorRestController {
 	}
 	
 	@PostMapping("/prescribetest")
+    @PreAuthorize("hasAuthority('Doctor')")
 	public String prescribeTest(@RequestBody RecommendedTestsDto recommendedTestDto) throws TestNotFoundException{
 		if(doctorService.prescribeTest(recommendedTestDto)) {
 			return "Medicine added to the prescription";
@@ -119,6 +127,7 @@ public class DoctorRestController {
 	}
 	
 	@PutMapping("/updatetestresult/{recommendedTestId}/{result}")
+    @PreAuthorize("hasAuthority('Doctor')")
 	public String updateTestResult(@PathVariable int recommendedTestId, @PathVariable String result) {
 		doctorService.updateTestResult(recommendedTestId, result);
 		return "Test result updated sucessfully";

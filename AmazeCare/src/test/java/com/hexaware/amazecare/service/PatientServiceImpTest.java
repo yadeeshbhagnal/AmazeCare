@@ -76,7 +76,7 @@ class PatientServiceImpTest {
 
 	@Test
 	void testViewAppointments() {
-		List<Appointment>list = service.viewAppointments(101);
+		List<Appointment>list = service.viewAppointments();
 		assertNotNull(list);	
 	}
 	

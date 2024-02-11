@@ -1,5 +1,7 @@
 package com.hexaware.amazecare.config;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,22 +29,24 @@ public class UserInfoUserDetailsService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Optional<Patient> patientOptional = patientRepo.findByUserName(username);
 		
-		Patient patient = patientRepo.findByUserName(username).orElse(null);
-		if(patient!=null) {
+		if(patientOptional.isPresent()) {
+			Patient patient = patientOptional.get();
 			return new PatientInfoDetails(patient);
 		}
 		
-		Doctor doctor = doctorRepo.findByUserName(username).orElse(null);
-		if(doctor!=null) {
+		Optional<Doctor> doctorOptional = doctorRepo.findByUserName(username);
+		if(doctorOptional.isPresent()) {
+			Doctor doctor = doctorOptional.get();
 			return new DoctorInfoDetails(doctor);
 		}
 		
-		Admin admin = adminRepo.findByUserName(username).orElse(null);
-		if(admin!=null) {
+		Optional<Admin> adminOptional = adminRepo.findByUserName(username);
+		if(adminOptional.isPresent()) {
+			Admin admin = adminOptional.get();
 			return new AdminInfoDetails(admin);
 		}
-		
 		throw new UsernameNotFoundException("User not found for username: " + username);
 	}
 }

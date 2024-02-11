@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,7 @@ public class AdminRestController {
 	Logger logger = LoggerFactory.getLogger(DoctorRestController.class);
 	
 	@PostMapping("/registeradmin")
+    @PreAuthorize("hasAuthority('Admin')")
 	public String registerAdmin(@RequestBody AdminDto adminDto) {
 		adminService.registerAdmin(adminDto);
 		return "Admin registered successfully";
@@ -49,6 +51,7 @@ public class AdminRestController {
 	}
 	
 	@PostMapping("/registerdoctor")
+    @PreAuthorize("hasAuthority('Admin')")
 	public String registerDoctor(@RequestBody DoctorDto doctorDto) {
 		adminService.registerDoctor(doctorDto);
 		return "Doctor successfully added";
@@ -56,6 +59,7 @@ public class AdminRestController {
 
 	
 	@PutMapping("/updatedoctordetails")
+    @PreAuthorize("hasAuthority('Admin')")
 	public String updateDoctor(@RequestBody DoctorDto doctorDto) throws DoctorNotFoundException{
 		if(adminService.updateDoctor(doctorDto)) {
 			return "Doctor details updated";
@@ -66,6 +70,7 @@ public class AdminRestController {
 	}
 	
 	@DeleteMapping("/deletedoctor/{doctorId}")
+    @PreAuthorize("hasAuthority('Admin')")
 	public String deleteDoctor(@PathVariable int doctorId) throws DoctorNotFoundException {
 		if(adminService.deleteDoctor(doctorId)) {
 			return "Doctor deleted successfully";
@@ -76,7 +81,8 @@ public class AdminRestController {
 	}
 	
 	@DeleteMapping("/deletepatient/{patientId}")
-	public String deletePatiend(@PathVariable int patientId) throws PatientNotFoundException{
+    @PreAuthorize("hasAuthority('Admin')")
+	public String deletePatient(@PathVariable int patientId) throws PatientNotFoundException{
 		if(adminService.deletePatient(patientId)) {
 			return "patient deleted successfully";
 		}else {
@@ -86,16 +92,19 @@ public class AdminRestController {
 	}
 	
 	@GetMapping("/viewalldoctors")
+    @PreAuthorize("hasAuthority('Admin')")
 	public List<Doctor> getAllDoctors(){
 		return adminService.viewAllDoctors();
 	}
 	
 	@GetMapping("/viewallpatients")
+    @PreAuthorize("hasAuthority('Admin')")
 	public List<Patient> getAllPatient() {
 		return adminService.viewAllPatients();
 	}
 	
 	@PutMapping("/assignappointment/{appointmentId}/{time}")
+    @PreAuthorize("hasAuthority('Admin')")
 	public String assignAppointment(@PathVariable int appointmentId,@PathVariable LocalTime time) throws AppointmentNotFoundException {
 		if(adminService.assignAppointmentToDoctor(appointmentId, time)) {
 			return "appointment successfully assigned";
@@ -105,6 +114,7 @@ public class AdminRestController {
 		}
 	}
 	@PostMapping("/addtests")
+    @PreAuthorize("hasAuthority('Admin')")
 	public String addTests(@RequestBody AvailableTests availableTests)
 	{
 		adminService.addTests(availableTests);
@@ -112,6 +122,7 @@ public class AdminRestController {
 	}
 	
 	@PostMapping("/addmedicine")
+    @PreAuthorize("hasAuthority('Admin')")
 	public String addMedicines(@RequestBody AvailableMedicines availableMedicines)
 	{
 		adminService.addMedicines(availableMedicines);
@@ -119,6 +130,7 @@ public class AdminRestController {
 	}
 	
 	@GetMapping("/getdoctorbyname/{doctorName}")
+    @PreAuthorize("hasAuthority('Admin')")
 	public List<Doctor> getDoctorByName(@PathVariable String doctorName)throws DoctorNotFoundException{
 		List<Doctor> doctorList = adminService.getByName(doctorName);
 		if(!doctorList.isEmpty()) {
@@ -130,6 +142,7 @@ public class AdminRestController {
 	}
 	
 	@GetMapping("/view-upcomingappointment")
+    @PreAuthorize("hasAuthority('Admin')")
 	public List<AdminViewDto> viewUpcomingAppointments() throws AppointmentNotFoundException
 	{
 		List<AdminViewDto> upcomingAppointments = adminService.viewUpcomingAppointments();
