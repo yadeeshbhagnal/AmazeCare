@@ -15,12 +15,10 @@ import com.hexaware.amazecare.exception.PatientNotFoundException;
 public interface IPatientService {
 	
 	public boolean registerPatient(PatientDto patientDto);
-	
-	public String loginPatient(AuthRequest authRequest);
-	
+		
 	public boolean updatePatientInfo(PatientDto patientDto);
 	
-	public boolean scheduleAppointment(AppointmentDto appointmentDto) throws DoctorNotFoundException;
+	public boolean scheduleAppointment(AppointmentDto appointmentDto, int doctorId);
 	
 	public boolean rescheduleAppointment(int appointmentId, LocalDate date);
 	
@@ -31,6 +29,8 @@ public interface IPatientService {
 	public List<Doctor> getDocBySpeciality(String speciality);
 	
 	public List<PatientViewDto> viewUpcomingAppointments();
+
+	String loginPatient(AuthRequest authRequest);
 
 	
 }

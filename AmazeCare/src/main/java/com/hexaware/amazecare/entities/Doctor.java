@@ -3,6 +3,7 @@ package com.hexaware.amazecare.entities;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -43,16 +44,19 @@ public class Doctor {
 	@Size(max = 25)
 	private String designation;
 	
+	@JsonIgnore
 	private String userName;
+	@JsonIgnore
 	private String password;
+	@JsonIgnore
 	private String role;
 	
 	@OneToMany(mappedBy="doctor", cascade=CascadeType.ALL)
-	@JsonBackReference
+	@JsonIgnore
 	private List<Appointment> appointments;
 	
 	@OneToMany(mappedBy="doctor", cascade = CascadeType.ALL)
-	@JsonBackReference
+	@JsonIgnore
 	private List<MedicalRecord> medicalRecords;
 	
 	

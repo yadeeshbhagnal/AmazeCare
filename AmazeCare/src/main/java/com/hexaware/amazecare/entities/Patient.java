@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -43,13 +44,18 @@ public class Patient {
 	@Size(max = 255)
 	private String address;
 	
+	@JsonIgnore
 	private String userName;
+	@JsonIgnore
 	private String password;
+	@JsonIgnore
 	private String role;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="patient", cascade=CascadeType.ALL)
 	private List<Appointment> appointments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="patient", cascade = CascadeType.ALL)
 	private List<MedicalRecord> medicalRecords;
 	

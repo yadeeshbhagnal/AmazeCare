@@ -56,7 +56,6 @@ public class PatientRestController {
 	@PostMapping("/login")
 	public String authenticate(@RequestBody AuthRequest authRequest) {
 		return service.loginPatient(authRequest);
-		
 	}
 	
 	@PutMapping("/update")
@@ -72,14 +71,14 @@ public class PatientRestController {
 		}
 	}
 	
-	@PostMapping("/schedule")
+	@PostMapping("/schedule/{doctorId}")
 	@PreAuthorize("hasAuthority('Patient')")
-	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto) throws DoctorNotFoundException
+	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto,@PathVariable int doctorId) throws DoctorNotFoundException
 	{
-			if(service.scheduleAppointment(appointmentDto)) {
+			if(service.scheduleAppointment(appointmentDto, doctorId)) {
 				return "Appointment scheduled successfully";
 			}else {
-				throw new DoctorNotFoundException("Doctor with id: " + appointmentDto.getDoctorId() + " not found");
+				throw new DoctorNotFoundException("Doctor with id: " + doctorId + " not found");
 			}
 	}
 	
@@ -137,12 +136,12 @@ public class PatientRestController {
 	
 	@GetMapping("/upcoming-appointments")
 	@PreAuthorize("hasAuthority('Patient')")
-	public List<PatientViewDto> viewUpcomingAppointments(@PathVariable int patientId) throws AppointmentNotFoundException
+	public List<PatientViewDto> viewUpcomingAppointments() throws AppointmentNotFoundException
 	{
 		List<PatientViewDto> upcomingAppointments = service.viewUpcomingAppointments();
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
 			logger.info("Exception occured while fetching appointments , Exception name: AppointmentNotFoundException");
-			throw new AppointmentNotFoundException("No appointment found for patient with id: " + patientId);
+			throw new AppointmentNotFoundException("No appointment found for patient");
 		}
 		return upcomingAppointments;
 	}

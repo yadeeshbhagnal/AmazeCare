@@ -92,7 +92,7 @@ public class DoctorServiceImp implements IDoctorService {
 		Doctor doctor = getCurrentDoctor().get();
 		
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId()) {
+		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId() && existingAppointment.getStatus().equals("Assigned")) {
 			flag = true;
 			existingAppointment.setStatus("Accepted");
 			appointmentRepository.save(existingAppointment);
@@ -108,9 +108,9 @@ public class DoctorServiceImp implements IDoctorService {
 		Doctor doctor = getCurrentDoctor().get();
 
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId()) {
+		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId() && existingAppointment.getStatus().equals("Assigned")) {
 			flag = true;
-			existingAppointment.setStatus("Rejected");
+			existingAppointment.setStatus("Rejected by doctor");
 			appointmentRepository.save(existingAppointment);
 			logger.info("successfully rejected appointment for id: " + appointmentId);
 		}
@@ -124,7 +124,7 @@ public class DoctorServiceImp implements IDoctorService {
 		Doctor doctor = getCurrentDoctor().get();
 
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId()) {
+		if(existingAppointment != null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId() && existingAppointment.getStatus().equals("Assigned")) {
 			flag = true;
 			existingAppointment.setDate(date);
 			existingAppointment.setStatus("Rescheduled");
@@ -135,21 +135,23 @@ public class DoctorServiceImp implements IDoctorService {
 	}
 
 	@Override
-	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto, int patientId){
-		logger.info("Request initiated to create medical record for patient id: " + patientId);
+	public boolean createMedicalRecord(MedicalRecordDto medicalRecordDto, int appointmentId){
+		logger.info("Request initiated to create medical record for appointment id: " + appointmentId);
 		boolean flag = false;
 		Doctor doctor = getCurrentDoctor().get();
-
-		Patient patient = patientRepository.findById(patientId).orElse(null);
-		if(patient != null) {
+		
+		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
+		
+		if(existingAppointment!=null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId() && existingAppointment.getStatus().equals("Accepted")) {
 			flag =true;
 			MedicalRecord medicalRecord = new MedicalRecord();
+			
 			medicalRecord.setCurrentSymptoms(medicalRecordDto.getCurrentSymptoms());
 			medicalRecord.setDate(medicalRecordDto.getDate());
 			medicalRecord.setPhysicalExamination(medicalRecordDto.getPhysicalExamination());
 			medicalRecord.setTreatmentPlan(medicalRecordDto.getTreatmentPlan());
 			medicalRecord.setDoctor(doctor);
-			medicalRecord.setPatient(patient);
+			medicalRecord.setPatient(existingAppointment.getPatient());
 			medicalRecordRepository.save(medicalRecord);
 		}
 		return flag;
@@ -159,11 +161,13 @@ public class DoctorServiceImp implements IDoctorService {
 	public boolean prescribeMedicine(RecommendedMedicineDto recommendedMedicineDto, int recordId) throws MedicalRecordNotFoundException, MedicineNotFoundException{
 		logger.info("Request initiated to prescribe medicine for medical Record: " + recommendedMedicineDto.getRecordId());
 		
+		Doctor doctor = getCurrentDoctor().get();
 		MedicalRecord medicalRecord = medicalRecordRepository.findById(recordId).orElse(null);
 		
-		if(medicalRecord == null) {
+		if(medicalRecord == null ||  medicalRecord.getDoctor().getDoctorId() != doctor.getDoctorId()) {
 			throw new MedicalRecordNotFoundException("Medical record for id " +  recordId +  " not found");
 		}
+		
 		String medicineName = recommendedMedicineDto.getMedicineName();
 		if(availableMedicineRepository.findByMedicineName(medicineName) == null){
 			throw new MedicineNotFoundException("Medicine with name: " + medicineName + " not available");
@@ -175,7 +179,6 @@ public class DoctorServiceImp implements IDoctorService {
 		recommendedMedicine.setDosage(recommendedMedicineDto.getDosage());
 		recommendedMedicine.setQuantity(recommendedMedicineDto.getQuantity());
 		recommendedMedicine.setMedicalRecord(medicalRecord);
-		
 		recommendedMedicineRepository.save(recommendedMedicine);
 		
 		return true;
@@ -185,10 +188,13 @@ public class DoctorServiceImp implements IDoctorService {
 	public boolean prescribeTest(RecommendedTestsDto recommendedTestsDto, int recordId) throws MedicalRecordNotFoundException, TestNotFoundException{
 		logger.info("Request initiated to prescribe test for medical Record: " + recordId);
 		
+		Doctor doctor = getCurrentDoctor().get();
 		MedicalRecord medicalRecord = medicalRecordRepository.findById(recordId).orElse(null);
-		if(medicalRecord == null) {
+		
+		if(medicalRecord == null || medicalRecord.getDoctor().getDoctorId() != doctor.getDoctorId()) {
 			throw new MedicalRecordNotFoundException("Medical record for id " +  recordId +  " not found");
 		}
+		
 		String testName = recommendedTestsDto.getTestName();
 		if(availableTestsRepository.findByTestName(testName) == null) {
 			throw new TestNotFoundException("Test with name " + testName + " not found");
@@ -197,22 +203,25 @@ public class DoctorServiceImp implements IDoctorService {
 		RecommendedTests recommendedTests = new RecommendedTests();
 		recommendedTests.setMedicalRecord(medicalRecord);
 		recommendedTests.setTestName(recommendedTestsDto.getTestName());
-		recommendedTests.setTestResult(recommendedTestsDto.getTestResult());
-		
+		recommendedTests.setTestResult("To be conducted");
 		recommendedTestRepository.save(recommendedTests);
 		logger.info("Successfully prescribed test for record: " + recommendedTestsDto.getRecordId());
 		
 		return true;
 	}
-	
+
 	@Override
 	public boolean updateTestResult(int recommendedTestId, String result) {
 		logger.info("updating test result for test id: " + recommendedTestId + "to " + result);
-		
+		boolean flag = false;
+		Doctor doctor = getCurrentDoctor().get();	 
 		RecommendedTests test = recommendedTestRepository.findById(recommendedTestId).orElse(null);
-		test.setTestResult(result);
-		recommendedTestRepository.save(test);
-		return true;
+		if(test!=null) {
+			test.setTestResult(result);
+			recommendedTestRepository.save(test);
+			flag = true;
+		}
+		return flag;
 	}
 
 	@Override

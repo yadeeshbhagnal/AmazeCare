@@ -27,6 +27,7 @@ import com.hexaware.amazecare.exception.DoctorNotFoundException;
 import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
 import com.hexaware.amazecare.exception.PatientNotFoundException;
+import com.hexaware.amazecare.exception.RecommendedTestNotFound;
 import com.hexaware.amazecare.exception.TestNotFoundException;
 import com.hexaware.amazecare.service.DoctorServiceImp;
 import com.hexaware.amazecare.service.IDoctorService;
@@ -49,10 +50,9 @@ public class DoctorRestController {
 		return doctorService.loginDoctor(authRequest);
 	}
 	
-	@GetMapping("/upcoming-appointments/")
+	@GetMapping("/upcoming-appointments")
     @PreAuthorize("hasAuthority('Doctor')")
 	public List<AppointmentDetailsDto> viewUpcomingAppointments() throws AppointmentNotFoundException{
-		
 		List<AppointmentDetailsDto> upcomingAppointments = doctorService.viewAppointments();
 		
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
@@ -88,20 +88,20 @@ public class DoctorRestController {
     @PreAuthorize("hasAuthority('Doctor')")
 	public String rescheduleAppointment(@PathVariable  int appointmentId,@PathVariable LocalDate date) throws AppointmentNotFoundException {
 		if(doctorService.rescheduleAppointment(appointmentId, date)) {
-		return "Appointment Reschedules to date: + " + date; 
+		return "Appointment Reschedules to date: " + date; 
 		}else {
 			logger.info("Exception occured while fetching appointments ,Exception name : AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("Appointment not found");
 		}
 	}
 	
-	@PostMapping("/createmedicalrecord/{patientId}")
+	@PostMapping("/createmedicalrecord/{appointmentId}")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto, @PathVariable int patientId) throws PatientNotFoundException{
-		if(doctorService.createMedicalRecord(medicalRecordDto,patientId)) {
+	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto, @PathVariable int appointmentId) throws AppointmentNotFoundException{
+		if(doctorService.createMedicalRecord(medicalRecordDto,appointmentId)) {
 			return "Medical record created";
 		}else{
-			throw new PatientNotFoundException("Patient for id: " + patientId + " Not found");
+			throw new AppointmentNotFoundException("Appointment not found for id: " + appointmentId);
 		}	
 	}
 	
@@ -119,7 +119,7 @@ public class DoctorRestController {
 		return result;
 	}
 	
-	@PostMapping("/prescribetest")
+	@PostMapping("/prescribetest/{recordId}")
     @PreAuthorize("hasAuthority('Doctor')")
 	public String prescribeTest(@RequestBody RecommendedTestsDto recommendedTestDto, @PathVariable int recordId){
 		String result = null;
@@ -135,8 +135,11 @@ public class DoctorRestController {
 	
 	@PutMapping("/updatetestresult/{recommendedTestId}/{result}")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String updateTestResult(@PathVariable int recommendedTestId, @PathVariable String result) {
-		doctorService.updateTestResult(recommendedTestId, result);
+	public String updateTestResult(@PathVariable int recommendedTestId, @PathVariable String result) throws RecommendedTestNotFound{
+		if(doctorService.updateTestResult(recommendedTestId, result)) {
 		return "Test result updated sucessfully";
+		}else {
+			throw new RecommendedTestNotFound("Test for the given id not found");
+		}
 	}
 }

@@ -21,11 +21,16 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	
 	@Query("select new com.hexaware.amazecare.dto.PatientViewDto(d.doctorName,a.status,a.time,a.date) from Appointment "
 			+ "a join a.doctor d join a.patient p where p.patientId =?1 "
-			+ "and a.date>=CURRENT_DATE and (a.status!= 'Cancelled by patient')")
+			+ "and a.date>=CURRENT_DATE and (a.status != 'Cancelled by patient')")
 	List<PatientViewDto> getUpcomingPatientAppointments(int patientId);
 	
 	@Query("select new com.hexaware.amazecare.dto.AdminViewDto(p.patientName,d.doctorName,a.status,a.time,a.date) from Appointment "
 			+ "a join a.doctor d join a.patient p "
 			+ "where a.date>=CURRENT_DATE and (a.status = 'Pending' or a.status = 'Rescheduled')")
 	List<AdminViewDto> getAdminAppointments();
+	
+	@Query("select new com.hexaware.amazecare.dto.AdminViewDto(p.patientName,d.doctorName,a.status,a.time,a.date) from Appointment "
+			+ "a join a.doctor d join a.patient p ")
+	List<AdminViewDto> getAllAppointments();
+	
 }

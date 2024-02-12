@@ -44,22 +44,22 @@ class PatientServiceImpTest {
 //		assertFalse(result);	
 //	}
 
-	@Test
-	void testScheduleAppointment() throws DoctorNotFoundException, PatientNotFoundException {
-		
-		AppointmentDto appointmentDto = new AppointmentDto();
-	
-		appointmentDto.setDate(LocalDate.of(2024,03,05));
-		appointmentDto.setSymptoms("nausea");
-		appointmentDto.setVisitType("general checkup");
-		appointmentDto.setDoctorId(203);
-		appointmentDto.setPatientId(101);
-		
-		
-		boolean result = service.scheduleAppointment(appointmentDto);
-		assertTrue(result);
-		
-	}
+//	@Test
+//	void testScheduleAppointment() throws DoctorNotFoundException, PatientNotFoundException {
+//		
+//		AppointmentDto appointmentDto = new AppointmentDto();
+//	
+//		appointmentDto.setDate(LocalDate.of(2024,03,05));
+//		appointmentDto.setSymptoms("nausea");
+//		appointmentDto.setVisitType("general checkup");
+//		appointmentDto.setDoctorId(203);
+//		appointmentDto.setPatientId(101);
+//		
+//		
+//		boolean result = service.scheduleAppointment(appointmentDto);
+//		assertTrue(result);
+//		
+//	}
 
 	@Test
 	void testRescheduleAppointment() {

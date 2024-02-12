@@ -31,7 +31,7 @@ public interface IAdminService {
 	
 	public List<Patient> viewAllPatients();
 	
-	public List<Appointment> viewAllAppointments();
+	public List<AdminViewDto> viewAllAppointments();
 	
 	public boolean assignAppointmentToDoctor(int appointmentId, LocalTime time);
 	

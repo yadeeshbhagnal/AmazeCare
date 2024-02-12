@@ -85,6 +85,12 @@ public class PatientServiceImp implements IPatientService {
 			{
 				patient.setPatientName(patientDto.getPatientName());
 			}
+			if(patientDto.getUserName() != null) {
+				patient.setUserName(patientDto.getUserName());
+			}
+			if(patientDto.getPassword()!=null) {
+				patient.setPassword(passwordEncoder.encode(patientDto.getPassword()));
+			}
 			
 			patientRepository.save(patient);
 			logger.info("Patient details updated successfully ");
@@ -97,28 +103,25 @@ public class PatientServiceImp implements IPatientService {
 
 	
 	@Override
-	public boolean scheduleAppointment(AppointmentDto appointmentDto) throws DoctorNotFoundException {
-		
-		logger.info("Request initiated to schedule appointmnet for patient id: " + appointmentDto.getPatientId());
-		Appointment appointment = new Appointment();
-		boolean flag = true;
-		Doctor doctor = doctorRepository.findById(appointmentDto.getDoctorId()).orElse(null);
-		if(doctor == null) {
-			throw new DoctorNotFoundException("Doctor with id: " + appointmentDto.getDoctorId() + " not found");
-		}
-		
+	public boolean scheduleAppointment(AppointmentDto appointmentDto, int doctorId) {
 		Patient patient = getCurrentPatient().get();
-		appointmentDto.setPatientId(patient.getPatientId());
+		logger.info("Request initated to schedule appointment for patient id: " + patient.getPatientId());
+		boolean flag = false;
 		
-		//Patient patient = patientRepository.findById(appointmentDto.getPatientId()).orElse(null);	
-		appointment.setStatus("Pending");
-		appointment.setDate(appointmentDto.getDate());
-		appointment.setSymptoms(appointmentDto.getSymptoms());
-		appointment.setVisitType(appointmentDto.getVisitType());
-		appointment.setPatient(patient);
-		appointment.setDoctor(doctor);
+		Doctor doctor = doctorRepository.findById(doctorId).orElse(null);
+		if(doctor != null) 
+		{
+			flag = true;
+			Appointment appointment = new Appointment();
+			appointment.setStatus("Pending");
+			appointment.setDate(appointmentDto.getDate());
+			appointment.setSymptoms(appointmentDto.getSymptoms());
+			appointment.setVisitType(appointmentDto.getVisitType());
+			appointment.setPatient(patient);
+			appointment.setDoctor(doctor);
 		
 		appointmentRepository.save(appointment);
+		}
 		return flag;
 	}
 
@@ -153,7 +156,7 @@ public class PatientServiceImp implements IPatientService {
 		if(existingAppointment!=null && existingAppointment.getPatient().getPatientId()== patient.getPatientId())
 		{
 			flag = true;
-			existingAppointment.setStatus("Cancelled");
+			existingAppointment.setStatus("Cancelled by patient");
 			appointmentRepository.save(existingAppointment);
 			logger.info("Appointment cancelled successfully for id: " + appointmentId);
 		}
@@ -209,7 +212,6 @@ public class PatientServiceImp implements IPatientService {
 		if(authentication.isAuthenticated())
 		{
 			token = jwtService.generateToken(authRequest.getUsername());
-			
 		}
 		else {
 			throw new UsernameNotFoundException("Username or password is invlaid");

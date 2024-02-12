@@ -28,7 +28,7 @@ public class UserInfoUserDetailsService implements UserDetailsService{
 	private AdminRepository adminRepo;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) {
 		Optional<Patient> patientOptional = patientRepo.findByUserName(username);
 		
 		if(patientOptional.isPresent()) {
@@ -47,6 +47,7 @@ public class UserInfoUserDetailsService implements UserDetailsService{
 			Admin admin = adminOptional.get();
 			return new AdminInfoDetails(admin);
 		}
+		
 		throw new UsernameNotFoundException("User not found for username: " + username);
 	}
 }

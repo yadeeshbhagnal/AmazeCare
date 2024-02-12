@@ -53,6 +53,7 @@ public class AdminRestController {
 	@PostMapping("/registerdoctor")
     @PreAuthorize("hasAuthority('Admin')")
 	public String registerDoctor(@RequestBody DoctorDto doctorDto) {
+		System.out.println("called");
 		adminService.registerDoctor(doctorDto);
 		return "Doctor successfully added";
 	}
@@ -139,6 +140,12 @@ public class AdminRestController {
 			logger.info("Exception occured while fetching doctor by name, exception name: DoctorNotFoundException");
 			throw new DoctorNotFoundException("No doctor found with name" + doctorName);
 		}
+	}
+	
+	@GetMapping("/viewallappointments")
+	@PreAuthorize("hasAuthority('Admin')")
+	public List<AdminViewDto> getAllAppointments(){
+		return adminService.viewAllAppointments();
 	}
 	
 	@GetMapping("/view-upcomingappointment")

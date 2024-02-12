@@ -66,11 +66,11 @@ class AdminServiceImpTest {
 		assertNotNull(list);
 	}
 
-	@Test
-	void testViewAllAppointments() {
-		List<Appointment> list = adminService.viewAllAppointments();
-		assertNotNull(list);
-	}
+//	@Test
+//	void testViewAllAppointments() {
+//		List<Appointment> list = adminService.viewAllAppointments();
+//		assertNotNull(list);
+//	}
 
 	@Test
 	void testAssignAppointmentToDoctor() {

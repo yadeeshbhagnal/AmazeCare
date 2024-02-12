@@ -105,6 +105,12 @@ public class AdminServiceImp implements IAdminService {
 	        if (doctorDto.getDesignation() != null) {
 	            doctor.setDesignation(doctorDto.getDesignation());
 	        }
+	        if(doctorDto.getUserName() != null) {
+				doctor.setUserName(doctorDto.getUserName());
+			}
+			if(doctorDto.getPassword()!=null) {
+				doctor.setPassword(passwordEncoder.encode(doctorDto.getPassword()));
+			}
 			doctorRepository.save(doctor);
 			flag = true;
 			logger.info("Doctor details for id: " + doctorDto.getDoctorId() + " updated");
@@ -151,9 +157,9 @@ public class AdminServiceImp implements IAdminService {
 	}
 
 	@Override
-	public List<Appointment> viewAllAppointments() {
+	public List<AdminViewDto> viewAllAppointments() {
 		logger.info("Request initiated to view all appointments");
-		return appointmentRepository.findAll();
+		return appointmentRepository.getAllAppointments();
 	}
 
 	@Override
@@ -164,6 +170,7 @@ public class AdminServiceImp implements IAdminService {
 		if(appointment!=null) {
 			appointment.setTime(time);
 			appointment.setStatus("Assigned");
+			appointmentRepository.save(appointment);
 			logger.info("Appointment successfully assigned");
 			flag = true;
 		}

@@ -39,7 +39,7 @@ public class MedicalRecordRestController {
         return medicalRecord;
 	}
 	
-	@GetMapping("/viewmedicalrecord/")
+	@GetMapping("/viewmedicalrecord")
     @PreAuthorize("hasAuthority('Patient')")
 	public List<MedicalRecord> viewMedicalRecordPatient() throws MedicalRecordNotFoundException
 	{
@@ -50,7 +50,6 @@ public class MedicalRecordRestController {
         }
         return medicalRecord;
 	}
-	
 
 	@GetMapping("/getrecommendedtests/{recordId}")
 	@PreAuthorize("hasAuthority('Patient') or hasAuthority('Doctor')")
