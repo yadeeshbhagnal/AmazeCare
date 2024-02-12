@@ -74,15 +74,13 @@ public class PatientRestController {
 	
 	@PostMapping("/schedule")
 	@PreAuthorize("hasAuthority('Patient')")
-	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto)
+	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto) throws DoctorNotFoundException
 	{
-		try {
-			service.scheduleAppointment(appointmentDto);
-		} catch (DoctorNotFoundException | PatientNotFoundException e) {
-			logger.info("Exception occured while scheduling appointment "+e);
-			e.toString();
-		}
-		 return "Appointment scheduled successfully";
+			if(service.scheduleAppointment(appointmentDto)) {
+				return "Appointment scheduled successfully";
+			}else {
+				throw new DoctorNotFoundException("Doctor with id: " + appointmentDto.getDoctorId() + " not found");
+			}
 	}
 	
 	@PutMapping("/reschedule/{appointmentId}/{date}")
@@ -137,11 +135,11 @@ public class PatientRestController {
 		return doctors;
 	}
 	
-	@GetMapping("/upcoming-appointments/{patientId}")
+	@GetMapping("/upcoming-appointments")
 	@PreAuthorize("hasAuthority('Patient')")
 	public List<PatientViewDto> viewUpcomingAppointments(@PathVariable int patientId) throws AppointmentNotFoundException
 	{
-		List<PatientViewDto> upcomingAppointments = service.viewUpcomingAppointments(patientId);
+		List<PatientViewDto> upcomingAppointments = service.viewUpcomingAppointments();
 		if(upcomingAppointments ==null || upcomingAppointments.isEmpty()) {
 			logger.info("Exception occured while fetching appointments , Exception name: AppointmentNotFoundException");
 			throw new AppointmentNotFoundException("No appointment found for patient with id: " + patientId);

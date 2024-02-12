@@ -20,7 +20,7 @@ public interface IPatientService {
 	
 	public boolean updatePatientInfo(PatientDto patientDto);
 	
-	public boolean scheduleAppointment(AppointmentDto appointmentDto) throws DoctorNotFoundException, PatientNotFoundException;
+	public boolean scheduleAppointment(AppointmentDto appointmentDto) throws DoctorNotFoundException;
 	
 	public boolean rescheduleAppointment(int appointmentId, LocalDate date);
 	
@@ -30,7 +30,7 @@ public interface IPatientService {
 		
 	public List<Doctor> getDocBySpeciality(String speciality);
 	
-	public List<PatientViewDto> viewUpcomingAppointments(int patientId);
+	public List<PatientViewDto> viewUpcomingAppointments();
 
 	
 }

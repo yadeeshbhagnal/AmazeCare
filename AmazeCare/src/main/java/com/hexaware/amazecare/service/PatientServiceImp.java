@@ -58,12 +58,11 @@ public class PatientServiceImp implements IPatientService {
 	@Override
 	public boolean updatePatientInfo(PatientDto patientDto) {
 		
-		logger.info("Request initiated to update patient with id: " +patientDto.getPatientId());
-		Patient patient = patientRepository.findById(patientDto.getPatientId()).orElse(null);
-		boolean flag = false;
-		
-		if(patient!=null)
+		logger.info("Request initiated to update patient with id: " +patientDto.getPatientId());	
+		Optional<Patient> optionalPatient = getCurrentPatient();
+		if(optionalPatient.isPresent())
 		{
+			Patient patient = optionalPatient.get();
 			if(patientDto.getAddress()!=null)
 			{
 				patient.setAddress(patientDto.getAddress());
@@ -86,15 +85,19 @@ public class PatientServiceImp implements IPatientService {
 			{
 				patient.setPatientName(patientDto.getPatientName());
 			}
+			
 			patientRepository.save(patient);
-			flag = true;
 			logger.info("Patient details updated successfully ");
+			return true;
+		}else {
+			logger.error("Unable to retreive current patient information");
+			return false;
 		}
-		return flag;
 	}
 
+	
 	@Override
-	public boolean scheduleAppointment(AppointmentDto appointmentDto) throws DoctorNotFoundException, PatientNotFoundException {
+	public boolean scheduleAppointment(AppointmentDto appointmentDto) throws DoctorNotFoundException {
 		
 		logger.info("Request initiated to schedule appointmnet for patient id: " + appointmentDto.getPatientId());
 		Appointment appointment = new Appointment();
@@ -103,11 +106,11 @@ public class PatientServiceImp implements IPatientService {
 		if(doctor == null) {
 			throw new DoctorNotFoundException("Doctor with id: " + appointmentDto.getDoctorId() + " not found");
 		}
-		Patient patient = patientRepository.findById(appointmentDto.getPatientId()).orElse(null);
-		if(patient == null) {
-			throw new PatientNotFoundException("Patient with id: " + appointmentDto.getPatientId() + " not found");
-		}
-	
+		
+		Patient patient = getCurrentPatient().get();
+		appointmentDto.setPatientId(patient.getPatientId());
+		
+		//Patient patient = patientRepository.findById(appointmentDto.getPatientId()).orElse(null);	
 		appointment.setStatus("Pending");
 		appointment.setDate(appointmentDto.getDate());
 		appointment.setSymptoms(appointmentDto.getSymptoms());
@@ -124,8 +127,11 @@ public class PatientServiceImp implements IPatientService {
 		
 		logger.info("Request initiated to rescheduled appointment for id: " + appointmentId);
 		boolean flag = false;
+		
+		Patient patient = getCurrentPatient().get();
+		
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment!=null)
+		if(existingAppointment!=null && existingAppointment.getPatient().getPatientId()== patient.getPatientId())
 		{
 			flag = true;
 			existingAppointment.setStatus("Pending");
@@ -141,8 +147,10 @@ public class PatientServiceImp implements IPatientService {
 		
 		logger.info("Request initiated to cancel appointment for id: " + appointmentId);
 		boolean flag = false;
+		Patient patient = getCurrentPatient().get();
+		
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
-		if(existingAppointment!=null)
+		if(existingAppointment!=null && existingAppointment.getPatient().getPatientId()== patient.getPatientId())
 		{
 			flag = true;
 			existingAppointment.setStatus("Cancelled");
@@ -154,8 +162,9 @@ public class PatientServiceImp implements IPatientService {
 
 	@Override
 	public List<Appointment> viewAppointments() {
-		logger.info("Request initiated to view appointments for patient ID: ");
+		
 		Patient currentPatient = getCurrentPatient().get();
+		logger.info("Request initiated to view appointments for patient ID: "+currentPatient.getPatientId());
 		return appointmentRepository.findByPatientPatientId(currentPatient.getPatientId());
 	}
 
@@ -166,9 +175,10 @@ public class PatientServiceImp implements IPatientService {
 	}
 
 	@Override
-	public List<PatientViewDto> viewUpcomingAppointments(int patientId) {
-		logger.info("Request initiated to view upcoming appointments for patient ID: " + patientId);
-		return appointmentRepository.getUpcomingPatientAppointments(patientId);
+	public List<PatientViewDto> viewUpcomingAppointments() {
+		Patient currentPatient = getCurrentPatient().get();
+		logger.info("Request initiated to view upcoming appointments for patient ID: " +currentPatient.getPatientId() );
+		return appointmentRepository.getUpcomingPatientAppointments(currentPatient.getPatientId());
 	}
 
 	@Override

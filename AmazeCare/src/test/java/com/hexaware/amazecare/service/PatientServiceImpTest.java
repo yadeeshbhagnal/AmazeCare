@@ -89,7 +89,7 @@ class PatientServiceImpTest {
 	
 	@Test
 	void testViewUpcomingAppointments() {
-		List<PatientViewDto> list = service.viewUpcomingAppointments(101);
+		List<PatientViewDto> list = service.viewUpcomingAppointments();
 		assertNotNull(list);
 		
 	}
