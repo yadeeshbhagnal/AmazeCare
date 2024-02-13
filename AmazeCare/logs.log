@@ -14,3 +14,688 @@
 2024-02-13T03:14:42.147+05:30  INFO 4764 --- [RMI TCP Connection(211)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-02-13T03:14:42.200+05:30  INFO 4764 --- [RMI TCP Connection(211)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-02-13T03:14:42.225+05:30  INFO 4764 --- [RMI TCP Connection(211)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:16:23.072+05:30  INFO 4944 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 4944 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:16:23.080+05:30  INFO 4944 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:16:25.837+05:30  INFO 4944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:16:26.096+05:30  INFO 4944 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 231 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:16:28.000+05:30  INFO 4944 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:16:28.243+05:30  INFO 4944 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:16:28.254+05:30  INFO 4944 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:16:29.339+05:30  INFO 4944 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:16:29.419+05:30  INFO 4944 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:16:30.247+05:30  INFO 4944 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@66b31d46
+2024-02-13T09:16:30.252+05:30  INFO 4944 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:16:30.409+05:30  WARN 4944 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:16:30.412+05:30  WARN 4944 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:16:32.866+05:30  INFO 4944 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:16:33.251+05:30  INFO 4944 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:16:34.846+05:30  INFO 4944 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:16:37.768+05:30  WARN 4944 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:16:40.548+05:30  INFO 4944 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@45e1d6a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@60df0131, org.springframework.security.web.context.SecurityContextHolderFilter@6153b116, org.springframework.security.web.header.HeaderWriterFilter@60389293, org.springframework.security.web.authentication.logout.LogoutFilter@74aae322, com.hexaware.amazecare.filter.JwtAuthFilter@870413c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2095e085, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5f83fdf6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d98522c, org.springframework.security.web.session.SessionManagementFilter@37e57a20, org.springframework.security.web.access.ExceptionTranslationFilter@357f7e2d, org.springframework.security.web.access.intercept.AuthorizationFilter@403ca4ec]
+2024-02-13T09:16:41.406+05:30  INFO 4944 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 19.956 seconds (process running for 23.373)
+2024-02-13T09:16:42.795+05:30  INFO 4944 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:16:42.921+05:30  INFO 4944 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:16:42.969+05:30  INFO 4944 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 10
+2024-02-13T09:16:43.033+05:30  INFO 4944 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:16:43.270+05:30  INFO 4944 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:16:43.302+05:30  INFO 4944 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:16:43.321+05:30  INFO 4944 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 352
+2024-02-13T09:16:43.381+05:30  INFO 4944 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:16:43.386+05:30  INFO 4944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:16:43.417+05:30  INFO 4944 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:19:55.243+05:30  INFO 10204 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 10204 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:19:55.249+05:30  INFO 10204 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:19:57.922+05:30  INFO 10204 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:19:58.117+05:30  INFO 10204 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 175 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:19:59.392+05:30  INFO 10204 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:19:59.536+05:30  INFO 10204 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:19:59.544+05:30  INFO 10204 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:20:00.531+05:30  INFO 10204 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:20:00.646+05:30  INFO 10204 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:20:01.942+05:30  INFO 10204 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@340c57e0
+2024-02-13T09:20:01.950+05:30  INFO 10204 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:20:02.127+05:30  WARN 10204 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:20:02.135+05:30  WARN 10204 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:20:05.889+05:30  INFO 10204 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:20:06.172+05:30  INFO 10204 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:20:07.754+05:30  INFO 10204 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:20:10.614+05:30  WARN 10204 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:20:13.554+05:30  INFO 10204 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@f777d41, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a0a5865, org.springframework.security.web.context.SecurityContextHolderFilter@30396acf, org.springframework.security.web.header.HeaderWriterFilter@3e8742de, org.springframework.security.web.authentication.logout.LogoutFilter@66121af9, com.hexaware.amazecare.filter.JwtAuthFilter@23a78d2e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@12136fc6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@274783f8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f92977a, org.springframework.security.web.session.SessionManagementFilter@202e0ff4, org.springframework.security.web.access.ExceptionTranslationFilter@49e4b332, org.springframework.security.web.access.intercept.AuthorizationFilter@6fb94c36]
+2024-02-13T09:20:14.370+05:30  INFO 10204 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 20.365 seconds (process running for 23.136)
+2024-02-13T09:20:15.711+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:20:15.817+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:20:15.883+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T09:20:16.276+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T09:20:16.297+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:20:16.357+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:20:16.369+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:20:16.394+05:30  INFO 10204 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 352
+2024-02-13T09:20:16.451+05:30  INFO 10204 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:20:16.457+05:30  INFO 10204 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:20:16.500+05:30  INFO 10204 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:20:52.088+05:30  INFO 11248 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 11248 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:20:52.093+05:30  INFO 11248 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:20:54.887+05:30  INFO 11248 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:20:55.265+05:30  INFO 11248 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 336 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:20:57.284+05:30  INFO 11248 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:20:57.466+05:30  INFO 11248 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:20:57.475+05:30  INFO 11248 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:20:58.685+05:30  INFO 11248 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:20:58.848+05:30  INFO 11248 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:21:00.166+05:30  INFO 11248 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c9372ed
+2024-02-13T09:21:00.172+05:30  INFO 11248 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:21:00.351+05:30  WARN 11248 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:21:00.356+05:30  WARN 11248 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:21:03.951+05:30  INFO 11248 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:21:04.291+05:30  INFO 11248 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:21:06.357+05:30  INFO 11248 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:21:08.626+05:30  WARN 11248 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:21:10.830+05:30  INFO 11248 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3f92977a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1330d15e, org.springframework.security.web.context.SecurityContextHolderFilter@12136fc6, org.springframework.security.web.header.HeaderWriterFilter@64176780, org.springframework.security.web.authentication.logout.LogoutFilter@3b21f625, com.hexaware.amazecare.filter.JwtAuthFilter@c0cb9c2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@274783f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@aab0379, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27192b0c, org.springframework.security.web.session.SessionManagementFilter@357f7e2d, org.springframework.security.web.access.ExceptionTranslationFilter@3e8742de, org.springframework.security.web.access.intercept.AuthorizationFilter@38328799]
+2024-02-13T09:21:11.695+05:30  INFO 11248 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 20.868 seconds (process running for 24.327)
+2024-02-13T09:21:13.306+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:21:13.413+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:21:13.489+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T09:21:13.916+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T09:21:13.924+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:21:13.972+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:21:13.987+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:21:14.017+05:30  INFO 11248 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 352
+2024-02-13T09:21:14.072+05:30  INFO 11248 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:21:14.080+05:30  INFO 11248 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:21:14.119+05:30  INFO 11248 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:25:27.971+05:30  INFO 6104 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 6104 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:25:27.985+05:30  INFO 6104 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:25:30.680+05:30  INFO 6104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:25:31.079+05:30  INFO 6104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 342 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:25:33.159+05:30  INFO 6104 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:25:33.388+05:30  INFO 6104 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:25:33.403+05:30  INFO 6104 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:25:34.628+05:30  INFO 6104 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:25:34.752+05:30  INFO 6104 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:25:36.172+05:30  INFO 6104 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2c2aab92
+2024-02-13T09:25:36.191+05:30  INFO 6104 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:25:36.424+05:30  WARN 6104 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:25:36.430+05:30  WARN 6104 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:25:40.433+05:30  INFO 6104 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:25:40.824+05:30  INFO 6104 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:25:42.777+05:30  INFO 6104 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:25:46.276+05:30  WARN 6104 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:25:49.387+05:30  INFO 6104 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@213451a4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@403ca4ec, org.springframework.security.web.context.SecurityContextHolderFilter@79da2f0d, org.springframework.security.web.header.HeaderWriterFilter@202e0ff4, org.springframework.security.web.authentication.logout.LogoutFilter@3f92977a, com.hexaware.amazecare.filter.JwtAuthFilter@7692c0e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@380cb7e3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6153b116, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17bda3, org.springframework.security.web.session.SessionManagementFilter@286cd3ad, org.springframework.security.web.access.ExceptionTranslationFilter@530cfb27, org.springframework.security.web.access.intercept.AuthorizationFilter@14aeb8e6]
+2024-02-13T09:25:50.571+05:30  INFO 6104 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 24.081 seconds (process running for 27.27)
+2024-02-13T09:25:52.293+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:25:52.429+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to schedule appointment for patient id: 53
+2024-02-13T09:25:52.817+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:25:52.897+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T09:25:53.175+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T09:25:53.187+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:25:53.299+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:25:53.315+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:25:53.835+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 352
+2024-02-13T09:25:54.044+05:30  INFO 6104 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment cancelled successfully for id: 352
+2024-02-13T09:25:54.091+05:30  INFO 6104 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:25:54.108+05:30  INFO 6104 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:25:54.159+05:30  INFO 6104 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:27:00.542+05:30  INFO 19220 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 19220 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:27:00.553+05:30  INFO 19220 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:27:03.591+05:30  INFO 19220 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:27:03.921+05:30  INFO 19220 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 295 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:27:05.255+05:30  INFO 19220 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:27:05.420+05:30  INFO 19220 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:27:05.428+05:30  INFO 19220 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:27:06.173+05:30  INFO 19220 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:27:06.249+05:30  INFO 19220 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:27:06.983+05:30  INFO 19220 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1acc873b
+2024-02-13T09:27:06.987+05:30  INFO 19220 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:27:07.079+05:30  WARN 19220 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:27:07.082+05:30  WARN 19220 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:27:09.566+05:30  INFO 19220 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:27:09.879+05:30  INFO 19220 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:27:11.402+05:30  INFO 19220 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:27:14.530+05:30  WARN 19220 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:27:17.268+05:30  INFO 19220 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1330d15e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@27192b0c, org.springframework.security.web.context.SecurityContextHolderFilter@5cd3f5bf, org.springframework.security.web.header.HeaderWriterFilter@61668c05, org.springframework.security.web.authentication.logout.LogoutFilter@5d08bc22, com.hexaware.amazecare.filter.JwtAuthFilter@eb66b47, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34f3189, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4916619e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f2896fa, org.springframework.security.web.session.SessionManagementFilter@30396acf, org.springframework.security.web.access.ExceptionTranslationFilter@8862881, org.springframework.security.web.access.intercept.AuthorizationFilter@f777d41]
+2024-02-13T09:27:18.132+05:30  INFO 19220 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 18.876 seconds (process running for 22.903)
+2024-02-13T09:27:19.657+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:27:19.740+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to schedule appointment for patient id: 53
+2024-02-13T09:27:19.920+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:27:19.966+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T09:27:20.150+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T09:27:20.162+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:27:20.212+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:27:20.226+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:27:20.548+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 352
+2024-02-13T09:27:20.695+05:30  INFO 19220 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment cancelled successfully for id: 352
+2024-02-13T09:27:20.734+05:30  INFO 19220 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:27:20.739+05:30  INFO 19220 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:27:20.778+05:30  INFO 19220 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:29:51.315+05:30  INFO 7552 --- [main] c.h.a.service.DoctorServiceImpTest       : Starting DoctorServiceImpTest using Java 17.0.9 with PID 7552 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:29:51.320+05:30  INFO 7552 --- [main] c.h.a.service.DoctorServiceImpTest       : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:29:54.117+05:30  INFO 7552 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:29:54.401+05:30  INFO 7552 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 248 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:29:56.363+05:30  INFO 7552 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:29:56.634+05:30  INFO 7552 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:29:56.647+05:30  INFO 7552 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:29:57.855+05:30  INFO 7552 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:29:57.964+05:30  INFO 7552 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:29:59.004+05:30  INFO 7552 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47162173
+2024-02-13T09:29:59.010+05:30  INFO 7552 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:29:59.195+05:30  WARN 7552 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:29:59.201+05:30  WARN 7552 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:30:03.043+05:30  INFO 7552 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:30:03.403+05:30  INFO 7552 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:30:05.736+05:30  INFO 7552 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:30:07.887+05:30  WARN 7552 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:30:10.940+05:30  INFO 7552 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5d98522c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43e869ea, org.springframework.security.web.context.SecurityContextHolderFilter@2095e085, org.springframework.security.web.header.HeaderWriterFilter@5cd3f5bf, org.springframework.security.web.authentication.logout.LogoutFilter@faa70af, com.hexaware.amazecare.filter.JwtAuthFilter@1d9cac6e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5f83fdf6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@725f1346, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8f7cbcc, org.springframework.security.web.session.SessionManagementFilter@49d94d67, org.springframework.security.web.access.ExceptionTranslationFilter@60389293, org.springframework.security.web.access.intercept.AuthorizationFilter@465b16bb]
+2024-02-13T09:30:12.262+05:30  INFO 7552 --- [main] c.h.a.service.DoctorServiceImpTest       : Started DoctorServiceImpTest in 21.983 seconds (process running for 25.545)
+2024-02-13T09:30:14.003+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : Request initiated to create medical record for appointment id: 103
+2024-02-13T09:30:14.936+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : Request initiated to prescribe test for medical Record: 560
+2024-02-13T09:30:14.983+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : Request initiated to prescribe medicine for medical Record: 952
+2024-02-13T09:30:15.067+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : updating test result for test id: 252to negative
+2024-02-13T09:30:15.268+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : Fetching all doctor appointments for id: 752
+2024-02-13T09:30:15.320+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : Request initiated to accept appointment for id: 103
+2024-02-13T09:30:15.747+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : Request initiated to rescheduled appointment for id: 150
+2024-02-13T09:30:15.788+05:30  INFO 7552 --- [main] c.h.amazecare.service.DoctorServiceImp   : Request initiated to reject appointment for id: 103
+2024-02-13T09:30:15.846+05:30  INFO 7552 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:30:15.854+05:30  INFO 7552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:30:15.887+05:30  INFO 7552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:31:21.306+05:30  INFO 1596 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 1596 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:31:21.312+05:30  INFO 1596 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:31:24.477+05:30  INFO 1596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:31:24.669+05:30  INFO 1596 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 172 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:31:26.210+05:30  INFO 1596 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:31:26.378+05:30  INFO 1596 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:31:26.387+05:30  INFO 1596 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:31:27.124+05:30  INFO 1596 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:31:27.228+05:30  INFO 1596 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:31:28.550+05:30  INFO 1596 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6cee903a
+2024-02-13T09:31:28.554+05:30  INFO 1596 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:31:28.648+05:30  WARN 1596 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:31:28.653+05:30  WARN 1596 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:31:31.044+05:30  INFO 1596 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:31:31.271+05:30  INFO 1596 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:31:33.470+05:30  INFO 1596 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:31:36.956+05:30  WARN 1596 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:31:39.568+05:30  INFO 1596 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@213451a4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@403ca4ec, org.springframework.security.web.context.SecurityContextHolderFilter@79da2f0d, org.springframework.security.web.header.HeaderWriterFilter@202e0ff4, org.springframework.security.web.authentication.logout.LogoutFilter@3f92977a, com.hexaware.amazecare.filter.JwtAuthFilter@7692c0e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@380cb7e3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6153b116, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17bda3, org.springframework.security.web.session.SessionManagementFilter@286cd3ad, org.springframework.security.web.access.ExceptionTranslationFilter@530cfb27, org.springframework.security.web.access.intercept.AuthorizationFilter@14aeb8e6]
+2024-02-13T09:31:40.417+05:30  INFO 1596 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 20.266 seconds (process running for 23.203)
+2024-02-13T09:31:41.870+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:31:41.991+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to schedule appointment for patient id: 53
+2024-02-13T09:31:42.221+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:31:42.274+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T09:31:42.521+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T09:31:42.530+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:31:42.581+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:31:42.589+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:31:42.631+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 352
+2024-02-13T09:31:42.738+05:30  INFO 1596 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment cancelled successfully for id: 352
+2024-02-13T09:31:42.781+05:30  INFO 1596 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:31:42.786+05:30  INFO 1596 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:31:42.816+05:30  INFO 1596 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:32:42.059+05:30  INFO 4780 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 4780 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:32:42.065+05:30  INFO 4780 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:32:44.218+05:30  INFO 4780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:32:44.508+05:30  INFO 4780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 258 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:32:46.797+05:30  INFO 4780 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:32:47.198+05:30  INFO 4780 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:32:47.212+05:30  INFO 4780 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:32:48.445+05:30  INFO 4780 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:32:48.559+05:30  INFO 4780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:32:50.008+05:30  INFO 4780 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@780ee3ad
+2024-02-13T09:32:50.016+05:30  INFO 4780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:32:50.185+05:30  WARN 4780 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:32:50.190+05:30  WARN 4780 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:32:53.082+05:30  INFO 4780 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:32:53.416+05:30  INFO 4780 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:32:54.950+05:30  INFO 4780 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:32:58.038+05:30  WARN 4780 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:33:01.150+05:30  INFO 4780 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7dc779bb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@213451a4, org.springframework.security.web.context.SecurityContextHolderFilter@ee395c, org.springframework.security.web.header.HeaderWriterFilter@78cfa18c, org.springframework.security.web.authentication.logout.LogoutFilter@2a0a5865, com.hexaware.amazecare.filter.JwtAuthFilter@7f5c4ff8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@37e57a20, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@49d94d67, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@403ca4ec, org.springframework.security.web.session.SessionManagementFilter@52d57307, org.springframework.security.web.access.ExceptionTranslationFilter@30422a69, org.springframework.security.web.access.intercept.AuthorizationFilter@faa70af]
+2024-02-13T09:33:01.969+05:30  INFO 4780 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 21.247 seconds (process running for 24.797)
+2024-02-13T09:33:03.253+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:33:03.343+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to schedule appointment for patient id: 53
+2024-02-13T09:33:03.573+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:33:03.615+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T09:33:03.787+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T09:33:03.795+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:33:03.847+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:33:03.853+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:33:03.872+05:30  INFO 4780 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 6
+2024-02-13T09:33:03.918+05:30  INFO 4780 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:33:03.925+05:30  INFO 4780 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:33:03.956+05:30  INFO 4780 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:41:52.754+05:30  INFO 19264 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 19264 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:41:52.770+05:30  INFO 19264 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:41:55.994+05:30  INFO 19264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:41:56.315+05:30  INFO 19264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 285 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:41:58.745+05:30  INFO 19264 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:41:59.024+05:30  INFO 19264 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:41:59.037+05:30  INFO 19264 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:42:00.418+05:30  INFO 19264 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:42:00.525+05:30  INFO 19264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:42:01.707+05:30  INFO 19264 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@dc8b2ff
+2024-02-13T09:42:01.716+05:30  INFO 19264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:42:01.892+05:30  WARN 19264 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:42:01.896+05:30  WARN 19264 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:42:05.364+05:30  INFO 19264 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:42:05.637+05:30  INFO 19264 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:42:07.164+05:30  INFO 19264 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:42:10.830+05:30  WARN 19264 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:42:13.343+05:30  INFO 19264 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5f2896fa, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@74aae322, org.springframework.security.web.context.SecurityContextHolderFilter@34f3189, org.springframework.security.web.header.HeaderWriterFilter@5c085d4a, org.springframework.security.web.authentication.logout.LogoutFilter@43ec41d7, com.hexaware.amazecare.filter.JwtAuthFilter@23c61c1b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4916619e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@286cd3ad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@610576c8, org.springframework.security.web.session.SessionManagementFilter@12136fc6, org.springframework.security.web.access.ExceptionTranslationFilter@61668c05, org.springframework.security.web.access.intercept.AuthorizationFilter@3f92977a]
+2024-02-13T09:42:14.366+05:30  INFO 19264 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 22.991 seconds (process running for 26.609)
+2024-02-13T09:42:16.431+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T09:42:16.544+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to register patient
+2024-02-13T09:42:17.066+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to schedule appointment for patient id: 53
+2024-02-13T09:42:17.182+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T09:42:17.236+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T09:42:17.475+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T09:42:17.490+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T09:42:17.563+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T09:42:17.577+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T09:42:17.620+05:30  INFO 19264 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 6
+2024-02-13T09:42:17.679+05:30  INFO 19264 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:42:17.685+05:30  INFO 19264 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:42:17.711+05:30  INFO 19264 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:47:45.471+05:30  INFO 1224 --- [main] c.h.a.service.AdminServiceImpTest        : Starting AdminServiceImpTest using Java 17.0.9 with PID 1224 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:47:45.481+05:30  INFO 1224 --- [main] c.h.a.service.AdminServiceImpTest        : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:47:48.257+05:30  INFO 1224 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:47:48.594+05:30  INFO 1224 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 301 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:47:50.775+05:30  INFO 1224 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:47:51.061+05:30  INFO 1224 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:47:51.074+05:30  INFO 1224 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:47:52.358+05:30  INFO 1224 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:47:52.480+05:30  INFO 1224 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:47:53.782+05:30  INFO 1224 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@760a2b6e
+2024-02-13T09:47:53.791+05:30  INFO 1224 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:47:53.989+05:30  WARN 1224 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:47:53.995+05:30  WARN 1224 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:47:57.861+05:30  INFO 1224 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:47:58.192+05:30  INFO 1224 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:47:59.546+05:30  INFO 1224 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:48:02.181+05:30  WARN 1224 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:48:04.856+05:30  INFO 1224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38328799, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@f777d41, org.springframework.security.web.context.SecurityContextHolderFilter@357f7e2d, org.springframework.security.web.header.HeaderWriterFilter@606cb314, org.springframework.security.web.authentication.logout.LogoutFilter@61c0a61, com.hexaware.amazecare.filter.JwtAuthFilter@1a23136f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60389293, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5cd3f5bf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a0a5865, org.springframework.security.web.session.SessionManagementFilter@78cfa18c, org.springframework.security.web.access.ExceptionTranslationFilter@3d2162c5, org.springframework.security.web.access.intercept.AuthorizationFilter@77480751]
+2024-02-13T09:48:06.033+05:30  INFO 1224 --- [main] c.h.a.service.AdminServiceImpTest        : Started AdminServiceImpTest in 21.737 seconds (process running for 25.489)
+2024-02-13T09:48:08.139+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to add new medicine with id: 180
+2024-02-13T09:48:08.290+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all appointments
+2024-02-13T09:48:08.326+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to update doctor with id: 94
+2024-02-13T09:48:08.372+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete doctor with id: 104
+2024-02-13T09:48:08.398+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all doctors
+2024-02-13T09:48:08.485+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to assign appointment to doctor for id: 102
+2024-02-13T09:48:08.514+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete patient with id: 56
+2024-02-13T09:48:08.539+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to get all doctors with name: rohit
+2024-02-13T09:48:08.591+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all patients
+2024-02-13T09:48:08.621+05:30  INFO 1224 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new doctor
+2024-02-13T09:48:09.089+05:30  INFO 1224 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:48:09.108+05:30  INFO 1224 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:48:09.142+05:30  INFO 1224 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:48:26.481+05:30  INFO 13528 --- [main] c.h.a.service.AdminServiceImpTest        : Starting AdminServiceImpTest using Java 17.0.9 with PID 13528 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:48:26.490+05:30  INFO 13528 --- [main] c.h.a.service.AdminServiceImpTest        : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:48:28.697+05:30  INFO 13528 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:48:28.955+05:30  INFO 13528 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 228 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:48:30.714+05:30  INFO 13528 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:48:30.944+05:30  INFO 13528 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:48:30.954+05:30  INFO 13528 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:48:32.030+05:30  INFO 13528 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:48:32.149+05:30  INFO 13528 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:48:33.246+05:30  INFO 13528 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@760a2b6e
+2024-02-13T09:48:33.252+05:30  INFO 13528 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:48:33.431+05:30  WARN 13528 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:48:33.436+05:30  WARN 13528 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:48:37.075+05:30  INFO 13528 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:48:37.401+05:30  INFO 13528 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:48:38.915+05:30  INFO 13528 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:48:42.078+05:30  WARN 13528 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:48:45.010+05:30  INFO 13528 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6fb94c36, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19f19f89, org.springframework.security.web.context.SecurityContextHolderFilter@202e0ff4, org.springframework.security.web.header.HeaderWriterFilter@3d2162c5, org.springframework.security.web.authentication.logout.LogoutFilter@1923a29a, com.hexaware.amazecare.filter.JwtAuthFilter@6dcdc378, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@357f7e2d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60389293, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38328799, org.springframework.security.web.session.SessionManagementFilter@30422a69, org.springframework.security.web.access.ExceptionTranslationFilter@ce4a8a2, org.springframework.security.web.access.intercept.AuthorizationFilter@2b3ba0a8]
+2024-02-13T09:48:45.854+05:30  INFO 13528 --- [main] c.h.a.service.AdminServiceImpTest        : Started AdminServiceImpTest in 20.847 seconds (process running for 23.792)
+2024-02-13T09:48:47.430+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to add new medicine with id: 180
+2024-02-13T09:48:47.643+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all appointments
+2024-02-13T09:48:47.684+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to update doctor with id: 94
+2024-02-13T09:48:47.740+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete doctor with id: 104
+2024-02-13T09:48:47.770+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all doctors
+2024-02-13T09:48:47.874+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new admin
+2024-02-13T09:48:48.405+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to assign appointment to doctor for id: 102
+2024-02-13T09:48:48.443+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete patient with id: 56
+2024-02-13T09:48:48.469+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to get all doctors with name: rohit
+2024-02-13T09:48:48.529+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all patients
+2024-02-13T09:48:48.565+05:30  INFO 13528 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new doctor
+2024-02-13T09:48:48.870+05:30  INFO 13528 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:48:48.879+05:30  INFO 13528 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:48:48.913+05:30  INFO 13528 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:50:11.824+05:30  INFO 8884 --- [main] c.h.a.service.AdminServiceImpTest        : Starting AdminServiceImpTest using Java 17.0.9 with PID 8884 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:50:11.831+05:30  INFO 8884 --- [main] c.h.a.service.AdminServiceImpTest        : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:50:14.466+05:30  INFO 8884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:50:14.767+05:30  INFO 8884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 272 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:50:16.647+05:30  INFO 8884 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:50:16.872+05:30  INFO 8884 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:50:16.880+05:30  INFO 8884 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:50:17.895+05:30  INFO 8884 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:50:18.013+05:30  INFO 8884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:50:19.127+05:30  INFO 8884 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2c2aab92
+2024-02-13T09:50:19.135+05:30  INFO 8884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:50:19.315+05:30  WARN 8884 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:50:19.320+05:30  WARN 8884 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:50:23.011+05:30  INFO 8884 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:50:23.317+05:30  INFO 8884 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:50:24.844+05:30  INFO 8884 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:50:27.719+05:30  WARN 8884 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:50:30.504+05:30  INFO 8884 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@213451a4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@403ca4ec, org.springframework.security.web.context.SecurityContextHolderFilter@79da2f0d, org.springframework.security.web.header.HeaderWriterFilter@202e0ff4, org.springframework.security.web.authentication.logout.LogoutFilter@3f92977a, com.hexaware.amazecare.filter.JwtAuthFilter@7692c0e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@380cb7e3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6153b116, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17bda3, org.springframework.security.web.session.SessionManagementFilter@286cd3ad, org.springframework.security.web.access.ExceptionTranslationFilter@530cfb27, org.springframework.security.web.access.intercept.AuthorizationFilter@14aeb8e6]
+2024-02-13T09:50:31.454+05:30  INFO 8884 --- [main] c.h.a.service.AdminServiceImpTest        : Started AdminServiceImpTest in 20.756 seconds (process running for 24.022)
+2024-02-13T09:50:32.781+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to add new medicine with id: 180
+2024-02-13T09:50:32.913+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all appointments
+2024-02-13T09:50:32.939+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to update doctor with id: 94
+2024-02-13T09:50:32.974+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete doctor with id: 104
+2024-02-13T09:50:32.997+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all doctors
+2024-02-13T09:50:33.073+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new admin
+2024-02-13T09:50:33.419+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to assign appointment to doctor for id: 102
+2024-02-13T09:50:33.454+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete patient with id: 56
+2024-02-13T09:50:33.485+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to get all doctors with name: rohit
+2024-02-13T09:50:33.545+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all patients
+2024-02-13T09:50:33.584+05:30  INFO 8884 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new doctor
+2024-02-13T09:50:33.893+05:30  INFO 8884 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:50:33.901+05:30  INFO 8884 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:50:33.933+05:30  INFO 8884 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T09:51:28.346+05:30  INFO 18920 --- [main] c.h.a.service.AdminServiceImpTest        : Starting AdminServiceImpTest using Java 17.0.9 with PID 18920 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T09:51:28.352+05:30  INFO 18920 --- [main] c.h.a.service.AdminServiceImpTest        : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T09:51:31.330+05:30  INFO 18920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T09:51:31.572+05:30  INFO 18920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 216 ms. Found 9 JPA repository interfaces.
+2024-02-13T09:51:33.434+05:30  INFO 18920 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T09:51:33.652+05:30  INFO 18920 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T09:51:33.663+05:30  INFO 18920 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T09:51:34.723+05:30  INFO 18920 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T09:51:34.831+05:30  INFO 18920 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T09:51:36.006+05:30  INFO 18920 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71a2df1
+2024-02-13T09:51:36.013+05:30  INFO 18920 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T09:51:36.159+05:30  WARN 18920 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T09:51:36.168+05:30  WARN 18920 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T09:51:39.823+05:30  INFO 18920 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T09:51:40.137+05:30  INFO 18920 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:51:41.715+05:30  INFO 18920 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T09:51:44.807+05:30  WARN 18920 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T09:51:47.887+05:30  INFO 18920 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b3ba0a8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43ec41d7, org.springframework.security.web.context.SecurityContextHolderFilter@30422a69, org.springframework.security.web.header.HeaderWriterFilter@160c47b4, org.springframework.security.web.authentication.logout.LogoutFilter@10d1f6da, com.hexaware.amazecare.filter.JwtAuthFilter@7ffb0bb4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78cfa18c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@19e78fa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77480751, org.springframework.security.web.session.SessionManagementFilter@3fc0a2c, org.springframework.security.web.access.ExceptionTranslationFilter@43139322, org.springframework.security.web.access.intercept.AuthorizationFilter@62a153d3]
+2024-02-13T09:51:48.766+05:30  INFO 18920 --- [main] c.h.a.service.AdminServiceImpTest        : Started AdminServiceImpTest in 21.538 seconds (process running for 24.735)
+2024-02-13T09:51:50.113+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to add new medicine with id: 180
+2024-02-13T09:51:50.249+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all appointments
+2024-02-13T09:51:50.275+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to update doctor with id: 94
+2024-02-13T09:51:50.315+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete doctor with id: 104
+2024-02-13T09:51:50.338+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all doctors
+2024-02-13T09:51:50.414+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new admin
+2024-02-13T09:51:50.780+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to assign appointment to doctor for id: 102
+2024-02-13T09:51:50.815+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete patient with id: 56
+2024-02-13T09:51:50.846+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to get all doctors with name: rohit
+2024-02-13T09:51:50.914+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all patients
+2024-02-13T09:51:50.955+05:30  INFO 18920 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new doctor
+2024-02-13T09:51:51.321+05:30  INFO 18920 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T09:51:51.342+05:30  INFO 18920 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T09:51:51.421+05:30  INFO 18920 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T10:11:52.667+05:30  INFO 7832 --- [main] c.h.a.service.AdminServiceImpTest        : Starting AdminServiceImpTest using Java 17.0.9 with PID 7832 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T10:11:52.678+05:30  INFO 7832 --- [main] c.h.a.service.AdminServiceImpTest        : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T10:11:54.971+05:30  INFO 7832 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T10:11:55.209+05:30  INFO 7832 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 210 ms. Found 9 JPA repository interfaces.
+2024-02-13T10:11:57.174+05:30  INFO 7832 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T10:11:57.429+05:30  INFO 7832 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T10:11:57.441+05:30  INFO 7832 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T10:11:58.629+05:30  INFO 7832 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T10:11:58.733+05:30  INFO 7832 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T10:11:59.789+05:30  INFO 7832 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c9372ed
+2024-02-13T10:11:59.797+05:30  INFO 7832 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T10:12:00.006+05:30  WARN 7832 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T10:12:00.015+05:30  WARN 7832 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T10:12:03.996+05:30  INFO 7832 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T10:12:04.327+05:30  INFO 7832 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:12:05.916+05:30  INFO 7832 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T10:12:08.958+05:30  WARN 7832 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T10:12:11.828+05:30  INFO 7832 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3f92977a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1330d15e, org.springframework.security.web.context.SecurityContextHolderFilter@12136fc6, org.springframework.security.web.header.HeaderWriterFilter@64176780, org.springframework.security.web.authentication.logout.LogoutFilter@3b21f625, com.hexaware.amazecare.filter.JwtAuthFilter@c0cb9c2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@274783f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@aab0379, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27192b0c, org.springframework.security.web.session.SessionManagementFilter@357f7e2d, org.springframework.security.web.access.ExceptionTranslationFilter@3e8742de, org.springframework.security.web.access.intercept.AuthorizationFilter@38328799]
+2024-02-13T10:12:12.725+05:30  INFO 7832 --- [main] c.h.a.service.AdminServiceImpTest        : Started AdminServiceImpTest in 21.697 seconds (process running for 25.114)
+2024-02-13T10:12:15.067+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to add new medicine with id: 180
+2024-02-13T10:12:15.261+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all appointments
+2024-02-13T10:12:15.306+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to update doctor with id: 94
+2024-02-13T10:12:15.352+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete doctor with id: 104
+2024-02-13T10:12:15.380+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all doctors
+2024-02-13T10:12:15.482+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new admin
+2024-02-13T10:12:15.928+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to assign appointment to doctor for id: 102
+2024-02-13T10:12:15.969+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to delete patient with id: 56
+2024-02-13T10:12:16.023+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to get all doctors with name: rohit
+2024-02-13T10:12:16.075+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all patients
+2024-02-13T10:12:16.111+05:30  INFO 7832 --- [main] c.h.amazecare.service.AdminServiceImp    : Request initated to register new doctor
+2024-02-13T10:12:16.384+05:30  INFO 7832 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:12:16.393+05:30  INFO 7832 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T10:12:16.432+05:30  INFO 7832 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T10:12:32.655+05:30  INFO 15228 --- [main] c.h.a.service.PatientServiceImpTest      : Starting PatientServiceImpTest using Java 17.0.9 with PID 15228 (started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T10:12:32.662+05:30  INFO 15228 --- [main] c.h.a.service.PatientServiceImpTest      : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T10:12:35.782+05:30  INFO 15228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T10:12:36.116+05:30  INFO 15228 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 292 ms. Found 9 JPA repository interfaces.
+2024-02-13T10:12:38.111+05:30  INFO 15228 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T10:12:38.326+05:30  INFO 15228 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T10:12:38.343+05:30  INFO 15228 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T10:12:39.356+05:30  INFO 15228 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T10:12:39.467+05:30  INFO 15228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T10:12:40.632+05:30  INFO 15228 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1acc873b
+2024-02-13T10:12:40.642+05:30  INFO 15228 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T10:12:40.820+05:30  WARN 15228 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T10:12:40.826+05:30  WARN 15228 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T10:12:44.399+05:30  INFO 15228 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T10:12:44.705+05:30  INFO 15228 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:12:46.510+05:30  INFO 15228 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T10:12:49.992+05:30  WARN 15228 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T10:12:53.042+05:30  INFO 15228 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1330d15e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@27192b0c, org.springframework.security.web.context.SecurityContextHolderFilter@5cd3f5bf, org.springframework.security.web.header.HeaderWriterFilter@61668c05, org.springframework.security.web.authentication.logout.LogoutFilter@5d08bc22, com.hexaware.amazecare.filter.JwtAuthFilter@eb66b47, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34f3189, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4916619e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f2896fa, org.springframework.security.web.session.SessionManagementFilter@30396acf, org.springframework.security.web.access.ExceptionTranslationFilter@8862881, org.springframework.security.web.access.intercept.AuthorizationFilter@f777d41]
+2024-02-13T10:12:54.086+05:30  INFO 15228 --- [main] c.h.a.service.PatientServiceImpTest      : Started PatientServiceImpTest in 22.596 seconds (process running for 26.067)
+2024-02-13T10:12:55.525+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view upcoming appointments for patient ID: 53
+2024-02-13T10:12:55.663+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to register patient
+2024-02-13T10:12:56.175+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initated to schedule appointment for patient id: 53
+2024-02-13T10:12:56.286+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to view appointments for patient ID: 53
+2024-02-13T10:12:56.356+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to rescheduled appointment for id: 304
+2024-02-13T10:12:56.652+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Appointment rescheduled successfully for id: 304
+2024-02-13T10:12:56.668+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to update patient with id: 0
+2024-02-13T10:12:56.761+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Patient details updated successfully 
+2024-02-13T10:12:56.776+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to get all doctors with speciality: Ortho
+2024-02-13T10:12:57.370+05:30  INFO 15228 --- [main] c.h.amazecare.service.PatientServiceImp  : Request initiated to cancel appointment for id: 6
+2024-02-13T10:12:57.428+05:30  INFO 15228 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:12:57.435+05:30  INFO 15228 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T10:12:57.466+05:30  INFO 15228 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T10:14:35.269+05:30  INFO 16884 --- [main] c.h.amazecare.AmazeCareApplication       : Starting AmazeCareApplication using Java 17.0.9 with PID 16884 (D:\STS workspace\AmazeCare\target\classes started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T10:14:35.276+05:30  INFO 16884 --- [main] c.h.amazecare.AmazeCareApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T10:14:37.741+05:30  INFO 16884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T10:14:37.986+05:30  INFO 16884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 220 ms. Found 9 JPA repository interfaces.
+2024-02-13T10:14:39.601+05:30  INFO 16884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-02-13T10:14:39.639+05:30  INFO 16884 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-13T10:14:39.640+05:30  INFO 16884 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-13T10:14:39.963+05:30  INFO 16884 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-13T10:14:39.964+05:30  INFO 16884 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4531 ms
+2024-02-13T10:14:40.348+05:30  INFO 16884 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T10:14:40.513+05:30  INFO 16884 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T10:14:40.540+05:30  INFO 16884 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T10:14:41.384+05:30  INFO 16884 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T10:14:41.473+05:30  INFO 16884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T10:14:42.362+05:30  INFO 16884 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7b52b18a
+2024-02-13T10:14:42.369+05:30  INFO 16884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T10:14:42.541+05:30  WARN 16884 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T10:14:42.545+05:30  WARN 16884 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T10:14:45.595+05:30  INFO 16884 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T10:14:45.885+05:30  INFO 16884 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:14:47.158+05:30  INFO 16884 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T10:14:49.349+05:30  WARN 16884 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T10:14:51.594+05:30  INFO 16884 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38b7b02f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7203fac0, org.springframework.security.web.context.SecurityContextHolderFilter@1fe8a2fc, org.springframework.security.web.header.HeaderWriterFilter@3108d1e1, org.springframework.security.web.authentication.logout.LogoutFilter@39506f12, com.hexaware.amazecare.filter.JwtAuthFilter@40612056, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@cc64e22, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17fe4f0f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a6a7c53, org.springframework.security.web.session.SessionManagementFilter@29b78b34, org.springframework.security.web.access.ExceptionTranslationFilter@72a80668, org.springframework.security.web.access.intercept.AuthorizationFilter@6de4e34a]
+2024-02-13T10:14:52.532+05:30  INFO 16884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-13T10:14:52.563+05:30  INFO 16884 --- [main] c.h.amazecare.AmazeCareApplication       : Started AmazeCareApplication in 18.367 seconds (process running for 20.361)
+2024-02-13T10:15:09.810+05:30  INFO 16884 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-13T10:15:09.813+05:30  INFO 16884 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-02-13T10:15:09.817+05:30  INFO 16884 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-02-13T10:30:05.055+05:30 ERROR 16884 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2024-02-12T10:58:52Z. Current time: 2024-02-13T05:00:05Z, a difference of 64873052 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:427) ~[jjwt-impl-0.11.5.jar:0.11.5]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:529) ~[jjwt-impl-0.11.5.jar:0.11.5]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:589) ~[jjwt-impl-0.11.5.jar:0.11.5]
+	at io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173) ~[jjwt-impl-0.11.5.jar:0.11.5]
+	at com.hexaware.amazecare.service.JwtService.extractAllClaims(JwtService.java:49) ~[classes/:na]
+	at com.hexaware.amazecare.service.JwtService.extractClaim(JwtService.java:55) ~[classes/:na]
+	at com.hexaware.amazecare.service.JwtService.extractUsername(JwtService.java:62) ~[classes/:na]
+	at com.hexaware.amazecare.filter.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:42) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.0.16.jar:6.0.16]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225) ~[spring-security-config-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.16.jar:6.0.16]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-02-13T10:30:42.924+05:30  WARN 16884 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2024-02-13T10:30:56.174+05:30  INFO 16884 --- [http-nio-8080-exec-8] c.h.amazecare.service.PatientServiceImp  : Request initated to schedule appointment for patient id: 53
+2024-02-13T10:34:35.976+05:30  WARN 16884 --- [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2024-02-13T10:36:17.436+05:30  INFO 16884 --- [http-nio-8080-exec-4] c.h.amazecare.service.AdminServiceImp    : Request initiated to view all patients
+2024-02-13T10:42:36.676+05:30  INFO 16884 --- [http-nio-8080-exec-7] c.h.amazecare.service.AdminServiceImp    : Request initiated to assign appointment to doctor for id: 652
+2024-02-13T10:42:36.763+05:30  INFO 16884 --- [http-nio-8080-exec-7] c.h.amazecare.service.AdminServiceImp    : Appointment successfully assigned
+2024-02-13T10:43:29.737+05:30  WARN 16884 --- [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2024-02-13T10:45:02.339+05:30  INFO 16884 --- [http-nio-8080-exec-3] c.h.amazecare.service.DoctorServiceImp   : Fetching all doctor appointments for id: 752
+2024-02-13T10:46:42.837+05:30  WARN 16884 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2024-02-13T10:46:54.561+05:30  INFO 16884 --- [http-nio-8080-exec-7] c.h.amazecare.service.DoctorServiceImp   : Request initiated to accept appointment for id: 652
+2024-02-13T10:46:54.631+05:30  INFO 16884 --- [http-nio-8080-exec-7] c.h.amazecare.service.DoctorServiceImp   : successfully accepted appointment for id: 652
+2024-02-13T10:49:57.509+05:30  INFO 16884 --- [http-nio-8080-exec-10] c.h.amazecare.service.DoctorServiceImp   : Request initiated to create medical record for appointment id: 652
+2024-02-13T10:55:50.814+05:30  INFO 16884 --- [RMI TCP Connection(45)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-02-13T10:55:50.870+05:30  INFO 16884 --- [RMI TCP Connection(45)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-02-13T10:55:50.882+05:30  INFO 16884 --- [RMI TCP Connection(45)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-02-13T10:55:50.894+05:30  WARN 16884 --- [RMI TCP Connection(45)-127.0.0.1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.9/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.9/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.9/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.9/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.9/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.9/java.lang.Thread.run(Thread.java:840)
+2024-02-13T10:55:50.936+05:30  INFO 16884 --- [RMI TCP Connection(45)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:55:50.948+05:30  INFO 16884 --- [RMI TCP Connection(45)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T10:55:50.969+05:30  INFO 16884 --- [RMI TCP Connection(45)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T10:55:57.496+05:30  INFO 2388 --- [main] c.h.amazecare.AmazeCareApplication       : Starting AmazeCareApplication using Java 17.0.9 with PID 2388 (D:\STS workspace\AmazeCare\target\classes started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T10:55:57.504+05:30  INFO 2388 --- [main] c.h.amazecare.AmazeCareApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T10:55:59.767+05:30  INFO 2388 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T10:55:59.998+05:30  INFO 2388 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 208 ms. Found 9 JPA repository interfaces.
+2024-02-13T10:56:01.735+05:30  INFO 2388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-02-13T10:56:01.769+05:30  INFO 2388 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-13T10:56:01.771+05:30  INFO 2388 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-13T10:56:02.143+05:30  INFO 2388 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-13T10:56:02.145+05:30  INFO 2388 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4502 ms
+2024-02-13T10:56:02.630+05:30  INFO 2388 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T10:56:02.853+05:30  INFO 2388 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T10:56:02.863+05:30  INFO 2388 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T10:56:03.819+05:30  INFO 2388 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T10:56:03.935+05:30  INFO 2388 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T10:56:04.947+05:30  INFO 2388 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@65ef9a0a
+2024-02-13T10:56:04.956+05:30  INFO 2388 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T10:56:05.121+05:30  WARN 2388 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T10:56:05.125+05:30  WARN 2388 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T10:56:08.978+05:30  INFO 2388 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T10:56:09.289+05:30  INFO 2388 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:56:10.684+05:30  INFO 2388 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T10:56:13.376+05:30  WARN 2388 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T10:56:15.700+05:30  INFO 2388 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ba62429, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a3e2035, org.springframework.security.web.context.SecurityContextHolderFilter@2ae6cde4, org.springframework.security.web.header.HeaderWriterFilter@5efb3259, org.springframework.security.web.authentication.logout.LogoutFilter@65c6a7a, com.hexaware.amazecare.filter.JwtAuthFilter@4ed74d03, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@314e2b4b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@789cdc12, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@52b2f795, org.springframework.security.web.session.SessionManagementFilter@6cee6eb7, org.springframework.security.web.access.ExceptionTranslationFilter@7fa498b3, org.springframework.security.web.access.intercept.AuthorizationFilter@46aaf47c]
+2024-02-13T10:56:16.917+05:30  INFO 2388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-13T10:56:16.942+05:30  INFO 2388 --- [main] c.h.amazecare.AmazeCareApplication       : Started AmazeCareApplication in 20.614 seconds (process running for 23.295)
+2024-02-13T10:56:20.217+05:30  INFO 2388 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-02-13T10:56:20.260+05:30  INFO 2388 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-02-13T10:56:20.272+05:30  WARN 2388 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.9/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.9/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.9/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.9/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.9/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.9/java.lang.Thread.run(Thread.java:840)
+2024-02-13T10:56:20.291+05:30  INFO 2388 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T10:56:20.297+05:30  INFO 2388 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T10:56:20.329+05:30  INFO 2388 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-13T11:18:41.814+05:30  INFO 5776 --- [main] c.h.amazecare.AmazeCareApplication       : Starting AmazeCareApplication using Java 17.0.9 with PID 5776 (D:\STS workspace\AmazeCare\target\classes started by 91700 in D:\STS workspace\amazecare)
+2024-02-13T11:18:41.822+05:30  INFO 5776 --- [main] c.h.amazecare.AmazeCareApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-02-13T11:18:44.171+05:30  INFO 5776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-13T11:18:44.365+05:30  INFO 5776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 172 ms. Found 9 JPA repository interfaces.
+2024-02-13T11:18:45.955+05:30  INFO 5776 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-02-13T11:18:45.978+05:30  INFO 5776 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-13T11:18:45.979+05:30  INFO 5776 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-13T11:18:46.333+05:30  INFO 5776 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-13T11:18:46.334+05:30  INFO 5776 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4375 ms
+2024-02-13T11:18:46.738+05:30  INFO 5776 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-13T11:18:46.917+05:30  INFO 5776 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.20.Final
+2024-02-13T11:18:46.926+05:30  INFO 5776 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2024-02-13T11:18:47.816+05:30  INFO 5776 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-13T11:18:47.891+05:30  INFO 5776 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-13T11:18:48.698+05:30  INFO 5776 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a890fdd
+2024-02-13T11:18:48.705+05:30  INFO 5776 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-13T11:18:48.845+05:30  WARN 5776 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-13T11:18:48.850+05:30  WARN 5776 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-13T11:18:51.794+05:30  INFO 5776 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-13T11:18:52.094+05:30  INFO 5776 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T11:18:53.341+05:30  INFO 5776 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-02-13T11:18:55.426+05:30  WARN 5776 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-13T11:18:57.405+05:30  INFO 5776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3df3e1e9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d2c8c3b, org.springframework.security.web.context.SecurityContextHolderFilter@75862489, org.springframework.security.web.header.HeaderWriterFilter@356285d9, org.springframework.security.web.authentication.logout.LogoutFilter@773bfe56, com.hexaware.amazecare.filter.JwtAuthFilter@31c29db1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5323c6de, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3af5f0da, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@39506f12, org.springframework.security.web.session.SessionManagementFilter@3108d1e1, org.springframework.security.web.access.ExceptionTranslationFilter@1d891373, org.springframework.security.web.access.intercept.AuthorizationFilter@3680cde9]
+2024-02-13T11:18:58.315+05:30  INFO 5776 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-13T11:18:58.344+05:30  INFO 5776 --- [main] c.h.amazecare.AmazeCareApplication       : Started AmazeCareApplication in 17.612 seconds (process running for 19.608)
+2024-02-13T11:19:40.724+05:30  INFO 5776 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-13T11:19:40.725+05:30  INFO 5776 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-02-13T11:19:40.734+05:30  INFO 5776 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2024-02-13T11:19:42.241+05:30  INFO 5776 --- [http-nio-8080-exec-2] c.h.amazecare.service.DoctorServiceImp   : Request initiated to create medical record for appointment id: 652
+2024-02-13T11:19:57.057+05:30  INFO 5776 --- [http-nio-8080-exec-3] c.h.amazecare.service.DoctorServiceImp   : Request initiated to create medical record for appointment id: 652
+2024-02-13T11:20:09.864+05:30  INFO 5776 --- [RMI TCP Connection(5)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-02-13T11:20:09.909+05:30  INFO 5776 --- [RMI TCP Connection(5)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-02-13T11:20:09.915+05:30  INFO 5776 --- [RMI TCP Connection(5)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-02-13T11:20:09.921+05:30  WARN 5776 --- [RMI TCP Connection(5)-127.0.0.1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.9/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.9/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.9/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.9/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.9/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.9/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.9/java.lang.Thread.run(Thread.java:840)
+2024-02-13T11:20:09.949+05:30  INFO 5776 --- [RMI TCP Connection(5)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-13T11:20:09.959+05:30  INFO 5776 --- [RMI TCP Connection(5)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-13T11:20:10.001+05:30  INFO 5776 --- [RMI TCP Connection(5)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

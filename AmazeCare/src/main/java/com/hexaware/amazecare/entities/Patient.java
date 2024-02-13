@@ -124,8 +124,6 @@ public class Patient {
 		this.medicalRecords = medicalRecords;
 	}
 	
-	
-
 	public String getUserName() {
 		return userName;
 	}

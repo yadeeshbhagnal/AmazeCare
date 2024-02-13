@@ -143,7 +143,6 @@ public class DoctorServiceImp implements IDoctorService {
 		Appointment existingAppointment = appointmentRepository.findById(appointmentId).orElse(null);
 		
 		if(existingAppointment!=null && existingAppointment.getDoctor().getDoctorId() == doctor.getDoctorId() && existingAppointment.getStatus().equals("Accepted")) {
-			flag =true;
 			MedicalRecord medicalRecord = new MedicalRecord();
 			
 			medicalRecord.setCurrentSymptoms(medicalRecordDto.getCurrentSymptoms());
@@ -153,6 +152,12 @@ public class DoctorServiceImp implements IDoctorService {
 			medicalRecord.setDoctor(doctor);
 			medicalRecord.setPatient(existingAppointment.getPatient());
 			medicalRecordRepository.save(medicalRecord);
+			
+			existingAppointment.setStatus("Completed");
+			appointmentRepository.save(existingAppointment);
+			
+			flag =true;
+		
 		}
 		return flag;
 	}

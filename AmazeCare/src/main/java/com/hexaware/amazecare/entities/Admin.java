@@ -18,11 +18,10 @@ public class Admin {
 	@NotBlank
 	private String adminName;
 	
-	@Size(max = 20)
+	@Size(max = 30)
 	@NotBlank
 	private String userName;
 	
-	@Size(max = 20)
 	@NotBlank
 	private String password;
 	

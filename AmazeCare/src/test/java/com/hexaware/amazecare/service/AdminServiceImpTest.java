@@ -27,21 +27,7 @@ class AdminServiceImpTest {
 
 	@Autowired
 	IAdminService adminService;
-	
-	@Disabled
-	@Test
-    public void testRegisterAdmin() {
-      
-        AdminDto adminDto = new AdminDto();
-        
-        adminDto.setUserName("Ankush123");
-        adminDto.setPassword("Ankush1234");
-        adminDto.setAdminName("Ankush");
-        adminDto.setEmail("ankush@gmail.com");
 
-        boolean result = adminService.registerAdmin(adminDto);
-        assertTrue(result);
-    }
 	
 	@Test
     public void testRegisterDoctor() {
@@ -136,5 +122,20 @@ class AdminServiceImpTest {
 		List<AdminViewDto> list = adminService.viewUpcomingAppointments();
 		assertNotNull(list);
 	}
+	
+
+	@Test
+    public void testRegisterAdmin() {
+      
+        AdminDto adminDto = new AdminDto();
+        
+        adminDto.setUserName("Ankush123");
+        adminDto.setPassword("Ankush1234");
+        adminDto.setAdminName("Ankush");
+        adminDto.setEmail("ankush@gmail.com");
+
+        boolean result = adminService.registerAdmin(adminDto);
+        assertTrue(result);
+    }
 
 }
