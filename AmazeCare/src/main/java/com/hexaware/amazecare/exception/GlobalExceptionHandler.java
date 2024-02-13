@@ -12,7 +12,7 @@ public class GlobalExceptionHandler {
 	
 @ExceptionHandler({AppointmentNotFoundException.class, DoctorNotFoundException.class, 
 	MedicalRecordNotFoundException.class, MedicineNotFoundException.class,
-	PatientNotFoundException.class, TestNotFoundException.class, RecommendedTestNotFound.class})
+	PatientNotFoundException.class, TestNotFoundException.class, RecommendedTestNotFound.class, InvalidDateException.class})
 
 public ResponseEntity<String> handleExp(Exception e){
 	return new ResponseEntity<>(e.toString(),HttpStatus.EXPECTATION_FAILED);

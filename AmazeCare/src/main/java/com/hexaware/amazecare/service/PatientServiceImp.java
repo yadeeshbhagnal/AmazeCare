@@ -112,15 +112,19 @@ public class PatientServiceImp implements IPatientService {
 		if(doctor != null) 
 		{
 			flag = true;
-			Appointment appointment = new Appointment();
-			appointment.setStatus("Pending");
-			appointment.setDate(appointmentDto.getDate());
-			appointment.setSymptoms(appointmentDto.getSymptoms());
-			appointment.setVisitType(appointmentDto.getVisitType());
-			appointment.setPatient(patient);
-			appointment.setDoctor(doctor);
+			if(appointmentDto.getDate().isAfter(LocalDate.now())) {
+				Appointment appointment = new Appointment();
+				appointment.setStatus("Pending");
+				appointment.setDate(appointmentDto.getDate());
+				appointment.setSymptoms(appointmentDto.getSymptoms());
+				appointment.setVisitType(appointmentDto.getVisitType());
+				appointment.setPatient(patient);
+				appointment.setDoctor(doctor);
 		
 		appointmentRepository.save(appointment);
+		}else {
+			throw new IllegalArgumentException("Appointment date must be greater than current date");
+		}
 		}
 		return flag;
 	}
