@@ -1,11 +1,14 @@
 package com.hexaware.amazecare.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class RecommendedTests {
@@ -13,11 +16,14 @@ public class RecommendedTests {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int recommendedTestId;
 	
+	@NotBlank
 	private String testName;
+	@NotBlank
 	private String testResult;
 	
 	@ManyToOne
 	@JoinColumn(name = "record_Id")
+	@JsonBackReference
 	private MedicalRecord medicalRecord;
 	
 

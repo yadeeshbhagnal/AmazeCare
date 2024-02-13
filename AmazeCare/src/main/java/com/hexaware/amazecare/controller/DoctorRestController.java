@@ -20,18 +20,15 @@ import com.hexaware.amazecare.dto.AuthRequest;
 import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.dto.RecommendedMedicineDto;
 import com.hexaware.amazecare.dto.RecommendedTestsDto;
-import com.hexaware.amazecare.entities.Appointment;
-import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.exception.AppointmentNotFoundException;
-import com.hexaware.amazecare.exception.DoctorNotFoundException;
 import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
 import com.hexaware.amazecare.exception.MedicineNotFoundException;
-import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.exception.RecommendedTestNotFound;
 import com.hexaware.amazecare.exception.TestNotFoundException;
-import com.hexaware.amazecare.service.DoctorServiceImp;
 import com.hexaware.amazecare.service.IDoctorService;
 import com.hexaware.amazecare.service.IMedicalRecordService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/doctor")
@@ -97,7 +94,7 @@ public class DoctorRestController {
 	
 	@PostMapping("/createmedicalrecord/{appointmentId}")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String createMedicalRecord(@RequestBody MedicalRecordDto medicalRecordDto, @PathVariable int appointmentId) throws AppointmentNotFoundException{
+	public String createMedicalRecord(@RequestBody @Valid MedicalRecordDto medicalRecordDto, @PathVariable int appointmentId) throws AppointmentNotFoundException{
 		if(doctorService.createMedicalRecord(medicalRecordDto,appointmentId)) {
 			return "Medical record created";
 		}else{
@@ -107,7 +104,7 @@ public class DoctorRestController {
 	
 	@PostMapping("/prescribemedicine/{recordId}")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String prescribeMedicine(@RequestBody RecommendedMedicineDto recomenMedicineDto, @PathVariable int recordId){
+	public String prescribeMedicine(@RequestBody @Valid RecommendedMedicineDto recomenMedicineDto, @PathVariable int recordId){
 		String result = null;
 		try {
 			if(doctorService.prescribeMedicine(recomenMedicineDto, recordId)) {
@@ -121,7 +118,7 @@ public class DoctorRestController {
 	
 	@PostMapping("/prescribetest/{recordId}")
     @PreAuthorize("hasAuthority('Doctor')")
-	public String prescribeTest(@RequestBody RecommendedTestsDto recommendedTestDto, @PathVariable int recordId){
+	public String prescribeTest(@RequestBody @Valid RecommendedTestsDto recommendedTestDto, @PathVariable int recordId){
 		String result = null;
 		try {
 			if(doctorService.prescribeTest(recommendedTestDto, recordId)) {

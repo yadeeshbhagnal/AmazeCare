@@ -6,6 +6,7 @@ import com.hexaware.amazecare.dto.MedicalRecordDto;
 import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.entities.RecommendedMedicine;
 import com.hexaware.amazecare.entities.RecommendedTests;
+import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
 
 public interface IMedicalRecordService {
 

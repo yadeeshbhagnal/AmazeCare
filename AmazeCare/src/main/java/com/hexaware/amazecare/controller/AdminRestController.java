@@ -29,6 +29,8 @@ import com.hexaware.amazecare.exception.DoctorNotFoundException;
 import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.service.IAdminService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/admin")
 public class AdminRestController {
@@ -40,7 +42,7 @@ public class AdminRestController {
 	
 	@PostMapping("/registeradmin")
     @PreAuthorize("hasAuthority('Admin')")
-	public String registerAdmin(@RequestBody AdminDto adminDto) {
+	public String registerAdmin(@RequestBody @Valid AdminDto adminDto) {
 		adminService.registerAdmin(adminDto);
 		return "Admin registered successfully";
 	}
@@ -52,7 +54,7 @@ public class AdminRestController {
 	
 	@PostMapping("/registerdoctor")
     @PreAuthorize("hasAuthority('Admin')")
-	public String registerDoctor(@RequestBody DoctorDto doctorDto) {
+	public String registerDoctor(@RequestBody @Valid DoctorDto doctorDto) {
 		System.out.println("called");
 		adminService.registerDoctor(doctorDto);
 		return "Doctor successfully added";
@@ -61,7 +63,7 @@ public class AdminRestController {
 	
 	@PutMapping("/updatedoctordetails")
     @PreAuthorize("hasAuthority('Admin')")
-	public String updateDoctor(@RequestBody DoctorDto doctorDto) throws DoctorNotFoundException{
+	public String updateDoctor(@RequestBody @Valid DoctorDto doctorDto) throws DoctorNotFoundException{
 		if(adminService.updateDoctor(doctorDto)) {
 			return "Doctor details updated";
 		}else {
@@ -116,7 +118,7 @@ public class AdminRestController {
 	}
 	@PostMapping("/addtests")
     @PreAuthorize("hasAuthority('Admin')")
-	public String addTests(@RequestBody AvailableTests availableTests)
+	public String addTests(@RequestBody @Valid AvailableTests availableTests)
 	{
 		adminService.addTests(availableTests);
 		return "Test added";
@@ -124,7 +126,7 @@ public class AdminRestController {
 	
 	@PostMapping("/addmedicine")
     @PreAuthorize("hasAuthority('Admin')")
-	public String addMedicines(@RequestBody AvailableMedicines availableMedicines)
+	public String addMedicines(@RequestBody @Valid AvailableMedicines availableMedicines)
 	{
 		adminService.addMedicines(availableMedicines);
 		return "Medicine added";

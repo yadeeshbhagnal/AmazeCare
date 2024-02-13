@@ -6,20 +6,17 @@ public class RecommendedMedicineDto {
 	private String medicineName;
 	private int quantity;
 	private String dosage;
-	private int RecordId;
 	
 	public RecommendedMedicineDto() {
 		super();
 	}
 
-	public RecommendedMedicineDto(int recommendedMedicineId, String medicineName, int quantity, String dosage,
-			int recordId) {
+	public RecommendedMedicineDto(int recommendedMedicineId, String medicineName, int quantity, String dosage) {
 		super();
 		this.recommendedMedicineId = recommendedMedicineId;
 		this.medicineName = medicineName;
 		this.quantity = quantity;
 		this.dosage = dosage;
-		RecordId = recordId;
 	}
 
 	public int getRecommendedMedicineId() {
@@ -52,13 +49,5 @@ public class RecommendedMedicineDto {
 
 	public void setDosage(String dosage) {
 		this.dosage = dosage;
-	}
-
-	public int getRecordId() {
-		return RecordId;
-	}
-
-	public void setRecordId(int recordId) {
-		RecordId = recordId;
 	}
 }

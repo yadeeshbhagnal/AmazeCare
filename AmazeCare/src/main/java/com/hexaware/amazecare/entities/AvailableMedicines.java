@@ -1,14 +1,25 @@
 package com.hexaware.amazecare.entities;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class AvailableMedicines {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int medicineId;
+	
+	@NotBlank
 	private String medicineName;
+	
+	@NotBlank
+	@Positive
 	private double medicinePrice;
 	public AvailableMedicines() {
 		super();

@@ -15,6 +15,7 @@ import com.hexaware.amazecare.entities.MedicalRecord;
 import com.hexaware.amazecare.entities.Patient;
 import com.hexaware.amazecare.entities.RecommendedMedicine;
 import com.hexaware.amazecare.entities.RecommendedTests;
+import com.hexaware.amazecare.exception.MedicalRecordNotFoundException;
 import com.hexaware.amazecare.repository.MedicalRecordRepository;
 import com.hexaware.amazecare.repository.PatientRepository;
 import com.hexaware.amazecare.repository.RecommendedMedicineRepository;
@@ -53,35 +54,42 @@ public class MedicalRecordServiceImp implements IMedicalRecordService {
 	}
 
 	@Override
-	public List<RecommendedTests> viewRecommendedTests(int recordId) {
-		
-		String role = getCurrentRole();
-		
+	public List<RecommendedTests> viewRecommendedTests(int recordId){
 		List<RecommendedTests> testList = null;
-		logger.info("Request initiated to view recommended test for patient with id: " + recordId);
-		if(role.equals("Doctor"))
-		{
-			testList = recommendedTestsRepository.findByMedicalRecordRecordId(recordId);
-		}else if(role.equals("Patient")) {
-			Patient patient = getCurrentPatient().get();
-			if(medicalRecordRepository.findById(recordId).get().getPatient().getPatientId() == patient.getPatientId()) {
+		
+		if(medicalRecordRepository.findById(recordId).isPresent()) {
+			String role = getCurrentRole();		
+			
+			logger.info("Request initiated to view recommended test for patient with id: " + recordId);
+			if(role.equals("Doctor"))
+			{
 				testList = recommendedTestsRepository.findByMedicalRecordRecordId(recordId);
+				
+			}else if(role.equals("Patient")) {
+				Patient patient = getCurrentPatient().get();
+				if(medicalRecordRepository.findById(recordId).get().getPatient().getPatientId() == patient.getPatientId()) {
+					testList = recommendedTestsRepository.findByMedicalRecordRecordId(recordId);
+				}
 			}
 		}
+		
 		return testList;
+
 	}
 
 	@Override
 	public List<RecommendedMedicine> viewRecommendedMedicine(int recordId) {
 		String role = getCurrentRole();
 		List<RecommendedMedicine> medicineList = null;
-		if(role.equals("Doctor"))
-		{	
-			medicineList = recommendedMedicineRepository.findByMedicalRecordRecordId(recordId);
-		}else if(role.equals("Patient")) {
-			Patient patient = getCurrentPatient().get();
-			if(medicalRecordRepository.findById(recordId).get().getPatient().getPatientId() == patient.getPatientId()) {
+		if(medicalRecordRepository.findById(recordId).isPresent()) {
+			if(role.equals("Doctor"))
+			{	
 				medicineList = recommendedMedicineRepository.findByMedicalRecordRecordId(recordId);
+			}else if(role.equals("Patient")) {
+				Patient patient = getCurrentPatient().get();
+				if(medicalRecordRepository.findById(recordId).get().getPatient().getPatientId() == patient.getPatientId()) {
+					medicineList = recommendedMedicineRepository.findByMedicalRecordRecordId(recordId);
+				}
 			}
 		}
 		return medicineList;

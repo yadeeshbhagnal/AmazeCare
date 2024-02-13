@@ -39,7 +39,7 @@ public class MedicalRecordRestController {
         return medicalRecord;
 	}
 	
-	@GetMapping("/viewmedicalrecord")
+	@GetMapping("/viewpatientmedicalrecord")
     @PreAuthorize("hasAuthority('Patient')")
 	public List<MedicalRecord> viewMedicalRecordPatient() throws MedicalRecordNotFoundException
 	{
@@ -56,7 +56,7 @@ public class MedicalRecordRestController {
 	public List<RecommendedTests> viewRecommendedTests(@PathVariable int recordId) throws MedicalRecordNotFoundException
 	{
 		List<RecommendedTests> recommendedTests = medicalService.viewRecommendedTests(recordId);
-        if (recommendedTests == null || recommendedTests.isEmpty()) {
+        if (recommendedTests == null) {
         	logger.info("Exception occured while fetching recommended tests for record id: " + recordId);
             throw new MedicalRecordNotFoundException("Record with ID " + recordId + " not found.");
         }

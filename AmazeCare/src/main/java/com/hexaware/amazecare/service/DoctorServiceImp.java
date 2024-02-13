@@ -159,7 +159,7 @@ public class DoctorServiceImp implements IDoctorService {
 
 	@Override
 	public boolean prescribeMedicine(RecommendedMedicineDto recommendedMedicineDto, int recordId) throws MedicalRecordNotFoundException, MedicineNotFoundException{
-		logger.info("Request initiated to prescribe medicine for medical Record: " + recommendedMedicineDto.getRecordId());
+		logger.info("Request initiated to prescribe medicine for medical Record: " + recordId);
 		
 		Doctor doctor = getCurrentDoctor().get();
 		MedicalRecord medicalRecord = medicalRecordRepository.findById(recordId).orElse(null);
@@ -205,7 +205,7 @@ public class DoctorServiceImp implements IDoctorService {
 		recommendedTests.setTestName(recommendedTestsDto.getTestName());
 		recommendedTests.setTestResult("To be conducted");
 		recommendedTestRepository.save(recommendedTests);
-		logger.info("Successfully prescribed test for record: " + recommendedTestsDto.getRecordId());
+		logger.info("Successfully prescribed test for record: " + recordId);
 		
 		return true;
 	}
@@ -214,7 +214,6 @@ public class DoctorServiceImp implements IDoctorService {
 	public boolean updateTestResult(int recommendedTestId, String result) {
 		logger.info("updating test result for test id: " + recommendedTestId + "to " + result);
 		boolean flag = false;
-		Doctor doctor = getCurrentDoctor().get();	 
 		RecommendedTests test = recommendedTestRepository.findById(recommendedTestId).orElse(null);
 		if(test!=null) {
 			test.setTestResult(result);

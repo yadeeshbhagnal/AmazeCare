@@ -5,19 +5,17 @@ public class RecommendedTestsDto {
 	private int recommendedTestId;
 	private String testName;
 	private String testResult;
-	private int recordId;
 	
 
 	public RecommendedTestsDto() {
 		super();
 	}
 
-	public RecommendedTestsDto(int recommendedTestId, String testName, String testResult, int recordId) {
+	public RecommendedTestsDto(int recommendedTestId, String testName, String testResult) {
 		super();
 		this.recommendedTestId = recommendedTestId;
 		this.testName = testName;
 		this.testResult = testResult;
-		this.recordId = recordId;
 	}
 
 	public String getTestName() {
@@ -44,18 +42,12 @@ public class RecommendedTestsDto {
 		this.recommendedTestId = recommendedTestId;
 	}
 
-	public int getRecordId() {
-		return recordId;
-	}
-
-	public void setRecordId(int recordId) {
-		this.recordId = recordId;
-	}
-
 	@Override
 	public String toString() {
 		return "RecommendedTestsDto [recommendedTestId=" + recommendedTestId + ", testName=" + testName
-				+ ", testResult=" + testResult + ", recordId=" + recordId + "]";
+				+ ", testResult=" + testResult + "]";
 	}
+	
+	
 }
 

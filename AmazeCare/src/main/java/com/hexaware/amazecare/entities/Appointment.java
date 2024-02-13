@@ -30,13 +30,13 @@ public class Appointment {
 	
 	private LocalTime time;
 	
-	@Size(max = 255)
+	@Size(max = 20)
 	private String symptoms;
 	
-	@Size(max = 255)
+	@Size(max = 15)
 	private String visitType;
 	
-	@Size(max = 255)
+	@Size(max = 30)
 	private String status;
 	
 	@ManyToOne

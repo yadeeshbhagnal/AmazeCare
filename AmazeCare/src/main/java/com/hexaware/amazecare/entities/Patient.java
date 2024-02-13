@@ -28,7 +28,7 @@ public class Patient {
 	private int patientId;
 	
 	@Pattern(regexp = "[A-z][a-z]{3,10}")
-	@Size(max = 255)
+	@Size(max = 25)
 	private String patientName;
 	
 	@Positive
@@ -37,11 +37,10 @@ public class Patient {
 	private LocalDate dateOfBirth;
 	
 	@Pattern(regexp = "^\\d{10}$")
-	@Size(max = 255)
 	private String contactNumber;
 	
 	@Pattern(regexp = "^[a-zA-Z0-9\s.,#-]*$")
-	@Size(max = 255)
+	@Size(max = 40)
 	private String address;
 	
 	@JsonIgnore

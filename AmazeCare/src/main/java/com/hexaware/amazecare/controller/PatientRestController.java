@@ -35,6 +35,8 @@ import com.hexaware.amazecare.exception.PatientNotFoundException;
 import com.hexaware.amazecare.service.IMedicalRecordService;
 import com.hexaware.amazecare.service.IPatientService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/patient")
 public class PatientRestController {
@@ -48,7 +50,7 @@ public class PatientRestController {
 	Logger logger = LoggerFactory.getLogger(PatientRestController.class);
 	
 	@PostMapping("/register")
-	public String registerPatient(@RequestBody PatientDto patientDto) {
+	public String registerPatient(@RequestBody @Valid PatientDto patientDto) {
 		service.registerPatient(patientDto);
 		return "Patient registered successfully";
 	}
@@ -73,7 +75,7 @@ public class PatientRestController {
 	
 	@PostMapping("/schedule/{doctorId}")
 	@PreAuthorize("hasAuthority('Patient')")
-	public String scheduleAppointment(@RequestBody AppointmentDto appointmentDto,@PathVariable int doctorId) throws DoctorNotFoundException
+	public String scheduleAppointment(@RequestBody @Valid AppointmentDto appointmentDto,@PathVariable int doctorId) throws DoctorNotFoundException
 	{
 			if(service.scheduleAppointment(appointmentDto, doctorId)) {
 				return "Appointment scheduled successfully";

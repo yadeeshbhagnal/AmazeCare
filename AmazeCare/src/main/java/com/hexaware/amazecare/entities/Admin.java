@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -14,17 +15,21 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long adminId;
 	
+	@NotBlank
 	private String adminName;
 	
-	@Size(max = 255)
+	@Size(max = 20)
+	@NotBlank
 	private String userName;
 	
-	@Size(max = 255)
+	@Size(max = 20)
+	@NotBlank
 	private String password;
 	
 	@Size(max = 255)
 	@Email
 	private String email;
+	
 	
 	private String role;
 	

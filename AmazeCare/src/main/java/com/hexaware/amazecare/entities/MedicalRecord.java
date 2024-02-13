@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -14,6 +15,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -24,20 +27,26 @@ public class MedicalRecord {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int recordId;
 	
-	@Size(max = 255)
+	@NotBlank
+	@Size(max = 25)
 	private String currentSymptoms;
 	
-	@Size(max = 255)
+	@NotBlank
+	@Size(max = 25)
 	private String physicalExamination;
 	
-	@Size(max = 255)
+	@NotBlank
+	@Size(max = 25)
 	private String treatmentPlan;
 	
+	@NotNull
 	private LocalDate date;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "medicalRecord",cascade = CascadeType.ALL)
 	private List<RecommendedTests> recommendedTests;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "medicalRecord",cascade = CascadeType.ALL)
 	private List<RecommendedMedicine> recommendedMedicine;
 	
