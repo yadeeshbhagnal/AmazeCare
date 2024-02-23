@@ -24,17 +24,17 @@
             <h1>Login As Doctor</h1>
             <h6>Please enter your Username & Password</h6>
           </div>
-          <form>
+          <form #formData=ngForm (ngSubmit)="readFormData(formData)">
             <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+              <label for="username" class="form-label" required >Username</label>
+              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required  #username="ngModel"  ngModel>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Password" name="password"  required  #pwd="ngModel"  ngModel>
             </div>
             <div class="d-grid gap-2 d-md-block">
-              <button class="btn btn-success" type="button">Login</button>
+              <button class="btn btn-success" type="submit">Login</button>
               <a href="#" class="forgot-password">Forgot Password?</a>
             </div>
           </form>

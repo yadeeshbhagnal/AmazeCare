@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Amazecare';
+  selectedUserType: string = '';
+
+  loginAs(userType: string) {
+    this.selectedUserType = userType;
+  }
 }

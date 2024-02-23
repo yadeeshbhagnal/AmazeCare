@@ -1,1 +1,44 @@
-<p>admin-login works!</p>
+<nav class="navbar navbar-expand-lg bg-dark">
+    <a class="navbar-brand" href="#">AmazeCare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="text-center">
+            <h1>Login As Admin</h1>
+            <h6>Please enter your Username & Password</h6>
+          </div>
+          <form #formData=ngForm (ngSubmit)="readFormData(formData)">
+            <div class="mb-3">
+              <label for="username" class="form-label" required >Username</label>
+              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required  #username="ngModel"  ngModel>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Password" name="password"  required  #pwd="ngModel"  ngModel>
+            </div>
+            <div class="d-grid gap-2 d-md-block">
+              <button class="btn btn-success" type="submit">Login</button>
+              <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

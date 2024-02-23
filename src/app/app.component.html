@@ -1,2 +1,27 @@
-<!-- <app-doctor-login></app-doctor-login> -->
-<router-outlet></router-outlet>
+<body>
+<div class="container">
+  <h1>Welcome to AmazeCare</h1>
+
+  <div class="user-type-buttons">
+    <button (click)="loginAs('doctor')">Doctor Login</button>
+    <button (click)="loginAs('patient')">Patient Login</button>
+    <button (click)="loginAs('admin')">Admin Login</button>
+  </div>
+
+  <!-- <button class="btn btn-info mt-3" routerLink="/patient-registeration">Patient Registration</button> -->
+
+  <div *ngIf="selectedUserType">
+    <ng-container *ngIf="selectedUserType === 'doctor'">
+      <app-doctor-login></app-doctor-login>
+    </ng-container>
+    <ng-container *ngIf="selectedUserType === 'patient'">
+      <app-patient-login></app-patient-login>
+    </ng-container>
+    <ng-container *ngIf="selectedUserType === 'admin'">
+      <app-admin-login></app-admin-login>
+    </ng-container>
+  </div>
+
+</div>
+<!-- <router-outlet></router-outlet> -->
+</body>

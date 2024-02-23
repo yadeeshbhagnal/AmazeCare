@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {HttpClientModule}  from '@angular/common/http' ;
 import { AdminRegisterComponent } from './admin/admin-register/admin-register.component';
 import { DoctorRegisterComponent } from './admin/doctor-register/doctor-register.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
@@ -82,7 +83,9 @@ import { RecommendedMedicinesViewComponent } from './MedicalRecord/recommended-m
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

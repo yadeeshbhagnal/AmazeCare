@@ -1,1 +1,58 @@
-<p>patient-registeration works!</p>
+<form #patientRegisteration= ngForm class = "container col-md-5">
+ 
+    <!-- (ngSubmit)="getFormData(patientRegisteration.value)" -->
+
+<h3>Patient Registeration Form</h3><br>
+<div>
+  <label for="patientName">Enter Patient Full Name :</label>
+  <input type="text" name="patientName" required class="form-control" ngModel #patientname ="ngModel">
+  <span style="color: red;" *ngIf="patientname.touched && patientname.invalid">Patient Name Required</span>
+
+</div>
+
+<div>
+  <label for="patientAge">Enter age :</label>
+  <input type="number" name="patientAge" required class="form-control" ngModel #patientage="ngModel">
+  <span style="color: red;" *ngIf="patientage.touched && patientname.invalid">Age is required</span>
+
+</div>
+
+<div>
+  <label for="patientDob">Enter Date of Birth :</label>
+  <input type="date" name="patientDob" required class="form-control" ngModel #patientdob="ngModel">
+  <span style="color: red;" *ngIf="patientdob.touched && patientdob.invalid">DOB required</span>
+  
+</div>
+
+<div>
+  <label for="patientContact">Enter Contact Number:</label>
+  <input type="text" name="patientContact" required class="form-control" ngModel #patientcontact="ngModel"  pattern="[1-9]{1}[0-9]{9}">
+  <span style="color: red;" *ngIf="patientcontact.touched && patientcontact.invalid">Contact Number required</span>
+  
+</div>
+
+<div>
+  <label for="patientAddress">Enter Address:</label>
+  <input type="text" name="patientAddress" required class="form-control" ngModel #patientaddress="ngModel">
+  <span style="color: red;" *ngIf="patientaddress.touched && patientaddress.invalid">Address required</span>
+  
+</div>
+
+<div>
+  <label for="patientUsername">Enter username:</label>
+  <input type="text" name="patientUsername" required class="form-control" ngModel #patientusername="ngModel">
+  <span style="color: red;" *ngIf="patientusername.touched && patientusername.invalid">Username required</span>
+  
+</div>
+
+<div>
+  <label for="patientPassword">Enter password:</label>
+  <input type="password" name="patientPassword" required class="form-control" ngModel #patientpassword="ngModel">
+  <span style="color: red;" *ngIf="patientpassword.touched && patientpassword.invalid">Password required</span>
+  
+</div>
+
+<br>
+<button type="submit" class="btn btn-primary" [disabled]="patientRegisteration.invalid">Submit</button>
+
+</form>

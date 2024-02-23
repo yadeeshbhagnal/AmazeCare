@@ -17,6 +17,7 @@ import { MedicalRecordViewComponent } from './MedicalRecord/medical-record-view/
 import { PatientMedicalRecordViewComponent } from './MedicalRecord/patient-medical-record-view/patient-medical-record-view.component';
 import { RecommendedMedicinesViewComponent } from './MedicalRecord/recommended-medicines-view/recommended-medicines-view.component';
 import { RecommendedTestsViewComponent } from './MedicalRecord/recommended-tests-view/recommended-tests-view.component';
+import { PatientRegisterationComponent } from './patient/patient-registeration/patient-registeration.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,8 @@ const routes: Routes = [
   {path: 'patient-medical-record-view', component: PatientMedicalRecordViewComponent},
   {path: 'recommended-medicine-view', component: RecommendedMedicinesViewComponent},
   {path: 'recommended-tests-view', component: RecommendedTestsViewComponent},
+
+  {path: 'patient-registeration', component: PatientRegisterationComponent},
 ];
 
 @NgModule({
