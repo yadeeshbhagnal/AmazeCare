@@ -1,0 +1,22 @@
+.card{
+    border: none;
+    border-radius: 30px;
+    width: 500px;
+    padding: 40px;
+    top: 50%;
+    right: 25%;
+    transform: translate(30%, -25%); 
+    background: rgb(158, 219, 219);
+    justify-content: center;
+    color: navy;
+    justify-items: center;
+    box-shadow: 10px 10px 10px rgb(120, 120, 120);
+}
+
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #007bff; 
+  }
