@@ -1,4 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomePage</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
 <body>
+  <section class="header">
+    <nav>
+      <a href="app.component.html"><img src="../assets/logo-bg.png" alt=""></a>
+      <div class="nav-link" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+
+        <ul>
+          <li><a href="">HOME</a></li>
+          <li><a href="">ABOUT US</a></li>
+          <li><a href="">LOGIN</a></li>
+          <li><a href="">REGISTER</a></li>
+          <li><a href="">CONTACT US</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+      <h1>Revolutionizing healthcare.</h1>
+      <p>Streamlining patient care with our cutting-edge hospital management system, optimizing workflows, 
+        enhancing communication, and ensuring precision in medical operations for a healthier future.
+      </p>
+      <a href="" class="hero-btn">Visit to know more</a>
+    </div>
+
+
+
+  </section>
+
+
+  <section class="facilities">
+
+    <h1>Facilities Provided</h1>
+    <p>AmazeCare offers world-class medical care, diagnostics, surgeries, therapy, and consultations.</p>
+    <br><br>
+    <div class="row">
+      <div class="amaze-col">
+        <img src="../assets/ambulance.jpeg">
+        <div class="layer">
+          <h4>Paramedics</h4>
+        </div>
+      </div>
+
+      <div class="amaze-col">
+        <img src="../assets/emergency.jpeg">
+        <div class="layer">
+          <h4>Emergency Ward</h4>
+        </div>
+      </div>
+
+      <div class="amaze-col">
+        <img src="../assets/icu.jpg">
+        <div class="layer">
+          <h4>ICU</h4>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="services">
+    <h1>State of the Art Services</h1>
+    <p>
+      We at Amaze Care provide state-of-the-art services, delivering exceptional healthcare through advanced technology and expert medical professionals,
+       ensuring the highest level of care and patient satisfaction. We continuously strive to innovate and upgrade our services to provide the best possible care to our patients.</p>
+
+       <div class="row">
+        <div class="services-col">
+          <img src="../assets/diag.jpg" >
+          <h4>Industry level Diagnostics</h4>
+          <p>Our Diagnostic Services are equipped with cutting-edge technology and expert staff, offering accurate and timely diagnoses 
+            for various health conditions, enabling effective treatment plans.</p>
+        </div>
+
+        <div class="services-col">
+          <img src="../assets/cardio.jpg" >
+          <h4>Industry level Diagnostics</h4>
+          <p>Our Diagnostic Services are equipped with cutting-edge technology and expert staff, offering accurate and timely diagnoses 
+            for various health conditions, enabling effective treatment plans.</p>
+        </div>
+
+        <div class="services-col">
+          <img src="../assets/ortho.jpg" >
+          <h4>Industry level Diagnostics</h4>
+          <p>Our Diagnostic Services are equipped with cutting-edge technology and expert staff, offering accurate and timely diagnoses 
+            for various health conditions, enabling effective treatment plans.</p>
+        </div>
+       </div>
+  </section>
+
+
+
+
+  <script>
+    var navLinks=document.getElementById("navLinks");
+
+    function showMenu(){
+      navLinks.style.right="0";
+    }
+    function hideMenu(){
+      navLinks.style.right="-200%";
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+<!-- <body>
 <div class="container">
   <h1>Welcome to AmazeCare</h1>
 
@@ -8,7 +131,7 @@
     <button (click)="loginAs('admin')">Admin Login</button>
   </div>
 
-  <!-- <button class="btn btn-info mt-3" routerLink="/patient-registeration">Patient Registration</button> -->
+  <button class="btn btn-info mt-3" routerLink="/patient-registeration">Patient Registration</button>
 
   <div *ngIf="selectedUserType">
     <ng-container *ngIf="selectedUserType === 'doctor'">
@@ -23,5 +146,5 @@
   </div>
 
 </div>
-<!-- <router-outlet></router-outlet> -->
-</body>
+<router-outlet></router-outlet>
+</body> -->
